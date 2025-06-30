@@ -14,6 +14,7 @@ import Hero from "./Hero";
 import { faStar } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import ImageSlider from "./ImageSlider";
+import Card from "./Card";
 
 const Home = () => {
   return (
@@ -21,6 +22,7 @@ const Home = () => {
       <Header />
       <Hero />
       <ImageSlider />
+      <Card />
       {/* <section className="categoriesContainer">
         <h1 className="categoriesHeading">TOP CATEGORIES</h1>
         <section className="categoriesSection">
