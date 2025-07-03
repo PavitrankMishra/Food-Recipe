@@ -19,6 +19,8 @@
   /* background-color: rgb(224, 224, 223); */
   /* overflow-x: hidden; */
   /* background-color: red; */
+  --border-gradient: linear-gradient(to right, #ffe8b4, #f48982);
+  --border-gradient2: linear-gradient(to right, #f48982, #ffe8b4);
 }
 
 html,
