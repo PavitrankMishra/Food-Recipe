@@ -115,9 +115,7 @@
 
 @media screen and (max-width: 600px) {
   .headerContainer .listContainer,
-  .loginContainer button {
-    /* font-size: 2vw; */
-    visibility: hidden;
+  .loginButtonContainer button {
     display: none;
   }
 
