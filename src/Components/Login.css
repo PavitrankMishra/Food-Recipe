@@ -1,0 +1,118 @@
+.loginContainer {
+  height: 88dvh;
+  width: 90%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: auto;
+}
+
+.loginContainer .loginLeftPart,
+.loginRightPart {
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(to bottom, #ffe8b4, #f48982);
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.loginContainer .loginLeftPart {
+  height: 90%;
+  width: 40%;
+}
+
+.loginContainer .loginLeftPart img {
+  width: 70%;
+  height: 75%;
+  object-fit: cover;
+}
+
+.loginContainer .loginRightPart {
+  background: white;
+}
+
+.loginContainer .loginRightPart .loginInnerRightPart {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  flex-direction: column;
+  width: 80%;
+  /* height: 85%; */
+  margin: auto;
+  gap: 25px;
+}
+
+.loginContainer .loginRightPart .loginInnerRightPart img {
+  width: 60px;
+}
+
+.loginContainer .loginRightPart .loginInnerRightPart p {
+  text-align: center;
+}
+
+.loginContainer .loginRightPart .loginInnerRightPart .subHeading {
+  color: #5b5959;
+}
+
+.loginContainer .loginRightPart .loginInnerRightPart input {
+  border: none;
+  outline: none;
+  width: 70%;
+  border: 4px solid transparent;
+  background: linear-gradient(#ffffff, #fffcfc) padding-box,
+    var(--border-gradient) border-box;
+  border-radius: 10px;
+  height: 50px;
+  padding-left: 20px;
+}
+
+.loginContainer .loginRightPart .loginInnerRightPart .loginButton {
+  border-radius: 10px;
+  height: 50px;
+  width: 150px;
+  font-size: 24px;
+  font-weight: 500;
+  color: #ffffff;
+  border: none;
+  background-image: var(--border-gradient);
+  letter-spacing: 2px;
+  cursor: pointer;
+  transition: all 1s ease-in-out;
+  transition-delay: 0s;
+}
+
+.loginContainer .loginRightPart .loginInnerRightPart .loginButton:hover {
+  background-image: var(--border-gradient2);
+  transition-delay: 0.3s;
+}
+
+.loginContainer .loginRightPart .loginInnerRightPart input {
+  letter-spacing: 1.2px;
+  color: #5b5959;
+  font-family: "Barlow", sans-serif;
+}
+
+@media screen and (max-width: 500px) {
+  .loginContainer .loginLeftPart {
+    display: none;
+  }
+
+  .loginContainer .loginRightPart {
+    width: 100%;
+  }
+
+  .loginContainer .loginRightPart .loginInnerRightPart {
+    width: 100%;
+    height: 100%;
+  }
+
+  .loginContainer .loginRightPart .loginInnerRightPart img {
+    width: 40px;
+  }
+  .loginContainer .loginRightPart .loginInnerRightPart input {
+    width: 90%;
+  }
+
+}
