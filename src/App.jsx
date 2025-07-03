@@ -5,6 +5,7 @@ import Recipes from "./Components/Recipes";
 import NotFound from "./Components/NotFound";
 import { useState, useEffect } from "react";
 import AddRecipe from "./Components/AddRecipe";
+import Login from "./Components/Login";
 
 const App = () => {
   const [data, setData] = useState([]);
@@ -82,6 +83,7 @@ const App = () => {
         />
         <Route path="/about" element={<Home />} />
         <Route path="/bookmarks" element={<Home />} />
+        <Route path="/login" element={<Login />} />
 
         {/* <Route path="/recipes" element={<AddRecipe />} /> */}
         <Route path="*" element={<NotFound />} />
