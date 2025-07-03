@@ -15,7 +15,6 @@ const Header = () => {
 
   function toggleSideBar() {
     setShowSideBar(!showSideBar);
-    // console.log(showSideBar);
   }
 
   return (
@@ -48,7 +47,7 @@ const Header = () => {
             </li>
           </ul>
         </section>
-        <section className="loginContainer">
+        <section className="loginButtonContainer">
           <Button location={"/login"}>Login</Button>
         </section>
       </section>
