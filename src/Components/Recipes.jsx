@@ -93,13 +93,34 @@ const Recipes = ({ data, recipe, getData, getId }) => {
   };
   return (
     <>
-      <section className="mostMainContainer">
+      <Header />
+      <section className="recipesContainer">
+        <section className="recipeHeadingContainer">
+          <section className="recipeHeadingLeft">
+            <img src={Logo} alt="Website Logo" />
+            <input
+              type="text"
+              placeholder="Search over 1,00,000 recipes"
+              className="inputField"
+              value={inputValue}
+              onChange={(e) => setInputValue(e.target.value)}
+              id="inputFieldId"
+            />
+          </section>
+          <section className="recipeHeadingRight">
+            <section className="bookmarkContainer">
+              <p>ADD RECIPES</p>
+              <p>BOOKMARK</p>
+              <FontAwesomeIcon icon={faPlus} className="plusIcon"/>
+              <FontAwesomeIcon icon={faBookmark} className="bookmarkIcon"/>
+            </section>
+          </section>
+        </section>
+      </section>
+      {/* <section className="mostMainContainer">
         <Header />
-        {/* The main container that contains all the sub parts */}
         <section className="recipeContainer">
-          {/* The container that contains recipe heading */}
           <section className="recipeHeadingContainer">
-            {/* <section className="containerLeft"> */}
             <img src={Logo} className="headingLogo" alt="logo" />
             <input
               type="text"
@@ -107,7 +128,6 @@ const Recipes = ({ data, recipe, getData, getId }) => {
               value={inputValue}
               onChange={(e) => setInputValue(e.target.value)}
             />
-            {/* </section> */}
             <section className="containerRight">
               <button onClick={handleAddRecipeVisibility}>
                 <FontAwesomeIcon icon={faPlus} className="plus" />
@@ -139,9 +159,7 @@ const Recipes = ({ data, recipe, getData, getId }) => {
             </section>
           </section>
 
-          {/* Main content */}
           <section className="recipeMiddleContainer">
-            {/* Left Side: List of Recipes */}
             <section className="recipeMiddleLeft">
               {currentData && currentData.length > 0 ? (
                 currentData.map((item) => (
@@ -166,10 +184,10 @@ const Recipes = ({ data, recipe, getData, getId }) => {
                 ))
               ) : (
                 <p>There is no data</p>
-              )}
+              )} */}
 
-              {/* Pagination */}
-              <section className="buttonContainer">
+      {/* Pagination */}
+      {/* <section className="buttonContainer">
                 <button
                   className="butonLeft"
                   onClick={handlePreviousList}
@@ -185,10 +203,10 @@ const Recipes = ({ data, recipe, getData, getId }) => {
                   Next
                 </button>
               </section>
-            </section>
+            </section> */}
 
-            {/* Right Side: Selected Recipe Details */}
-            <section className="recipeMiddleRight">
+      {/* Right Side: Selected Recipe Details */}
+      {/* <section className="recipeMiddleRight">
               {recipe ? (
                 <>
                   <section className="sec-1">
@@ -251,12 +269,12 @@ const Recipes = ({ data, recipe, getData, getId }) => {
                       </ul>
                     ) : (
                       <p>There are no ingredients listed.</p>
-                    )}
-                    {/* <button className="addToCart">
+                    )} */}
+      {/* <button className="addToCart">
                     <FontAwesomeIcon icon={faCartShopping} /> ADD TO SHOPPING
                     LIST
                   </button> */}
-                  </section>
+      {/* </section>
 
                   <section className="sec-4">
                     <h1>HOW TO COOK IT</h1>
@@ -279,7 +297,7 @@ const Recipes = ({ data, recipe, getData, getId }) => {
             </section>
           </section>
         </section>
-      </section>
+      </section> */}
     </>
   );
 };
