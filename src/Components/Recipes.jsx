@@ -111,8 +111,8 @@ const Recipes = ({ data, recipe, getData, getId }) => {
             <section className="bookmarkContainer">
               <p>ADD RECIPES</p>
               <p>BOOKMARK</p>
-              <FontAwesomeIcon icon={faPlus} className="plusIcon"/>
-              <FontAwesomeIcon icon={faBookmark} className="bookmarkIcon"/>
+              <FontAwesomeIcon icon={faPlus} size="xl" className="plusIcon"/>
+              <FontAwesomeIcon icon={faBookmark} size="xl" className="bookmarkIcon"/>
             </section>
           </section>
         </section>
