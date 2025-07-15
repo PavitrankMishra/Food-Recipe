@@ -16,22 +16,27 @@ const App = () => {
   const [inputV, setInputV] = useState("Pizza");
   const [inputID, setInputID] = useState("664c8f193e7aa067e94e8297");
 
-  // const fetchData = async function () {
-  //   try {
-  //     const res = await fetch(
-  //       "https://forkify-api.herokuapp.com/api/v2/recipes?search=pizza&key=d348a0b0-c7b8-4539-b6a6-80f883fdef51"
-  //     );
-  //     if (!res.ok) {
-  //       throw new Error("Response was not ok");
-  //     }
-  //     const data = await res.json();
-  //     console.log(data);
-  //   } catch (error) {
-  //     console.log("Error :" + error);
-  //   }
-  // };
+  /**
+   * Fetch Data from the api
+   */
 
-  // fetchData();
+  const fetchData = async function () {
+    try {
+      const res = await fetch(
+        "https://forkify-api.herokuapp.com/api/v2/recipes?search=pizza&key=d348a0b0-c7b8-4539-b6a6-80f883fdef51"
+      );
+
+      if (!res.ok) {
+        throw new Error("Response was not ok");
+      }
+      const data = await res.json();
+      console.log(data);
+    } catch (error) {
+      console.log("The error is: " + error);
+    }
+  };
+
+  fetchData();
 
   useEffect(() => {
     fetch(

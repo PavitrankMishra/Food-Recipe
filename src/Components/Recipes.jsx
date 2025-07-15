@@ -22,75 +22,47 @@ import Bookmark from "./Bookmark";
 import AddRecipe from "./AddRecipe";
 
 const Recipes = ({ data, recipe, getData, getId }) => {
+  /**
+   * Sets the value of result per page to 10
+   */
   const [resPerPage, setResPerPage] = useState(10);
+
+  /**
+   * Sets the initial page to 1 for the pagination section
+   */
   const [page, setPage] = useState(1);
+
+  /**
+   * State to store value entered by user in input field
+   * Intialized with a default value "Pizza"
+   */
   const [inputValue, setInputValue] = useState("Pizza");
+
+  /**
+   * Displays the number of servings for a particular recipe
+   */
   const [servings, setServings] = useState(recipe?.servings || 4);
 
+  /**
+   * variable to store the starting index of the result
+   */
   const startIndex = (page - 1) * resPerPage;
+
+  /**
+   * Variable to store the ending index of the result
+   */
   const endIndex = page * resPerPage;
+
+  /**
+   * It is the data that will be shown in the recipes list
+   */
   const currentData = data?.slice(startIndex, endIndex);
+  console.log(currentData);
 
   useEffect(() => {
     getData(inputValue);
   }, [inputValue]);
 
-  const handlePreviousList = () => {
-    setPage((p) => p - 1);
-  };
-
-  const handleNextList = () => {
-    setPage((p) => p + 1);
-  };
-
-  const sendID = (id) => {
-    getId(id);
-    setServings(recipe?.servings || 4);
-  };
-
-  const incrementCount = () => {
-    setServings((prev) => prev + 1);
-  };
-
-  const decrementCount = () => {
-    setServings((prev) => (prev > 1 ? prev - 1 : 1));
-  };
-
-  const updatedIngredients =
-    recipe?.ingredients?.map((ing) => {
-      const factor = servings / (recipe?.servings || 4);
-      return {
-        ...ing,
-        quantity: ing.quantity ? (ing.quantity * factor).toFixed(2) : null,
-      };
-    }) || [];
-
-  const [bookMarkedRecipes, setBookMarkedRecipes] = useState([]);
-
-  function handleBookMark(recipe) {
-    setBookMarkedRecipes((prev) => {
-      const alreadyBookMarked = prev.find((r) => r.id === recipe.id);
-      if (alreadyBookMarked) {
-        return prev.filter((r) => r.id !== recipe.id);
-      } else {
-        return [...prev, recipe];
-      }
-    });
-    console.log("Bookmarked clicked");
-  }
-
-  const [isVisible, setIsVisible] = useState(false);
-
-  const handleVisibility = () => {
-    setIsVisible((prev) => !prev);
-    console.log(isVisible);
-  };
-
-  const [isRecipeVisible, setIsRecipeVisible] = useState(false);
-  const handleAddRecipeVisibility = () => {
-    setIsRecipeVisible((prev) => !prev);
-    console.log("Is the add recipe visible: " + isRecipeVisible);
-  };
   return (
     <>
       <Header />
@@ -111,10 +83,39 @@ const Recipes = ({ data, recipe, getData, getId }) => {
             <section className="bookmarkContainer">
               <p>ADD RECIPES</p>
               <p>BOOKMARK</p>
-              <FontAwesomeIcon icon={faPlus} size="xl" className="plusIcon"/>
-              <FontAwesomeIcon icon={faBookmark} size="xl" className="bookmarkIcon"/>
+              <FontAwesomeIcon icon={faPlus} size="xl" className="plusIcon" />
+              <FontAwesomeIcon
+                icon={faBookmark}
+                size="xl"
+                className="bookmarkIcon"
+              />
             </section>
           </section>
+        </section>
+        <section className="middleContainer">
+          <section className="middleLeft">
+            {currentData &&
+              currentData.length > 0 &&
+              currentData.map((item, id) => (
+                <section className="recipesList" key={id}>
+                  <section className="imageContainer">
+                    <img src={item.image_url} alt={item.title} />
+                  </section>
+                  <section className="nameContainer">
+                    <p className="itemTitle">{item.title}</p>
+                    <p className="itemPublisher">{item.publisher}</p>
+                  </section>
+                  <section className="userContainer">
+                    <FontAwesomeIcon icon={faUser} />
+                  </section>
+                </section>
+              ))}
+            <section className="recipeButtonContainer">
+              <button>PREV</button>
+              <button>NEXT</button>
+            </section>
+          </section>
+          <section className="middleRight"></section>
         </section>
       </section>
       {/* <section className="mostMainContainer">
@@ -303,3 +304,60 @@ const Recipes = ({ data, recipe, getData, getId }) => {
 };
 
 export default Recipes;
+
+// const handlePreviousList = () => {
+//   setPage((p) => p - 1);
+// };
+
+// const handleNextList = () => {
+//   setPage((p) => p + 1);
+// };
+
+// const sendID = (id) => {
+//   getId(id);
+//   setServings(recipe?.servings || 4);
+// };
+
+// const incrementCount = () => {
+//   setServings((prev) => prev + 1);
+// };
+
+// const decrementCount = () => {
+//   setServings((prev) => (prev > 1 ? prev - 1 : 1));
+// };
+
+// const updatedIngredients =
+//   recipe?.ingredients?.map((ing) => {
+//     const factor = servings / (recipe?.servings || 4);
+//     return {
+//       ...ing,
+//       quantity: ing.quantity ? (ing.quantity * factor).toFixed(2) : null,
+//     };
+//   }) || [];
+
+// const [bookMarkedRecipes, setBookMarkedRecipes] = useState([]);
+
+// function handleBookMark(recipe) {
+//   setBookMarkedRecipes((prev) => {
+//     const alreadyBookMarked = prev.find((r) => r.id === recipe.id);
+//     if (alreadyBookMarked) {
+//       return prev.filter((r) => r.id !== recipe.id);
+//     } else {
+//       return [...prev, recipe];
+//     }
+//   });
+//   console.log("Bookmarked clicked");
+// }
+
+// const [isVisible, setIsVisible] = useState(false);
+
+// const handleVisibility = () => {
+//   setIsVisible((prev) => !prev);
+//   console.log(isVisible);
+// };
+
+// const [isRecipeVisible, setIsRecipeVisible] = useState(false);
+// const handleAddRecipeVisibility = () => {
+//   setIsRecipeVisible((prev) => !prev);
+//   console.log("Is the add recipe visible: " + isRecipeVisible);
+// };

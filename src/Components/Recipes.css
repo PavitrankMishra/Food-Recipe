@@ -4,13 +4,13 @@
   align-items: center;
   justify-content: flex-start;
   margin: auto;
-  height: 88dvh;
+  min-height: 100dvh;
   flex-direction: column;
 }
 
 .recipesContainer .recipeHeadingContainer {
   width: 100%;
-  height: 60px;
+  min-height: 60px;
   border-radius: 12px;
   background-color: #ffabab;
   display: flex;
@@ -30,6 +30,7 @@
 .recipesContainer .recipeHeadingContainer .recipeHeadingLeft {
   width: 70%;
 }
+
 .recipesContainer .recipeHeadingContainer .recipeHeadingRight {
   width: 30%;
   gap: 20px;
@@ -119,6 +120,135 @@
   display: none;
 }
 
+.recipesContainer .middleContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  margin-top: 20px;
+  gap: 20px;
+  border-radius: 12px;
+}
+
+.recipesContainer .middleContainer .middleLeft {
+  width: 40%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-direction: column;
+}
+
+.recipesContainer .middleContainer .middleRight {
+  width: 60%;
+  height: 100%;
+}
+
+.recipesContainer .middleContainer .middleLeft .recipesList {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 8px;
+  border-radius: 12px;
+  border-bottom: 3px solid #f48982;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  width: 100%;
+  min-height: 80px;
+  gap: 10px;
+}
+
+.recipesContainer .middleContainer .middleLeft .recipesList:hover {
+  background-color: #ffabab;
+}
+
+.recipesContainer .middleContainer .middleLeft .recipesList .imageContainer {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.recipesContainer .middleContainer .middleLeft .recipesList .nameContainer {
+  width: 70%;
+  height: 50px;
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.recipesContainer .middleContainer .middleLeft .recipeButtonContainer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 20px 0;
+
+}
+
+.recipesContainer .middleContainer .middleLeft .recipeButtonContainer button {
+  background-color: transparent;
+  height: 50px;
+  width: 100px;
+  border-radius: 30px;
+  outline: none;
+  border: 3px solid #f48982;
+  font-size: 16px;
+  letter-spacing: 1.2px;
+  transition: all 0.3s ease-in-out;
+    cursor: pointer;
+    font-weight: 500;
+}
+
+.recipesContainer
+  .middleContainer
+  .middleLeft
+  .recipeButtonContainer
+  button:hover {
+  background-color: #f48982;
+}
+.recipesContainer
+  .middleContainer
+  .middleLeft
+  .recipesList
+  .nameContainer
+  .itemTitle {
+  font-weight: 500;
+  letter-spacing: 0.8px;
+}
+
+.recipesContainer
+  .middleContainer
+  .middleLeft
+  .recipesList
+  .nameContainer
+  .itemPublisher {
+  font-size: 16px;
+  color: #575454;
+}
+.recipesContainer
+  .middleContainer
+  .middleLeft
+  .recipesList
+  .imageContainer
+  img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.recipesContainer .middleContainer .middleLeft .recipesList .userContainer {
+  width: 40px;
+  height: 40px;
+  border: 3px solid #f48982;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 @media screen and (max-width: 1060px) {
   .recipesContainer {
     width: 97%;
@@ -145,12 +275,13 @@
 
 @media screen and (max-width: 650px) {
   .recipesContainer {
-  width: 95%;
-}
+    width: 95%;
+  }
 
-.plusIcon , .bookmarkIcon {
-  font-size:large;
-}
+  .plusIcon,
+  .bookmarkIcon {
+    font-size: large;
+  }
   .recipesContainer .recipeHeadingContainer .recipeHeadingLeft {
     width: 80%;
   }
