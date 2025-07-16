@@ -15,6 +15,7 @@ import {
   faMinus,
   faCartShopping,
   faArrowRightLong,
+  faCheck,
 } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
 import { faHeart as faHeartSolid } from "@fortawesome/free-solid-svg-icons";
@@ -62,6 +63,7 @@ const Recipes = ({ data, recipe, getData, getId }) => {
   useEffect(() => {
     getData(inputValue);
   }, [inputValue]);
+  console.log(recipe);
 
   return (
     <>
@@ -96,8 +98,12 @@ const Recipes = ({ data, recipe, getData, getId }) => {
           <section className="middleLeft">
             {currentData &&
               currentData.length > 0 &&
-              currentData.map((item, id) => (
-                <section className="recipesList" key={id}>
+              currentData.map((item) => (
+                <section
+                  className="recipesList"
+                  key={item.id}
+                  onClick={() => getId(item.id)}
+                >
                   <section className="imageContainer">
                     <img src={item.image_url} alt={item.title} />
                   </section>
@@ -115,7 +121,65 @@ const Recipes = ({ data, recipe, getData, getId }) => {
               <button>NEXT</button>
             </section>
           </section>
-          <section className="middleRight"></section>
+          <section className="middleRight">
+            {recipe ? (
+              <>
+                <section className="imageContainer">
+                  <img src={recipe.image_url} />
+                </section>
+                <section className="navigationContainer">
+                  <section className="timingContainer">
+                    <FontAwesomeIcon icon={faClock} className="clockIcon" />
+                    <span className="minutes">
+                      {recipe.cooking_time} MINUTES
+                    </span>
+                  </section>
+                  <section className="servingsContainer">
+                    <FontAwesomeIcon icon={faUser} />
+                    <span>{recipe.servings} SERVINGS</span>
+                    <FontAwesomeIcon icon={faMinus} />
+                    <FontAwesomeIcon icon={faPlus} />
+                  </section>
+                  <section className="recipeBookmark">
+                    <FontAwesomeIcon
+                      icon={faBookmark}
+                      className="recipeBookmarkIcon"
+                    />
+                  </section>
+                </section>
+                <section className="itemListContainer">
+                  <h1>RECIPE INGREDIENTS</h1>
+                  <section className="allItemContainer">
+                    {recipe?.ingredients?.map((ing) => (
+                      <>
+                        <section className="itemContainer">
+                          <span>
+                            <FontAwesomeIcon icon={faCheck} />
+                          </span>
+                          <span>{ing.quantity}</span>
+                          <span>{ing.unit}</span>
+                          <span> {ing.description} </span>
+                        </section>
+                      </>
+                    ))}
+                  </section>
+                </section>
+                <section className="directionsContainer">
+                  <h1 id="directionHeading">HOW TO COOK IT</h1>
+                  <span>
+                    The recipe was carefully designed and tested by{" "}
+                    <span id="publisherName">{recipe?.publisher}</span>.Please
+                    check out directions at their website.
+                  </span>
+                  <a href={recipe.source_url}>
+                    <button>DIRECTIONS</button>
+                  </a>
+                </section>
+              </>
+            ) : (
+              <p>There are no recipes available</p>
+            )}
+          </section>
         </section>
       </section>
       {/* <section className="mostMainContainer">
