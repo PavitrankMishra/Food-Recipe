@@ -8,7 +8,7 @@
   align-items: center;
   justify-content: space-between;
   width: 100%;
-  padding: 20px 20px;
+  padding: 12px 20px;
   text-transform: capitalize;
   color: #333;
   font-weight: 500;
@@ -19,6 +19,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  /* border: 2px solid red; */
 }
 
 .headerContainer .logoContainer img {
@@ -108,7 +109,7 @@
 
   .mealzoHeading {
     font-size: 32px;
-    font-size: 5vw;
+    /* font-size: 5vw; */
     color: #333;
   }
 
@@ -116,7 +117,7 @@
     cursor: pointer;
     color: #fd6b47;
     font-size: 20px;
-    font-size: 4vw;
+    /* font-size: 4vw; */
   }
 
   .headerContainer .logoContainer img {
