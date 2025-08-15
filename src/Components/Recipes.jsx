@@ -130,15 +130,18 @@ const Recipes = ({ data, recipe, getData, getId }) => {
                 <section className="navigationContainer">
                   <section className="timingContainer">
                     <FontAwesomeIcon icon={faClock} className="clockIcon" />
+                    {/* <FontAwesomeIcon icon={faCircleCheck} className="clockIcon"/> */}
                     <span className="minutes">
                       {recipe.cooking_time} MINUTES
                     </span>
                   </section>
                   <section className="servingsContainer">
-                    <FontAwesomeIcon icon={faUser} />
+                    <FontAwesomeIcon icon={faUser} className="servingsIcon" />
                     <span>{recipe.servings} SERVINGS</span>
-                    <FontAwesomeIcon icon={faMinus} />
-                    <FontAwesomeIcon icon={faPlus} />
+                    <section className="updationContainer">
+                      <FontAwesomeIcon icon={faMinus} className="minusIcon" />
+                      <FontAwesomeIcon icon={faPlus} className="plusIcon" />
+                    </section>
                   </section>
                   <section className="recipeBookmark">
                     <FontAwesomeIcon
@@ -154,11 +157,19 @@ const Recipes = ({ data, recipe, getData, getId }) => {
                       <>
                         <section className="itemContainer">
                           <span>
-                            <FontAwesomeIcon icon={faCheck} />
+                            {/* <FontAwesomeIcon icon={faCheck} className="recipeIcons"/> */}
+                            <FontAwesomeIcon
+                              icon={faCircleCheck}
+                              className="recipeIcons"
+                            />
                           </span>
-                          <span>{ing.quantity}</span>
-                          <span>{ing.unit}</span>
-                          <span> {ing.description} </span>
+                          <span>
+                            {ing?.quantity || ""} {ing?.unit || ""}{" "}
+                            {ing?.description || ""}{" "}
+                          </span>
+                          {/* <span>{ing?.quantity || ""}</span>
+                          <span>{ing?.unit || ""}</span>
+                          <span> {ing?.description || ""} </span> */}
                         </section>
                       </>
                     ))}
@@ -166,11 +177,9 @@ const Recipes = ({ data, recipe, getData, getId }) => {
                 </section>
                 <section className="directionsContainer">
                   <h1 id="directionHeading">HOW TO COOK IT</h1>
-                  <span>
-                    The recipe was carefully designed and tested by{" "}
-                    <span id="publisherName">{recipe?.publisher}</span>.Please
-                    check out directions at their website.
-                  </span>
+                  <p>The recipe was carefully designed and tested by</p>
+                  <p id="publisherName">{recipe?.publisher}</p>
+                  <p>Please check out directions at their website.</p>
                   <a href={recipe.source_url}>
                     <button>DIRECTIONS</button>
                   </a>
