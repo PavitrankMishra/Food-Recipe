@@ -2,13 +2,14 @@
   height: 100dvh;
   padding: 10px 10px;
   display: none;
-  background-color: rgb(181, 181, 181);
+  /* background-color: rgb(181, 181, 181); */
+  background-color: #ffffff;
   align-items: center;
   justify-content: space-between;
   position: fixed;
-  right: -300px;
+  right: -600px;
   top: 0;
-  width: 300px;
+  width: 99%;
   height: 100vh;
 }
 
