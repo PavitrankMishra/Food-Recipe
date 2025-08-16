@@ -23,14 +23,6 @@ import Bookmark from "./Bookmark";
 import AddRecipe from "./AddRecipe";
 // import { faBookmark } from "@fortawesome/free-solid-svg-icons";
 
-// Flow for pagination algorithm
-// Prev button
-// Next button
-// Starting of the current Page
-// resPerPage tells how many results to display per page
-// Find total pages by dividing results with resPerPage and convert it to ceil value
-// Prev button will be clicked only when currentPage > 1
-// Next button will be clicked only when currentPage < totalPage
 const Recipes = ({ data, recipe, getData, getId }) => {
   const [inputValue, setInputValue] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
@@ -39,7 +31,11 @@ const Recipes = ({ data, recipe, getData, getId }) => {
   const [startIndex, setStartIndex] = useState(0);
   const [endIndex, setEndIndex] = useState(10);
   const [servings, setRecipeServings] = useState(recipe?.servings || 4);
+  const [isBookMarked, setIsBookMarked] = useState(false);
 
+  const handleBookMarked = () => {
+    setIsBookMarked(!isBookMarked);
+  };
   useEffect(() => {
     const dataLength = Math.ceil(data?.length / resPerPage);
     setTotalPages(dataLength);
@@ -192,10 +188,21 @@ const Recipes = ({ data, recipe, getData, getId }) => {
                     </section>
                   </section>
                   <section className="recipeBookmark">
-                    <FontAwesomeIcon
-                      icon={faHeartSolid}
-                      className="recipeBookmarkIcon"
-                    />
+                    {isBookMarked ? (
+                      <FontAwesomeIcon
+                        icon={faHeartSolid}
+                        className="recipeBookmarkIcon"
+                        style={{ color: "#f48982" }}
+                        onClick={handleBookMarked}
+                      />
+                    ) : (
+                      <FontAwesomeIcon
+                        icon={faHeart}
+                        className="recipeBookmarkIcon"
+                        style={{ color: "#f48982" }}
+                        onClick={handleBookMarked}
+                      />
+                    )}
                   </section>
                 </section>
                 <section className="itemListContainer">

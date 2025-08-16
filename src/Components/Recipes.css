@@ -285,12 +285,7 @@
   .navigationContainer
   .servingsIcon,
 .recipesContainer .middleContainer .middleRight .navigationContainer .minusIcon,
-.recipesContainer .middleContainer .middleRight .navigationContainer .plusIcon,
-.recipesContainer
-  .middleContainer
-  .middleRight
-  .navigationContainer
-  .recipeBookmarkIcon {
+.recipesContainer .middleContainer .middleRight .navigationContainer .plusIcon {
   color: #f48982;
 }
 
