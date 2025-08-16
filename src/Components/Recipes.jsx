@@ -22,49 +22,122 @@ import { faHeart as faHeartSolid } from "@fortawesome/free-solid-svg-icons";
 import Bookmark from "./Bookmark";
 import AddRecipe from "./AddRecipe";
 
+// Flow for pagination algorithm
+// Prev button
+// Next button
+// Starting of the current Page
+// resPerPage tells how many results to display per page
+// Find total pages by dividing results with resPerPage and convert it to ceil value
+// Prev button will be clicked only when currentPage > 1
+// Next button will be clicked only when currentPage < totalPage
 const Recipes = ({ data, recipe, getData, getId }) => {
-  /**
-   * Sets the value of result per page to 10
-   */
+  const [inputValue, setInputValue] = useState("");
+  const [currentPage, setCurrentPage] = useState(1);
   const [resPerPage, setResPerPage] = useState(10);
+  const [servings, setRecipeServings] = useState(recipe?.servings || 4);
+  const [totalPages, setTotalPages] = useState(0);
+  const [startIndex, setStartIndex] = useState(0);
+  const [endIndex, setEndIndex] = useState(10);
 
-  /**
-   * Sets the initial page to 1 for the pagination section
-   */
-  const [page, setPage] = useState(1);
+  console.log(totalPages);
+  useEffect(() => {
+    const dataLength = Math.ceil(data?.length / resPerPage);
+    setTotalPages(dataLength);
+  }, [data]);
+  // useEffect(() => {
+  //   setTotalPages(data?.results);
+  // }, [data]);
 
-  /**
-   * State to store value entered by user in input field
-   * Intialized with a default value "Pizza"
-   */
-  const [inputValue, setInputValue] = useState("Pizza");
-
-  /**
-   * Displays the number of servings for a particular recipe
-   */
-  const [servings, setServings] = useState(recipe?.servings || 4);
-
-  /**
-   * variable to store the starting index of the result
-   */
-  const startIndex = (page - 1) * resPerPage;
-
-  /**
-   * Variable to store the ending index of the result
-   */
-  const endIndex = page * resPerPage;
-
-  /**
-   * It is the data that will be shown in the recipes list
-   */
-  const currentData = data?.slice(startIndex, endIndex);
-  console.log(currentData);
+  // console.log(totalPages);
 
   useEffect(() => {
-    getData(inputValue);
-  }, [inputValue]);
-  console.log(recipe);
+      console.log("The current page is: ", currentPage);
+  }, [currentPage]);
 
+  function handlePageDecrement() {
+    if (currentPage > 1) {
+      setCurrentPage(currentPage - 1);
+      console.log("Decrement clicked");
+    }
+  }
+
+  function handlePageIncrement() {
+    if (currentPage < totalPages) {
+      setCurrentPage(currentPage + 1);
+      console.log("Increment clicked");
+    }
+  }
+
+  const sI = (currentPage-1)*resPerPage;
+  const eI = (currentPage)*resPerPage;
+  console.log(sI);
+  console.log(eI);
+  const currentData = data?.slice(sI, eI);
+  console.log(currentData);
+  console.log(totalPages);
+
+  // /**
+  //  * Sets the value of result per page to 10
+  //  */
+  // const [resPerPage, setResPerPage] = useState(10);
+
+  // /**
+  //  * Sets the initial page to 1 for the pagination section
+  //  */
+  // const [page, setPage] = useState(1);
+
+  // /**
+  //  * State to store value entered by user in input field
+  //  * Intialized with a default value "Pizza"
+  //  */
+  // const [inputValue, setInputValue] = useState("Pizza");
+
+  // /**
+  //  * Displays the number of servings for a particular recipe
+  //  */
+  // const [servings, setServings] = useState(recipe?.servings || 4);
+
+  // /**
+  //  * variable to store the starting index of the result
+  //  */
+  // const startIndex = (page - 1) * resPerPage;
+
+  // /**
+  //  * Variable to store the ending index of the result
+  //  */
+  // const endIndex = page * resPerPage;
+
+  // /**
+  //  * It is the data that will be shown in the recipes list
+  //  */
+  // const currentData = data?.slice(startIndex, endIndex);
+  // console.log(currentData);
+
+  useEffect(() => {
+    const timerId = setTimeout(() => {
+      if (inputValue.length > 3) {
+        console.log("The input value is: " + inputValue);
+        console.log("It is called after 1 sec");
+        getData(inputValue);
+      }
+    }, 1000);
+
+    return () => {
+      clearTimeout(timerId);
+    };
+  }, [inputValue]);
+
+  function updateInputValue(e) {
+    setInputValue(e.target.value);
+    // console.log(inputValue);
+  }
+
+  // useEffect(() => {
+  //   getData(inputValue);
+  // }, [inputValue]);
+  console.log(recipe);
+  console.log(data);
+  console.log("The length of the data is : ", data.length);
   return (
     <>
       <Header />
@@ -77,7 +150,8 @@ const Recipes = ({ data, recipe, getData, getId }) => {
               placeholder="Search over 1,00,000 recipes"
               className="inputField"
               value={inputValue}
-              onChange={(e) => setInputValue(e.target.value)}
+              // onChange={(e) => setInputValue(e.target.value)}
+              onChange={updateInputValue}
               id="inputFieldId"
             />
           </section>
@@ -117,8 +191,8 @@ const Recipes = ({ data, recipe, getData, getId }) => {
                 </section>
               ))}
             <section className="recipeButtonContainer">
-              <button>PREV</button>
-              <button>NEXT</button>
+              <button onClick={handlePageDecrement}>PREV</button>
+              <button onClick={handlePageIncrement}>NEXT</button>
             </section>
           </section>
           <section className="middleRight">
