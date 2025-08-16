@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Header from "./Header";
 import "./Recipes.css";
 import Logo from "../Assets/Logo.png";
@@ -21,6 +21,7 @@ import { Link } from "react-router-dom";
 import { faHeart as faHeartSolid } from "@fortawesome/free-solid-svg-icons";
 import Bookmark from "./Bookmark";
 import AddRecipe from "./AddRecipe";
+// import { faBookmark } from "@fortawesome/free-solid-svg-icons";
 
 // Flow for pagination algorithm
 // Prev button
@@ -34,25 +35,31 @@ const Recipes = ({ data, recipe, getData, getId }) => {
   const [inputValue, setInputValue] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
   const [resPerPage, setResPerPage] = useState(10);
-  const [servings, setRecipeServings] = useState(recipe?.servings || 4);
   const [totalPages, setTotalPages] = useState(0);
   const [startIndex, setStartIndex] = useState(0);
   const [endIndex, setEndIndex] = useState(10);
+  const [servings, setRecipeServings] = useState(recipe?.servings || 4);
 
-  console.log(totalPages);
   useEffect(() => {
     const dataLength = Math.ceil(data?.length / resPerPage);
     setTotalPages(dataLength);
   }, [data]);
-  // useEffect(() => {
-  //   setTotalPages(data?.results);
-  // }, [data]);
-
-  // console.log(totalPages);
 
   useEffect(() => {
-      console.log("The current page is: ", currentPage);
+    console.log("The current page is: ", currentPage);
   }, [currentPage]);
+
+  function handleServingIncrement() {
+    const currentServing = servings;
+    setRecipeServings(currentServing + 1);
+  }
+
+  function handleServingDecrement() {
+    if (servings > 1) {
+      const currentServing = servings;
+      setRecipeServings(currentServing - 1);
+    }
+  }
 
   function handlePageDecrement() {
     if (currentPage > 1) {
@@ -68,50 +75,9 @@ const Recipes = ({ data, recipe, getData, getId }) => {
     }
   }
 
-  const sI = (currentPage-1)*resPerPage;
-  const eI = (currentPage)*resPerPage;
-  console.log(sI);
-  console.log(eI);
+  const sI = (currentPage - 1) * resPerPage;
+  const eI = currentPage * resPerPage;
   const currentData = data?.slice(sI, eI);
-  console.log(currentData);
-  console.log(totalPages);
-
-  // /**
-  //  * Sets the value of result per page to 10
-  //  */
-  // const [resPerPage, setResPerPage] = useState(10);
-
-  // /**
-  //  * Sets the initial page to 1 for the pagination section
-  //  */
-  // const [page, setPage] = useState(1);
-
-  // /**
-  //  * State to store value entered by user in input field
-  //  * Intialized with a default value "Pizza"
-  //  */
-  // const [inputValue, setInputValue] = useState("Pizza");
-
-  // /**
-  //  * Displays the number of servings for a particular recipe
-  //  */
-  // const [servings, setServings] = useState(recipe?.servings || 4);
-
-  // /**
-  //  * variable to store the starting index of the result
-  //  */
-  // const startIndex = (page - 1) * resPerPage;
-
-  // /**
-  //  * Variable to store the ending index of the result
-  //  */
-  // const endIndex = page * resPerPage;
-
-  // /**
-  //  * It is the data that will be shown in the recipes list
-  //  */
-  // const currentData = data?.slice(startIndex, endIndex);
-  // console.log(currentData);
 
   useEffect(() => {
     const timerId = setTimeout(() => {
@@ -129,15 +95,17 @@ const Recipes = ({ data, recipe, getData, getId }) => {
 
   function updateInputValue(e) {
     setInputValue(e.target.value);
-    // console.log(inputValue);
   }
 
-  // useEffect(() => {
-  //   getData(inputValue);
-  // }, [inputValue]);
-  console.log(recipe);
-  console.log(data);
-  console.log("The length of the data is : ", data.length);
+  const updatedIngredients =
+    recipe?.ingredients?.map((ing) => {
+      const factor = servings / (recipe?.servings || 4);
+      return {
+        ...ing,
+        quantity: ing.quantity ? (ing.quantity * factor).toFixed(2) : null,
+      };
+    }) || [];
+
   return (
     <>
       <Header />
@@ -150,7 +118,6 @@ const Recipes = ({ data, recipe, getData, getId }) => {
               placeholder="Search over 1,00,000 recipes"
               className="inputField"
               value={inputValue}
-              // onChange={(e) => setInputValue(e.target.value)}
               onChange={updateInputValue}
               id="inputFieldId"
             />
@@ -204,22 +171,29 @@ const Recipes = ({ data, recipe, getData, getId }) => {
                 <section className="navigationContainer">
                   <section className="timingContainer">
                     <FontAwesomeIcon icon={faClock} className="clockIcon" />
-                    {/* <FontAwesomeIcon icon={faCircleCheck} className="clockIcon"/> */}
                     <span className="minutes">
                       {recipe.cooking_time} MINUTES
                     </span>
                   </section>
                   <section className="servingsContainer">
                     <FontAwesomeIcon icon={faUser} className="servingsIcon" />
-                    <span>{recipe.servings} SERVINGS</span>
+                    <span>{servings} Servings</span>
                     <section className="updationContainer">
-                      <FontAwesomeIcon icon={faMinus} className="minusIcon" />
-                      <FontAwesomeIcon icon={faPlus} className="plusIcon" />
+                      <FontAwesomeIcon
+                        icon={faMinus}
+                        className="minusIcon"
+                        onClick={handleServingDecrement}
+                      />
+                      <FontAwesomeIcon
+                        icon={faPlus}
+                        className="plusIcon"
+                        onClick={handleServingIncrement}
+                      />
                     </section>
                   </section>
                   <section className="recipeBookmark">
                     <FontAwesomeIcon
-                      icon={faBookmark}
+                      icon={faHeartSolid}
                       className="recipeBookmarkIcon"
                     />
                   </section>
@@ -227,11 +201,10 @@ const Recipes = ({ data, recipe, getData, getId }) => {
                 <section className="itemListContainer">
                   <h1>RECIPE INGREDIENTS</h1>
                   <section className="allItemContainer">
-                    {recipe?.ingredients?.map((ing) => (
+                    {updatedIngredients?.map((ing) => (
                       <>
                         <section className="itemContainer">
                           <span>
-                            {/* <FontAwesomeIcon icon={faCheck} className="recipeIcons"/> */}
                             <FontAwesomeIcon
                               icon={faCircleCheck}
                               className="recipeIcons"
@@ -241,9 +214,6 @@ const Recipes = ({ data, recipe, getData, getId }) => {
                             {ing?.quantity || ""} {ing?.unit || ""}{" "}
                             {ing?.description || ""}{" "}
                           </span>
-                          {/* <span>{ing?.quantity || ""}</span>
-                          <span>{ing?.unit || ""}</span>
-                          <span> {ing?.description || ""} </span> */}
                         </section>
                       </>
                     ))}
