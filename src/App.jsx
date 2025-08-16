@@ -55,7 +55,6 @@ const App = () => {
       .then((res) => res.json())
       .then((resData) => {
         setRecipe(resData.data.recipe);
-        // console.log(resData.data.recipe.length);
       })
       .catch((error) => console.log("Error fetching data: ", error));
   }, [inputID]);
