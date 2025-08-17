@@ -21,21 +21,27 @@ import { Link } from "react-router-dom";
 import { faHeart as faHeartSolid } from "@fortawesome/free-solid-svg-icons";
 import Bookmark from "./Bookmark";
 import AddRecipe from "./AddRecipe";
-// import { faBookmark } from "@fortawesome/free-solid-svg-icons";
 
-const Recipes = ({ data, recipe, getData, getId }) => {
+const Recipes = ({ data, recipe, getData, getId, setRecipe }) => {
   const [inputValue, setInputValue] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
   const [resPerPage, setResPerPage] = useState(10);
   const [totalPages, setTotalPages] = useState(0);
   const [startIndex, setStartIndex] = useState(0);
   const [endIndex, setEndIndex] = useState(10);
-  const [servings, setRecipeServings] = useState(recipe?.servings || 4);
-  const [isBookMarked, setIsBookMarked] = useState(false);
+  const [servings, setRecipeServings] = useState(recipe?.recipeServings || 4);
+  // const [isBookMarked, setIsBookMarked] = useState(false);
+  const [bookMarkedRecipes, setBookMarkedRecipes] = useState([]);
+  console.log(recipe);
+  console.log(data);
 
   const handleBookMarked = () => {
-    setIsBookMarked(!isBookMarked);
+    setRecipe((prevRecipe) => ({
+      ...prevRecipe,
+      isBookmarked: !prevRecipe.isBookmarked,
+    }));
   };
+
   useEffect(() => {
     const dataLength = Math.ceil(data?.length / resPerPage);
     setTotalPages(dataLength);
@@ -94,7 +100,7 @@ const Recipes = ({ data, recipe, getData, getId }) => {
   }
 
   const updatedIngredients =
-    recipe?.ingredients?.map((ing) => {
+    recipe?.recipeIngredients?.map((ing) => {
       const factor = servings / (recipe?.servings || 4);
       return {
         ...ing,
@@ -142,7 +148,7 @@ const Recipes = ({ data, recipe, getData, getId }) => {
                   onClick={() => getId(item.id)}
                 >
                   <section className="imageContainer">
-                    <img src={item.image_url} alt={item.title} />
+                    <img src={item.image_url} alt={item.recipe_title} />
                   </section>
                   <section className="nameContainer">
                     <p className="itemTitle">{item.title}</p>
@@ -162,13 +168,13 @@ const Recipes = ({ data, recipe, getData, getId }) => {
             {recipe ? (
               <>
                 <section className="imageContainer">
-                  <img src={recipe.image_url} />
+                  <img src={recipe.imageURL} />
                 </section>
                 <section className="navigationContainer">
                   <section className="timingContainer">
                     <FontAwesomeIcon icon={faClock} className="clockIcon" />
                     <span className="minutes">
-                      {recipe.cooking_time} MINUTES
+                      {recipe.cookingTime} MINUTES
                     </span>
                   </section>
                   <section className="servingsContainer">
@@ -188,7 +194,7 @@ const Recipes = ({ data, recipe, getData, getId }) => {
                     </section>
                   </section>
                   <section className="recipeBookmark">
-                    {isBookMarked ? (
+                    {recipe.isBookmarked ? (
                       <FontAwesomeIcon
                         icon={faHeartSolid}
                         className="recipeBookmarkIcon"
@@ -229,9 +235,9 @@ const Recipes = ({ data, recipe, getData, getId }) => {
                 <section className="directionsContainer">
                   <h1 id="directionHeading">HOW TO COOK IT</h1>
                   <p>The recipe was carefully designed and tested by</p>
-                  <p id="publisherName">{recipe?.publisher}</p>
+                  <p id="publisherName">{recipe?.recipePublisher}</p>
                   <p>Please check out directions at their website.</p>
-                  <a href={recipe.source_url}>
+                  <a href={recipe.sourceURL}>
                     <button>DIRECTIONS</button>
                   </a>
                 </section>
