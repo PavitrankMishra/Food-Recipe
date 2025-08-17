@@ -15,6 +15,7 @@ const App = () => {
 
   const [inputV, setInputV] = useState("Pizza");
   const [inputID, setInputID] = useState("664c8f193e7aa067e94e8297");
+  const [bookMarkedRecipes, setBookMarkedRecipes] = useState([]);
 
   /**
    * Fetch Data from the api
@@ -55,7 +56,7 @@ const App = () => {
       .then((res) => res.json())
       .then((resData) => {
         const currentRecipe = resData.data.recipe;
-        const transformedRecipe = {
+        let transformedRecipe = {
           id: currentRecipe.id,
           recipeTitle: currentRecipe.title,
           sourceURL: currentRecipe.source_url,
@@ -67,12 +68,18 @@ const App = () => {
           cookingTime: currentRecipe.cooking_time,
         };
 
+        const foundRecipe = bookMarkedRecipes.find(
+          (r) => r.id === transformedRecipe.id
+        );
+
+        if (foundRecipe) {
+          transformedRecipe = { ...transformedRecipe, isBookmarked: true };
+        }
+
         setRecipe(transformedRecipe);
       })
       .catch((error) => console.log("Error fetching data: ", error));
   }, [inputID]);
-
-  console.log(recipe);
 
   function getData(inputVal) {
     console.log("From App" + inputVal);
@@ -97,6 +104,8 @@ const App = () => {
               getData={getData}
               getId={getId}
               setRecipe={setRecipe}
+              bookMarkedRecipes={bookMarkedRecipes}
+              setBookMarkedRecipes={setBookMarkedRecipes}
             />
           }
         />

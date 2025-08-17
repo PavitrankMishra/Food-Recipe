@@ -22,7 +22,15 @@ import { faHeart as faHeartSolid } from "@fortawesome/free-solid-svg-icons";
 import Bookmark from "./Bookmark";
 import AddRecipe from "./AddRecipe";
 
-const Recipes = ({ data, recipe, getData, getId, setRecipe }) => {
+const Recipes = ({
+  data,
+  recipe,
+  getData,
+  getId,
+  setRecipe,
+  bookMarkedRecipes,
+  setBookMarkedRecipes,
+}) => {
   const [inputValue, setInputValue] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
   const [resPerPage, setResPerPage] = useState(10);
@@ -31,16 +39,28 @@ const Recipes = ({ data, recipe, getData, getId, setRecipe }) => {
   const [endIndex, setEndIndex] = useState(10);
   const [servings, setRecipeServings] = useState(recipe?.recipeServings || 4);
   // const [isBookMarked, setIsBookMarked] = useState(false);
-  const [bookMarkedRecipes, setBookMarkedRecipes] = useState([]);
-  console.log(recipe);
-  console.log(data);
 
-  const handleBookMarked = () => {
+  // console.log(recipe);
+  // console.log(data);
+
+  const handleBookMarked = (recipe) => {
     setRecipe((prevRecipe) => ({
       ...prevRecipe,
       isBookmarked: !prevRecipe.isBookmarked,
     }));
+
+    setBookMarkedRecipes((prev) => {
+      const exists = prev.find((r) => r.id === recipe.id);
+
+      if (exists) {
+        return prev.filter((r) => r.id !== recipe.id);
+      } else {
+        return [...prev, { ...recipe, isBookmarked: true }];
+      }
+    });
   };
+
+  // console.log(bookMarkedRecipes);
 
   useEffect(() => {
     const dataLength = Math.ceil(data?.length / resPerPage);
@@ -199,14 +219,14 @@ const Recipes = ({ data, recipe, getData, getId, setRecipe }) => {
                         icon={faHeartSolid}
                         className="recipeBookmarkIcon"
                         style={{ color: "#f48982" }}
-                        onClick={handleBookMarked}
+                        onClick={() => handleBookMarked(recipe)}
                       />
                     ) : (
                       <FontAwesomeIcon
                         icon={faHeart}
                         className="recipeBookmarkIcon"
                         style={{ color: "#f48982" }}
-                        onClick={handleBookMarked}
+                        onClick={() => handleBookMarked(recipe)}
                       />
                     )}
                   </section>
