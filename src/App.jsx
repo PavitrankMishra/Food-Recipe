@@ -54,7 +54,20 @@ const App = () => {
     fetch(`https://forkify-api.herokuapp.com/api/v2/recipes/${inputID}`)
       .then((res) => res.json())
       .then((resData) => {
-        setRecipe(resData.data.recipe);
+        const currentRecipe = resData.data.recipe;
+        const transformedRecipe = {
+          id: currentRecipe.id,
+          recipeTitle: currentRecipe.title,
+          sourceURL: currentRecipe.source_url,
+          recipeServings: currentRecipe.servings,
+          recipePublisher: currentRecipe.publisher,
+          recipeIngredients: currentRecipe.ingredients,
+          isBookmarked: false,
+          imageURL: currentRecipe.image_url,
+          cookingTime: currentRecipe.cooking_time,
+        };
+
+        setRecipe(transformedRecipe);
       })
       .catch((error) => console.log("Error fetching data: ", error));
   }, [inputID]);
@@ -70,6 +83,7 @@ const App = () => {
     console.log("The input Id is: " + id);
     setInputID(id);
   }
+
   return (
     <BrowserRouter>
       <Routes>
@@ -82,6 +96,7 @@ const App = () => {
               recipe={recipe}
               getData={getData}
               getId={getId}
+              setRecipe={setRecipe}
             />
           }
         />
