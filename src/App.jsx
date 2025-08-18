@@ -6,6 +6,9 @@ import NotFound from "./Components/NotFound";
 import { useState, useEffect } from "react";
 import AddRecipe from "./Components/AddRecipe";
 import Login from "./Components/Login";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchAllRecipe } from "./app/slice/allRecipes";
+import { fetchSingleRecipe } from "./app/slice/singleRecipe";
 
 const App = () => {
   const [data, setData] = useState([]);
@@ -16,39 +19,46 @@ const App = () => {
   const [inputV, setInputV] = useState("Pizza");
   const [inputID, setInputID] = useState("664c8f193e7aa067e94e8297");
   const [bookMarkedRecipes, setBookMarkedRecipes] = useState([]);
-
+  const dispatch = useDispatch();
+  const state = useSelector((state) => state);
+  console.log("The state is: ", state);
+  // setData(state?.allRecipe?.data?.data.recipes);
+  
   /**
    * Fetch Data from the api
    */
 
-  const fetchData = async function () {
-    try {
-      const res = await fetch(
-        "https://forkify-api.herokuapp.com/api/v2/recipes?search=pizza&key=d348a0b0-c7b8-4539-b6a6-80f883fdef51"
-      );
+  // const fetchData = async function () {
+  //   try {
+  //     const res = await fetch(
+  //       "https://forkify-api.herokuapp.com/api/v2/recipes?search=pizza&key=d348a0b0-c7b8-4539-b6a6-80f883fdef51"
+  //     );
 
-      if (!res.ok) {
-        throw new Error("Response was not ok");
-      }
-      const data = await res.json();
-      console.log(data);
-    } catch (error) {
-      console.log("The error is: " + error);
-    }
-  };
+  //     if (!res.ok) {
+  //       throw new Error("Response was not ok");
+  //     }
+  //     const data = await res.json();
+  //     console.log(data);
+  //   } catch (error) {
+  //     console.log("The error is: " + error);
+  //   }
+  // };
 
-  fetchData();
+  // fetchData();
 
   useEffect(() => {
-    fetch(
-      `https://forkify-api.herokuapp.com/api/v2/recipes?search=${inputV}&key=d348a0b0-c7b8-4539-b6a6-80f883fdef51`
-    )
-      .then((res) => res.json())
-      .then((resData) => {
-        console.log("API Response Data:", resData);
-        setData(resData?.data?.recipes || []);
-      })
-      .catch((error) => console.error("Error fetching recipes:", error));
+    // fetch(
+    //   `https://forkify-api.herokuapp.com/api/v2/recipes?search=${inputV}&key=d348a0b0-c7b8-4539-b6a6-80f883fdef51`
+    // )
+    //   .then((res) => res.json())
+    //   .then((resData) => {
+    //     console.log("API Response Data:", resData);
+    //     setData(resData?.data?.recipes || []);
+    //   })
+    //   .catch((error) => console.error("Error fetching recipes:", error));
+    
+    dispatch(fetchAllRecipe());
+    dispatch(fetchSingleRecipe());
   }, [inputV]);
 
   useEffect(() => {
