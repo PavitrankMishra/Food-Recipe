@@ -40,9 +40,6 @@ const Recipes = ({
   const [servings, setRecipeServings] = useState(recipe?.recipeServings || 4);
   // const [isBookMarked, setIsBookMarked] = useState(false);
 
-  // console.log(recipe);
-  // console.log(data);
-
   const handleBookMarked = (recipe) => {
     setRecipe((prevRecipe) => ({
       ...prevRecipe,
@@ -61,6 +58,7 @@ const Recipes = ({
   };
 
   // console.log(bookMarkedRecipes);
+  // console.log(recipe);
 
   useEffect(() => {
     const dataLength = Math.ceil(data?.length / resPerPage);
