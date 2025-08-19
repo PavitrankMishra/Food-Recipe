@@ -21,75 +21,8 @@ const App = () => {
   const [bookMarkedRecipes, setBookMarkedRecipes] = useState([]);
   const dispatch = useDispatch();
   const state = useSelector((state) => state);
-  console.log("The state is: ", state);
-  // setData(state?.allRecipe?.data?.data.recipes);
-  
-  /**
-   * Fetch Data from the api
-   */
-
-  // const fetchData = async function () {
-  //   try {
-  //     const res = await fetch(
-  //       "https://forkify-api.herokuapp.com/api/v2/recipes?search=pizza&key=d348a0b0-c7b8-4539-b6a6-80f883fdef51"
-  //     );
-
-  //     if (!res.ok) {
-  //       throw new Error("Response was not ok");
-  //     }
-  //     const data = await res.json();
-  //     console.log(data);
-  //   } catch (error) {
-  //     console.log("The error is: " + error);
-  //   }
-  // };
-
-  // fetchData();
-
-  useEffect(() => {
-    // fetch(
-    //   `https://forkify-api.herokuapp.com/api/v2/recipes?search=${inputV}&key=d348a0b0-c7b8-4539-b6a6-80f883fdef51`
-    // )
-    //   .then((res) => res.json())
-    //   .then((resData) => {
-    //     console.log("API Response Data:", resData);
-    //     setData(resData?.data?.recipes || []);
-    //   })
-    //   .catch((error) => console.error("Error fetching recipes:", error));
-    
-    dispatch(fetchAllRecipe());
-    dispatch(fetchSingleRecipe());
-  }, [inputV]);
-
-  useEffect(() => {
-    fetch(`https://forkify-api.herokuapp.com/api/v2/recipes/${inputID}`)
-      .then((res) => res.json())
-      .then((resData) => {
-        const currentRecipe = resData.data.recipe;
-        let transformedRecipe = {
-          id: currentRecipe.id,
-          recipeTitle: currentRecipe.title,
-          sourceURL: currentRecipe.source_url,
-          recipeServings: currentRecipe.servings,
-          recipePublisher: currentRecipe.publisher,
-          recipeIngredients: currentRecipe.ingredients,
-          isBookmarked: false,
-          imageURL: currentRecipe.image_url,
-          cookingTime: currentRecipe.cooking_time,
-        };
-
-        const foundRecipe = bookMarkedRecipes.find(
-          (r) => r.id === transformedRecipe.id
-        );
-
-        if (foundRecipe) {
-          transformedRecipe = { ...transformedRecipe, isBookmarked: true };
-        }
-
-        setRecipe(transformedRecipe);
-      })
-      .catch((error) => console.log("Error fetching data: ", error));
-  }, [inputID]);
+  let allRecipe = useSelector((state) => state.allRecipe);
+  let singleRecipe = useSelector((state) => state.singleRecipe);
 
   function getData(inputVal) {
     console.log("From App" + inputVal);

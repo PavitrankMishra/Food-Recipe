@@ -21,6 +21,9 @@ import { Link } from "react-router-dom";
 import { faHeart as faHeartSolid } from "@fortawesome/free-solid-svg-icons";
 import Bookmark from "./Bookmark";
 import AddRecipe from "./AddRecipe";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchAllRecipe } from "../app/slice/allRecipes";
+import { fetchSingleRecipe } from "../app/slice/singleRecipe";
 
 const Recipes = ({
   data,
@@ -31,13 +34,31 @@ const Recipes = ({
   bookMarkedRecipes,
   setBookMarkedRecipes,
 }) => {
-  const [inputValue, setInputValue] = useState("");
+  const [inputValue, setInputValue] = useState("Pizza");
   const [currentPage, setCurrentPage] = useState(1);
-  const [resPerPage, setResPerPage] = useState(10);
+  const [recipesPerPage, setRecipesPerPage] = useState(10);
   const [totalPages, setTotalPages] = useState(0);
   const [startIndex, setStartIndex] = useState(0);
   const [endIndex, setEndIndex] = useState(10);
   const [servings, setRecipeServings] = useState(recipe?.recipeServings || 4);
+  const dispatch = useDispatch();
+
+  const recipes = useSelector(
+    (state) => state?.allRecipe?.data?.data?.recipes || []
+  );
+
+  const singleRecipes = useSelector(
+    (state) => state?.singleRecipe?.data?.data?.recipe || []
+  );
+
+  useEffect(() => {
+    dispatch(fetchSingleRecipe());
+    dispatch(fetchAllRecipe());
+  }, []);
+
+  const recipeStartingIndex = (currentPage - 1) * recipesPerPage;
+  const recipeEndIndex = currentPage * recipesPerPage;
+  const currentData = recipes?.slice(recipeStartingIndex, recipeEndIndex);
 
   const handleBookMarked = (recipe) => {
     setRecipe((prevRecipe) => ({
@@ -57,9 +78,9 @@ const Recipes = ({
   };
 
   useEffect(() => {
-    const dataLength = Math.ceil(data?.length / resPerPage);
+    const dataLength = Math.ceil(recipes?.length / recipesPerPage);
     setTotalPages(dataLength);
-  }, [data]);
+  }, [recipes]);
 
   useEffect(() => {
     console.log("The current page is: ", currentPage);
@@ -91,16 +112,10 @@ const Recipes = ({
     }
   }
 
-  const sI = (currentPage - 1) * resPerPage;
-  const eI = currentPage * resPerPage;
-  const currentData = data?.slice(sI, eI);
-
   useEffect(() => {
     const timerId = setTimeout(() => {
       if (inputValue.length > 3) {
-        console.log("The input value is: " + inputValue);
-        console.log("It is called after 1 sec");
-        getData(inputValue);
+        dispatch(fetchAllRecipe(inputValue));
       }
     }, 1000);
 
@@ -108,6 +123,10 @@ const Recipes = ({
       clearTimeout(timerId);
     };
   }, [inputValue]);
+
+  const handleSingleRecipe = (id) => {
+    dispatch(fetchSingleRecipe(id));
+  };
 
   function updateInputValue(e) {
     setInputValue(e.target.value);
@@ -159,7 +178,7 @@ const Recipes = ({
                 <section
                   className="recipesList"
                   key={item.id}
-                  onClick={() => getId(item.id)}
+                  onClick={() => handleSingleRecipe(item.id)}
                 >
                   <section className="imageContainer">
                     <img src={item.image_url} alt={item.recipe_title} />
@@ -179,21 +198,24 @@ const Recipes = ({
             </section>
           </section>
           <section className="middleRight">
-            {recipe ? (
+            {singleRecipes ? (
               <>
                 <section className="imageContainer">
-                  <img src={recipe.imageURL} />
+                  <img
+                    src={singleRecipes.imageURL || singleRecipes.image_url}
+                  />
                 </section>
                 <section className="navigationContainer">
                   <section className="timingContainer">
                     <FontAwesomeIcon icon={faClock} className="clockIcon" />
                     <span className="minutes">
-                      {recipe.cookingTime} MINUTES
+                      {singleRecipes.cookingTime || singleRecipes.cooking_time}{" "}
+                      MINUTES
                     </span>
                   </section>
                   <section className="servingsContainer">
                     <FontAwesomeIcon icon={faUser} className="servingsIcon" />
-                    <span>{servings} Servings</span>
+                    <span>{singleRecipes.servings} Servings</span>
                     <section className="updationContainer">
                       <FontAwesomeIcon
                         icon={faMinus}
@@ -220,7 +242,7 @@ const Recipes = ({
                         icon={faHeart}
                         className="recipeBookmarkIcon"
                         style={{ color: "#f48982" }}
-                        onClick={() => handleBookMarked(recipe)}
+                        onClick={() => dispatch()}
                       />
                     )}
                   </section>
@@ -228,7 +250,7 @@ const Recipes = ({
                 <section className="itemListContainer">
                   <h1>RECIPE INGREDIENTS</h1>
                   <section className="allItemContainer">
-                    {updatedIngredients?.map((ing) => (
+                    {singleRecipes?.ingredients?.map((ing) => (
                       <>
                         <section className="itemContainer">
                           <span>
@@ -249,9 +271,11 @@ const Recipes = ({
                 <section className="directionsContainer">
                   <h1 id="directionHeading">HOW TO COOK IT</h1>
                   <p>The recipe was carefully designed and tested by</p>
-                  <p id="publisherName">{recipe?.recipePublisher}</p>
+                  <p id="publisherName">
+                    {singleRecipes?.recipePublisher || singleRecipes?.publisher}
+                  </p>
                   <p>Please check out directions at their website.</p>
-                  <a href={recipe.sourceURL}>
+                  <a href={singleRecipes.sourceURL || singleRecipes.source_url}>
                     <button>DIRECTIONS</button>
                   </a>
                 </section>
