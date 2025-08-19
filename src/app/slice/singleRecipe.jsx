@@ -3,10 +3,9 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
 export const fetchSingleRecipe = createAsyncThunk(
   "fetchSingleRecipe",
-  async () => {
-    // 664c8f193e7aa067e94e8297
+  async (recipeId) => {
     const response = await fetch(
-      "https://forkify-api.herokuapp.com/api/v2/recipes/664c8f193e7aa067e94e8297"
+      `https://forkify-api.herokuapp.com/api/v2/recipes/${recipeId}`
     );
     return response.json();
   }
@@ -24,7 +23,16 @@ const singleRecipeSlice = createSlice({
     });
     builder.addCase(fetchSingleRecipe.fulfilled, (state, action) => {
       state.isLoading = false;
-      state.data = action.payload;
+      state.data = {
+        ...action.payload,
+        data: {
+          ...action.payload.data,
+          recipe: {
+            ...action?.payload?.data?.recipe || null,
+            isBookmarked: false,
+          },
+        },
+      };
     });
     builder.addCase(fetchSingleRecipe.rejected, (state, action) => {
       console.log("Error", action.payload);
