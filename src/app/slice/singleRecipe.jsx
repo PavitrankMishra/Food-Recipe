@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-// import { fetchAllRecipe } from "./allRecipes";
+import { current } from "@reduxjs/toolkit";
 
 export const fetchSingleRecipe = createAsyncThunk(
   "fetchSingleRecipe",
@@ -24,9 +24,39 @@ const singleRecipeSlice = createSlice({
           !state.data.data.recipe.isBookmarked;
       }
     },
+    incrementServings: (state) => {
+      const recipeCopy = current(state.data.data.recipe);
+
+      const originalServings = recipeCopy.servings;
+      const newServings = originalServings + 1;
+      const factor = newServings / originalServings || 4;
+
+      state.data.data.recipe.servings = newServings;
+      state.data.data.recipe.ingredients = recipeCopy?.ingredients?.map(
+        (ing) => ({
+          ...ing,
+          quantity: ing.quantity ? (ing.quantity * factor).toFixed(2) : null,
+        })
+      );
+    },
+    decrementServings: (state) => {
+      const recipeCopy = current(state.data.data.recipe);
+
+      const originalServings = recipeCopy.servings;
+      const newServings = originalServings + 1;
+      const factor = newServings / originalServings || 4;
+
+      state.data.data.recipe.servings = newServings;
+      state.data.data.recipe.ingredients = recipeCopy?.ingredients?.map(
+        (ing) => ({
+          ...ing,
+          quantity: ing.quantity ? (ing.quantity * factor).toFixed(2) : null,
+        })
+      );
+    },
   },
   extraReducers: (builder) => {
-    builder.addCase(fetchSingleRecipe.pending, (state, action) => {
+    builder.addCase(fetchSingleRecipe.pending, (state) => {
       state.isLoading = true;
     });
     builder.addCase(fetchSingleRecipe.fulfilled, (state, action) => {
@@ -49,5 +79,6 @@ const singleRecipeSlice = createSlice({
   },
 });
 
-export const {toggleBookmark} = singleRecipeSlice.actions;
+export const { toggleBookmark, incrementServings, decrementServings } =
+  singleRecipeSlice.actions;
 export default singleRecipeSlice.reducer;
