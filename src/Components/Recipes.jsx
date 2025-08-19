@@ -9,7 +9,7 @@ import {
   faClock,
   faHeart,
   faCircleCheck,
-    faFaceSmile,
+  faFaceSmile,
 } from "@fortawesome/free-regular-svg-icons";
 import {
   faPlus,
@@ -30,24 +30,14 @@ import { toggleBookmark } from "../app/slice/singleRecipe";
 import { incrementServings } from "../app/slice/singleRecipe";
 import { decrementServings } from "../app/slice/singleRecipe";
 import { handleBookmarks } from "../app/slice/bookmarks";
-// import { object } from "motion/react-client";
 
-const Recipes = ({
-  data,
-  recipe,
-  getData,
-  getId,
-  setRecipe,
-  // bookMarkedRecipes,
-  // setBookMarkedRecipes,
-}) => {
+const Recipes = () => {
   const [inputValue, setInputValue] = useState("Pizza");
   const [currentPage, setCurrentPage] = useState(1);
   const [recipesPerPage, setRecipesPerPage] = useState(10);
   const [totalPages, setTotalPages] = useState(0);
   const [startIndex, setStartIndex] = useState(0);
   const [endIndex, setEndIndex] = useState(10);
-  const [servings, setRecipeServings] = useState(recipe?.recipeServings || 4);
   const dispatch = useDispatch();
 
   const recipes = useSelector(
@@ -69,10 +59,8 @@ const Recipes = ({
   console.log(singleRecipes.length);
   function handleBookmark() {
     dispatch(toggleBookmark());
+    dispatch(handleBookmarks(singleRecipes));
   }
-  // const handleBookmark = function () {
-  //   dispatch(toggleBookmark());
-  // };
 
   useEffect(() => {
     dispatch(fetchSingleRecipe());
@@ -114,10 +102,6 @@ const Recipes = ({
     dispatch(decrementServings());
   }
 
-  // function handleUpdateBookmarks() {
-  //   dispatch(handleBookmarks());
-  // }
-
   useEffect(() => {
     const timerId = setTimeout(() => {
       if (inputValue.length > 3) {
@@ -137,15 +121,6 @@ const Recipes = ({
   function updateInputValue(e) {
     setInputValue(e.target.value);
   }
-
-  const updatedIngredients =
-    recipe?.recipeIngredients?.map((ing) => {
-      const factor = servings / (recipe?.servings || 4);
-      return {
-        ...ing,
-        quantity: ing.quantity ? (ing.quantity * factor).toFixed(2) : null,
-      };
-    }) || [];
 
   return (
     <>
