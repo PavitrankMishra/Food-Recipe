@@ -24,6 +24,7 @@ import AddRecipe from "./AddRecipe";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchAllRecipe } from "../app/slice/allRecipes";
 import { fetchSingleRecipe } from "../app/slice/singleRecipe";
+import { toggleBookmark } from "../app/slice/singleRecipe";
 
 const Recipes = ({
   data,
@@ -51,6 +52,12 @@ const Recipes = ({
     (state) => state?.singleRecipe?.data?.data?.recipe || []
   );
 
+  console.log(singleRecipes);
+
+  const handleBookmark = () => {
+    dispatch(toggleBookmark());
+  };
+
   useEffect(() => {
     dispatch(fetchSingleRecipe());
     dispatch(fetchAllRecipe());
@@ -59,23 +66,6 @@ const Recipes = ({
   const recipeStartingIndex = (currentPage - 1) * recipesPerPage;
   const recipeEndIndex = currentPage * recipesPerPage;
   const currentData = recipes?.slice(recipeStartingIndex, recipeEndIndex);
-
-  const handleBookMarked = (recipe) => {
-    setRecipe((prevRecipe) => ({
-      ...prevRecipe,
-      isBookmarked: !prevRecipe.isBookmarked,
-    }));
-
-    setBookMarkedRecipes((prev) => {
-      const exists = prev.find((r) => r.id === recipe.id);
-
-      if (exists) {
-        return prev.filter((r) => r.id !== recipe.id);
-      } else {
-        return [...prev, { ...recipe, isBookmarked: true }];
-      }
-    });
-  };
 
   useEffect(() => {
     const dataLength = Math.ceil(recipes?.length / recipesPerPage);
@@ -230,19 +220,19 @@ const Recipes = ({
                     </section>
                   </section>
                   <section className="recipeBookmark">
-                    {recipe.isBookmarked ? (
+                    {singleRecipes.isBookmarked ? (
                       <FontAwesomeIcon
                         icon={faHeartSolid}
                         className="recipeBookmarkIcon"
                         style={{ color: "#f48982" }}
-                        onClick={() => handleBookMarked(recipe)}
+                        onClick={handleBookmark}
                       />
                     ) : (
                       <FontAwesomeIcon
                         icon={faHeart}
                         className="recipeBookmarkIcon"
                         style={{ color: "#f48982" }}
-                        onClick={() => dispatch()}
+                        onClick={handleBookmark}
                       />
                     )}
                   </section>
