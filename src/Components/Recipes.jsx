@@ -25,6 +25,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchAllRecipe } from "../app/slice/allRecipes";
 import { fetchSingleRecipe } from "../app/slice/singleRecipe";
 import { toggleBookmark } from "../app/slice/singleRecipe";
+import { incrementServings } from "../app/slice/singleRecipe";
+import { decrementServings } from "../app/slice/singleRecipe";
 
 const Recipes = ({
   data,
@@ -76,18 +78,6 @@ const Recipes = ({
     console.log("The current page is: ", currentPage);
   }, [currentPage]);
 
-  function handleServingIncrement() {
-    const currentServing = servings;
-    setRecipeServings(currentServing + 1);
-  }
-
-  function handleServingDecrement() {
-    if (servings > 1) {
-      const currentServing = servings;
-      setRecipeServings(currentServing - 1);
-    }
-  }
-
   function handlePageDecrement() {
     if (currentPage > 1) {
       setCurrentPage(currentPage - 1);
@@ -100,6 +90,14 @@ const Recipes = ({
       setCurrentPage(currentPage + 1);
       console.log("Increment clicked");
     }
+  }
+
+  function handleIncrementServings() {
+    dispatch(incrementServings());
+  }
+
+  function handleDecrementServings() {
+    dispatch(decrementServings());
   }
 
   useEffect(() => {
@@ -210,12 +208,12 @@ const Recipes = ({
                       <FontAwesomeIcon
                         icon={faMinus}
                         className="minusIcon"
-                        onClick={handleServingDecrement}
+                        onClick={handleDecrementServings}
                       />
                       <FontAwesomeIcon
                         icon={faPlus}
                         className="plusIcon"
-                        onClick={handleServingIncrement}
+                        onClick={handleIncrementServings}
                       />
                     </section>
                   </section>
