@@ -43,7 +43,7 @@ const singleRecipeSlice = createSlice({
       const recipeCopy = current(state.data.data.recipe);
 
       const originalServings = recipeCopy.servings;
-      const newServings = originalServings + 1;
+      const newServings = originalServings - 1;
       const factor = newServings / originalServings || 4;
 
       state.data.data.recipe.servings = newServings;
@@ -65,10 +65,12 @@ const singleRecipeSlice = createSlice({
         ...action.payload,
         data: {
           ...action.payload.data,
-          recipe: {
-            ...action?.payload?.data?.recipe,
-            isBookmarked: false,
-          },
+          recipe: action.payload.data?.recipe
+            ? {
+                ...action.payload.data.recipe,
+                isBookmarked: false,
+              }
+            : null,
         },
       };
     });
