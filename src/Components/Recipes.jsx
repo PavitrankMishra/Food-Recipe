@@ -9,6 +9,7 @@ import {
   faClock,
   faHeart,
   faCircleCheck,
+    faFaceSmile,
 } from "@fortawesome/free-regular-svg-icons";
 import {
   faPlus,
@@ -16,6 +17,7 @@ import {
   faCartShopping,
   faArrowRightLong,
   faCheck,
+  // faFaceSmile,
 } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
 import { faHeart as faHeartSolid } from "@fortawesome/free-solid-svg-icons";
@@ -27,6 +29,8 @@ import { fetchSingleRecipe } from "../app/slice/singleRecipe";
 import { toggleBookmark } from "../app/slice/singleRecipe";
 import { incrementServings } from "../app/slice/singleRecipe";
 import { decrementServings } from "../app/slice/singleRecipe";
+import { handleBookmarks } from "../app/slice/bookmarks";
+// import { object } from "motion/react-client";
 
 const Recipes = ({
   data,
@@ -34,8 +38,8 @@ const Recipes = ({
   getData,
   getId,
   setRecipe,
-  bookMarkedRecipes,
-  setBookMarkedRecipes,
+  // bookMarkedRecipes,
+  // setBookMarkedRecipes,
 }) => {
   const [inputValue, setInputValue] = useState("Pizza");
   const [currentPage, setCurrentPage] = useState(1);
@@ -54,11 +58,21 @@ const Recipes = ({
     (state) => state?.singleRecipe?.data?.data?.recipe || []
   );
 
+  const bookMarkedRecipe = useSelector(
+    (state) => state?.bookmarkedRecipes || []
+  );
+  console.log(bookMarkedRecipe);
+
   console.log(singleRecipes);
 
-  const handleBookmark = () => {
+  console.log(typeof singleRecipes);
+  console.log(singleRecipes.length);
+  function handleBookmark() {
     dispatch(toggleBookmark());
-  };
+  }
+  // const handleBookmark = function () {
+  //   dispatch(toggleBookmark());
+  // };
 
   useEffect(() => {
     dispatch(fetchSingleRecipe());
@@ -99,6 +113,10 @@ const Recipes = ({
   function handleDecrementServings() {
     dispatch(decrementServings());
   }
+
+  // function handleUpdateBookmarks() {
+  //   dispatch(handleBookmarks());
+  // }
 
   useEffect(() => {
     const timerId = setTimeout(() => {
@@ -186,7 +204,9 @@ const Recipes = ({
             </section>
           </section>
           <section className="middleRight">
-            {singleRecipes ? (
+            {singleRecipes &&
+            typeof (singleRecipes === "object") &&
+            singleRecipes.length !== 0 ? (
               <>
                 <section className="imageContainer">
                   <img
@@ -223,14 +243,14 @@ const Recipes = ({
                         icon={faHeartSolid}
                         className="recipeBookmarkIcon"
                         style={{ color: "#f48982" }}
-                        onClick={handleBookmark}
+                        onClick={() => handleBookmark()}
                       />
                     ) : (
                       <FontAwesomeIcon
                         icon={faHeart}
                         className="recipeBookmarkIcon"
                         style={{ color: "#f48982" }}
-                        onClick={handleBookmark}
+                        onClick={() => handleBookmark()}
                       />
                     )}
                   </section>
@@ -269,7 +289,17 @@ const Recipes = ({
                 </section>
               </>
             ) : (
-              <p>There are no recipes available</p>
+              <>
+                <section className="box1">
+                  <section className="left">
+                    <FontAwesomeIcon icon={faFaceSmile} className="smileIcon" />
+                  </section>
+                  <section className="right">
+                    <p>Start by searching for a recipe</p>
+                    <p>or an ingredient.</p>
+                  </section>
+                </section>
+              </>
             )}
           </section>
         </section>

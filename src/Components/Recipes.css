@@ -446,6 +446,28 @@
   color: #f48982;
 }
 
+.box1 {
+  /* border: 2px solid red; */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  /* max-height: 400px; */
+  height: 400px;
+}
+
+.box1 p {
+  font-size: 20px;
+  color: #f48982;
+  color: #333;
+  font-weight: 500;
+}
+
+.box1 .smileIcon {
+  font-size: 48px;
+  color: #f48982;
+}
+
 @keyframes fadeIn {
   from {
     opacity: 0;
