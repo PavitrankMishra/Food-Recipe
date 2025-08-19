@@ -17,6 +17,14 @@ const singleRecipeSlice = createSlice({
     data: null,
     isError: false,
   },
+  reducers: {
+    toggleBookmark: (state) => {
+      if (state.data?.data?.recipe) {
+        state.data.data.recipe.isBookmarked =
+          !state.data.data.recipe.isBookmarked;
+      }
+    },
+  },
   extraReducers: (builder) => {
     builder.addCase(fetchSingleRecipe.pending, (state, action) => {
       state.isLoading = true;
@@ -28,7 +36,7 @@ const singleRecipeSlice = createSlice({
         data: {
           ...action.payload.data,
           recipe: {
-            ...action?.payload?.data?.recipe || null,
+            ...action?.payload?.data?.recipe,
             isBookmarked: false,
           },
         },
@@ -41,4 +49,5 @@ const singleRecipeSlice = createSlice({
   },
 });
 
+export const {toggleBookmark} = singleRecipeSlice.actions;
 export default singleRecipeSlice.reducer;
