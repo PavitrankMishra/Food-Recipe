@@ -1,132 +1,91 @@
 .bookmarksSection {
   position: absolute;
-  right: 10px;
-  background: aqua;
-  height: 200px;
-}
-
-/* .bookmarksSection {
-  position: absolute;
-  right: 0;
-  top: 100%;
-  width: 250px;
+  background: #ffffff;
   padding: 10px;
-  border-radius: 8px;
-}
-
-.bookmarksSection .bookmarkedVisible {
-  width: 260px;
-  height: 500px;
-  background-color: aqua;
-  border: 2px solid red;
-} */
-
-/* .bookmarksSection {
-  display: none;
-  position: absolute;
-  right: 0;
-  top: 100%;
-  width: 250px;
-  z-index: 9999;
-  padding: 10px;
-  border-radius: 8px;
-} */
-
-/* .bookmarkWrapper {
-  position: relative;
-} */
-
-/* .containerRight:hover .bookmarksSection,
-.bookmarksSection.visibility {
-  display: block;
-} */
-
-/* .bookmarkWrapper:hover .bookmarksSection {
-  display: block;
-} */
-
-/* .bookmarksSection:hover {
-  display: block;
-} */
-
-.recipeContainer
-  .recipeHeadingContainer
-  .containerRight
-  .bookmarkWrapper
-  .bookmarksSection.novisibility {
-  display: none;
-}
-
-.bookmarkedVisible {
-  position: absolute;
-  right: 180px;
-  width: 260px;
-  background-color: #e0e0df;
-  padding: 20px;
-  border-radius: 10px;
-  top: 10px;
-  display: flex;
-  align-items: self-start;
-  justify-content: space-between;
-}
-
-.bookrecipeContainer {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: center;
-  padding-top: 20px;
-}
-.bookmarkedVisible p {
-  font-size: 12px;
-}
-
-.bookmarkedVisible .content {
+  top: 144px;
+  right: 7.5%;
+  animation: fadeIn 0.5s ease-in-out forwards;
+  border-radius: 12px;
+  width: 400px;
   display: flex;
   align-items: center;
-  gap: 10px;
-  margin-bottom: 10px;
+  justify-content: flex-start;
+  flex-direction: column;
+  background-color: #ffabab;
+  z-index: 1;
 }
 
-.bookmarkedVisible .imgDiv {
+.bookmarksSection .bookmarkCrossContainer {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  font-size: 24px;
+  width: 100%;
+  padding-top: 5px;
+}
+
+.bookmarksSection .bookmarkCrossContainer .crossIcon {
+  cursor: pointer;
+  color: #333;
+}
+
+.bookmarksSection .bookmarkrecipeContainer {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.bookmarksSection .bookmarkrecipeContainer .content {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 10px;
+  border-bottom: 1px solid #aaa7a7;
+  border-bottom: 1px solid #ffffff;
+  animation: fadeIn 0.5s ease-in-out forwards;
+  width: 100%;
+  padding: 10px 0;
+}
+
+.bookmarksSection .bookmarkrecipeContainer .content p {
+  color: #333;
+}
+.bookmarksSection .bookmarkrecipeContainer .imageContainer {
   width: 50px;
   height: 50px;
   border-radius: 50%;
   overflow: hidden;
 }
 
-.bookmarkedVisible .imgDiv img {
+.bookmarksSection .bookmarkrecipeContainer .imageContainer img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   display: block;
 }
 
-.novisibility {
-  display: none;
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
-.visibility {
-  display: block;
-}
-@media screen and (max-width: 500px) {
+@media screen and (max-width: 1060px) {
   .bookmarksSection {
-    /* top: 21%; */
-  }
+    right: 14px;
+  } 
+}
 
-  .bookmarkedVisible {
-    right: 0;
-  }
 
-  .bookmarkedVisible p {
-    font-size: 9px;
-  }
-
-  .bookmarkedVisible .content {
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    gap: 4px;
-    margin: 10px 4px;
+@media screen and (max-width: 430px) {
+  .bookmarksSection {
+    width: 94%;
   }
 }

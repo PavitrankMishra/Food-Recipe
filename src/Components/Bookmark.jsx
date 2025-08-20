@@ -2,25 +2,36 @@ import React from "react";
 import "./Bookmark.css";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { useDispatch, useSelector } from "react-redux";
 
-const Bookmark = ({ isVisible, bookMarkedRecipes, setIsVisible }) => {
+const Bookmark = ({ isVisible, setIsVisible }) => {
   const handleCross = () => {
     setIsVisible((prev) => !prev);
     console.log(isVisible);
   };
+
+  const dispatch = useDispatch();
+  const bookmarkedRecipes = useSelector(
+    (state) => state?.bookmarkedRecipes || []
+  );
+
+  console.log(bookmarkedRecipes);
   return (
     <>
-      <section
-        className={`bookmarksSection ${
-          isVisible ? "visibility" : "novisibility"
-        }`}
-      >
-        <section className="bookmarkedVisible">
-          <section className="bookrecipeContainer">
-            {bookMarkedRecipes.length > 0 ? (
-              bookMarkedRecipes.map((item) => (
+      <section className="bookmarksSection">
+        <section className="bookmarkCrossContainer">
+          <FontAwesomeIcon
+            icon={faXmark}
+            onClick={handleCross}
+            className="crossIcon"
+          />
+        </section>
+        <section className="bookmarkrecipeContainer">
+          {bookmarkedRecipes.data.length > 0 ? (
+            bookmarkedRecipes.data.map((item) => (
+              <>
                 <section key={item.id} className="content">
-                  <section className="imgDiv">
+                  <section className="imageContainer">
                     <img src={item.image_url} alt={item.title} />
                   </section>
                   <section>
@@ -28,42 +39,14 @@ const Bookmark = ({ isVisible, bookMarkedRecipes, setIsVisible }) => {
                     <p>{item.publisher}</p>
                   </section>
                 </section>
-              ))
-            ) : (
-              <p>No bookmarks yet</p>
-            )}
-          </section>
-          <section>
-            <FontAwesomeIcon
-              icon={faXmark}
-              onClick={handleCross}
-              className="crossicon"
-            />
-          </section>
-        </section>
-      </section>
-      {/* <section className={`bookmarksSection ${isVisible ? "visibility" : "novisiblity"}`}>
-        <section className="bookmarkedVisible">
-          <FontAwesomeIcon icon={faXmark} />
-          {bookMarkedRecipes.length > 0 ? (
-            bookMarkedRecipes.map((item) => (
-              <section key={item.id} className="content">
-                <section className="imgDiv">
-                  <img src={item.image_url} alt={item.title} />
-                </section>
-                <section>
-                  <p>{item.title}</p>
-                  <p>{item.publisher}</p>
-                </section>
-              </section>
+              </>
             ))
           ) : (
             <p>No bookmarks yet</p>
           )}
         </section>
-      </section> */}
+      </section>
     </>
   );
 };
-
 export default Bookmark;
