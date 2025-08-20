@@ -189,12 +189,14 @@ const Recipes = () => {
                   key={item.id}
                   onClick={() => handleSingleRecipe(item.id)}
                 >
-                  <section className="imageContainer">
-                    <img src={item.image_url} alt={item.recipe_title} />
-                  </section>
-                  <section className="nameContainer">
-                    <p className="itemTitle">{item.title}</p>
-                    <p className="itemPublisher">{item.publisher}</p>
+                  <section className="recipesLeft">
+                    <section className="imageContainer">
+                      <img src={item.image_url} alt={item.recipe_title} />
+                    </section>
+                    <section className="nameContainer">
+                      <p className="itemTitle">{item.title}</p>
+                      <p className="itemPublisher">{item.publisher}</p>
+                    </section>
                   </section>
                   <section className="userContainer">
                     <FontAwesomeIcon icon={faUser} />
