@@ -42,7 +42,9 @@ const Bookmark = ({ isVisible, setIsVisible }) => {
               </>
             ))
           ) : (
+            <section className="emptyContainer">
             <p>No bookmarks yet</p>
+            </section>
           )}
         </section>
       </section>

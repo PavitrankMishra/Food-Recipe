@@ -66,6 +66,19 @@
   display: block;
 }
 
+.emptyContainer {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-bottom: 5px;
+}
+
+.emptyContainer p {
+  color: #ffffff;
+  font-size: 20px;
+}
+
 @keyframes fadeIn {
   from {
     opacity: 0;
