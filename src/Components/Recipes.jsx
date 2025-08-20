@@ -134,6 +134,8 @@ const Recipes = () => {
     console.log("Add recipe clicked");
   }
 
+  console.log("The single recipe is: ", singleRecipes);
+
   return (
     <>
       <Header />
@@ -154,15 +156,12 @@ const Recipes = () => {
             <section className="bookmarkContainer">
               <button onClick={handleAddRecipeVisibility}>ADD RECIPES</button>
               <button onClick={handleBookmarkViewVisibility}>BOOKMARK</button>
-              {/* <button> */}
               <FontAwesomeIcon
                 icon={faPlus}
                 size="xl"
                 className="plusIcon"
                 onClick={handleAddRecipeVisibility}
               />
-              {/* </button> */}
-              {/* <button> */}
               <FontAwesomeIcon
                 icon={faBookmark}
                 size="xl"
@@ -170,7 +169,10 @@ const Recipes = () => {
                 onClick={handleBookmarkViewVisibility}
               />
               {isBookmarkViewVisible ? (
-                <Bookmark isVisible={isBookmarkViewVisible} setIsVisible={setIsBookmarkViewVisible}/>
+                <Bookmark
+                  isVisible={isBookmarkViewVisible}
+                  setIsVisible={setIsBookmarkViewVisible}
+                />
               ) : (
                 ""
               )}
@@ -204,7 +206,7 @@ const Recipes = () => {
               <button onClick={handlePageIncrement}>NEXT</button>
             </section>
           </section>
-          <section className="middleRight">
+          <section className="middleRight" key={singleRecipes?.id}>
             {singleRecipes &&
             typeof (singleRecipes === "object") &&
             singleRecipes.length !== 0 ? (
