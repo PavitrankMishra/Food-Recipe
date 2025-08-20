@@ -17,7 +17,6 @@ import {
   faCartShopping,
   faArrowRightLong,
   faCheck,
-  // faFaceSmile,
 } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
 import { faHeart as faHeartSolid } from "@fortawesome/free-solid-svg-icons";
@@ -33,7 +32,7 @@ import { handleBookmarks } from "../app/slice/bookmarks";
 import Button from "./Button";
 
 const Recipes = () => {
-  const [inputValue, setInputValue] = useState("Pizza");
+  const [inputValue, setInputValue] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
   const [recipesPerPage, setRecipesPerPage] = useState(10);
   const [totalPages, setTotalPages] = useState(0);
@@ -54,12 +53,7 @@ const Recipes = () => {
   const bookMarkedRecipe = useSelector(
     (state) => state?.bookmarkedRecipes || []
   );
-  console.log(bookMarkedRecipe);
 
-  console.log(singleRecipes);
-
-  console.log(typeof singleRecipes);
-  console.log(singleRecipes.length);
   function handleBookmark() {
     dispatch(toggleBookmark());
     dispatch(handleBookmarks(singleRecipes));
@@ -134,8 +128,6 @@ const Recipes = () => {
     console.log("Add recipe clicked");
   }
 
-  console.log("The single recipe is: ", singleRecipes);
-
   return (
     <>
       <Header />
@@ -198,15 +190,31 @@ const Recipes = () => {
                       <p className="itemPublisher">{item.publisher}</p>
                     </section>
                   </section>
-                  <section className="userContainer">
-                    <FontAwesomeIcon icon={faUser} />
-                  </section>
+                  {currentData && currentData.length > 0 && (
+                    <section className="userContainer">
+                      <FontAwesomeIcon icon={faUser} />
+                    </section>
+                  )}
                 </section>
               ))}
-            <section className="recipeButtonContainer">
-              <button onClick={handlePageDecrement}>PREV</button>
-              <button onClick={handlePageIncrement}>NEXT</button>
-            </section>
+            {currentData?.length > 0 ? (
+              <section className="recipeButtonContainer">
+                <button
+                  onClick={handlePageDecrement}
+                  className={currentPage == 1 ? "disabled" : ""}
+                >
+                  PREV
+                </button>
+                <button
+                  onClick={handlePageIncrement}
+                  className={currentPage == totalPages ? "disabled" : ""}
+                >
+                  NEXT
+                </button>
+              </section>
+            ) : (
+              ""
+            )}
           </section>
           <section className="middleRight" key={singleRecipes?.id}>
             {singleRecipes &&
