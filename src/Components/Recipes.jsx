@@ -30,6 +30,7 @@ import { toggleBookmark } from "../app/slice/singleRecipe";
 import { incrementServings } from "../app/slice/singleRecipe";
 import { decrementServings } from "../app/slice/singleRecipe";
 import { handleBookmarks } from "../app/slice/bookmarks";
+import Button from "./Button";
 
 const Recipes = () => {
   const [inputValue, setInputValue] = useState("Pizza");
@@ -39,6 +40,8 @@ const Recipes = () => {
   const [startIndex, setStartIndex] = useState(0);
   const [endIndex, setEndIndex] = useState(10);
   const dispatch = useDispatch();
+  const [isBookmarkViewVisible, setIsBookmarkViewVisible] = useState(false);
+  const [isAddRecipeVisible, setIsAddRecipeVisible] = useState(false);
 
   const recipes = useSelector(
     (state) => state?.allRecipe?.data?.data?.recipes || []
@@ -122,6 +125,15 @@ const Recipes = () => {
     setInputValue(e.target.value);
   }
 
+  function handleBookmarkViewVisibility() {
+    setIsBookmarkViewVisible((prev) => !prev);
+    console.log("Bookmark clicked");
+  }
+  function handleAddRecipeVisibility() {
+    setIsAddRecipeVisible((prev) => !prev);
+    console.log("Add recipe clicked");
+  }
+
   return (
     <>
       <Header />
@@ -140,14 +152,28 @@ const Recipes = () => {
           </section>
           <section className="recipeHeadingRight">
             <section className="bookmarkContainer">
-              <p>ADD RECIPES</p>
-              <p>BOOKMARK</p>
-              <FontAwesomeIcon icon={faPlus} size="xl" className="plusIcon" />
+              <button onClick={handleAddRecipeVisibility}>ADD RECIPES</button>
+              <button onClick={handleBookmarkViewVisibility}>BOOKMARK</button>
+              {/* <button> */}
+              <FontAwesomeIcon
+                icon={faPlus}
+                size="xl"
+                className="plusIcon"
+                onClick={handleAddRecipeVisibility}
+              />
+              {/* </button> */}
+              {/* <button> */}
               <FontAwesomeIcon
                 icon={faBookmark}
                 size="xl"
                 className="bookmarkIcon"
+                onClick={handleBookmarkViewVisibility}
               />
+              {isBookmarkViewVisible ? (
+                <Bookmark isVisible={isBookmarkViewVisible} setIsVisible={setIsBookmarkViewVisible}/>
+              ) : (
+                ""
+              )}
             </section>
           </section>
         </section>

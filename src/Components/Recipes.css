@@ -100,12 +100,16 @@
   .recipeHeadingContainer
   .recipeHeadingRight
   .bookmarkContainer
-  p {
+  button {
   cursor: pointer;
   letter-spacing: 1.2px;
   font-weight: 500;
   font-family: "Inter", sans-serif;
   color: #333;
+  background: transparent;
+  border: none;
+  outline: none;
+  font-size: 18px;
 }
 
 .recipesContainer
@@ -115,6 +119,7 @@
   .plusIcon,
 .bookmarkIcon {
   display: none;
+  /* visibility: hidden; */
 }
 
 .recipesContainer .middleContainer {
@@ -488,7 +493,7 @@
     .recipeHeadingContainer
     .recipeHeadingRight
     .bookmarkContainer
-    p {
+    button {
     font-size: 14px;
     letter-spacing: 1.2px;
   }
@@ -532,7 +537,7 @@
     .recipeHeadingContainer
     .recipeHeadingRight
     .bookmarkContainer
-    p {
+    button {
     font-size: 2vw;
     display: none;
   }
@@ -545,6 +550,7 @@
   .bookmarkIcon {
     display: block;
     color: #333;
+    /* font-size: 50px; */
   }
 
   .recipesContainer
