@@ -128,6 +128,20 @@ const Recipes = () => {
     console.log("Add recipe clicked");
   }
 
+  function handleBookmarkHoverVisiblity() {
+    if (!isBookmarkViewVisible) {
+      setIsBookmarkViewVisible((prev) => !prev);
+      console.log("Bokkmark Hover");
+    }
+  }
+
+  function handleAddRecipeHoverVisibility() {
+    if (!isAddRecipeVisible) {
+      setIsAddRecipeVisible((prev) => !prev);
+      console.log("Add Recipe Hover");
+    }
+  }
+
   return (
     <>
       <Header />
@@ -148,15 +162,15 @@ const Recipes = () => {
             <section className="bookmarkContainer">
               <button
                 onClick={handleAddRecipeVisibility}
-                onMouseEnter={handleAddRecipeVisibility}
-                onMouseLeave={handleAddRecipeVisibility}
+                onMouseEnter={handleAddRecipeHoverVisibility}
+                // onMouseLeave={handleAddRecipeVisibility}
               >
                 ADD RECIPES
               </button>
               <button
                 onClick={handleBookmarkViewVisibility}
-                onMouseEnter={handleBookmarkViewVisibility}
-                onMouseLeave={handleBookmarkViewVisibility}
+                onMouseEnter={handleBookmarkHoverVisiblity}
+                // onMouseLeave={handleBookmarkViewVisibility}
               >
                 BOOKMARK
               </button>
@@ -165,16 +179,16 @@ const Recipes = () => {
                 size="xl"
                 className="plusIcon"
                 onClick={handleAddRecipeVisibility}
-                onMouseEnter={handleAddRecipeVisibility}
-                onMouseLeave={handleAddRecipeVisibility}
+                onMouseEnter={handleAddRecipeHoverVisibility}
+                // onMouseLeave={handleAddRecipeVisibility}
               />
               <FontAwesomeIcon
                 icon={faBookmark}
                 size="xl"
                 className="bookmarkIcon"
                 onClick={handleBookmarkViewVisibility}
-                onMouseEnter={handleBookmarkViewVisibility}
-                onMouseLeave={handleBookmarkViewVisibility}
+                onMouseEnter={handleBookmarkHoverVisiblity}
+                // onMouseLeave={handleBookmarkViewVisibility}
               />
               {isBookmarkViewVisible ? (
                 <Bookmark
