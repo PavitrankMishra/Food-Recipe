@@ -81,6 +81,16 @@
   width: 40%;
 }
 
+.bookmarksSection .bookmarkrecipeContainer .content .descriptionContainer .title {
+  color: black;
+  font-weight: 500;
+  padding-bottom: 2px;
+}
+
+.bookmarksSection .bookmarkrecipeContainer .content .descriptionContainer .description {
+  font-size: 14px;
+}
+
 .bookmarksSection .bookmarkrecipeContainer .content .userIcon {
   color: #333;
   border: 2px solid #f48982;
