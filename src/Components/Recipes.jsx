@@ -146,19 +146,35 @@ const Recipes = () => {
           </section>
           <section className="recipeHeadingRight">
             <section className="bookmarkContainer">
-              <button onClick={handleAddRecipeVisibility}>ADD RECIPES</button>
-              <button onClick={handleBookmarkViewVisibility}>BOOKMARK</button>
+              <button
+                onClick={handleAddRecipeVisibility}
+                onMouseEnter={handleAddRecipeVisibility}
+                onMouseLeave={handleAddRecipeVisibility}
+              >
+                ADD RECIPES
+              </button>
+              <button
+                onClick={handleBookmarkViewVisibility}
+                onMouseEnter={handleBookmarkViewVisibility}
+                onMouseLeave={handleBookmarkViewVisibility}
+              >
+                BOOKMARK
+              </button>
               <FontAwesomeIcon
                 icon={faPlus}
                 size="xl"
                 className="plusIcon"
                 onClick={handleAddRecipeVisibility}
+                onMouseEnter={handleAddRecipeVisibility}
+                onMouseLeave={handleAddRecipeVisibility}
               />
               <FontAwesomeIcon
                 icon={faBookmark}
                 size="xl"
                 className="bookmarkIcon"
                 onClick={handleBookmarkViewVisibility}
+                onMouseEnter={handleBookmarkViewVisibility}
+                onMouseLeave={handleBookmarkViewVisibility}
               />
               {isBookmarkViewVisible ? (
                 <Bookmark
