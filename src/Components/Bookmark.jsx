@@ -4,6 +4,7 @@ import { faXmark } from "@fortawesome/free-solid-svg-icons";
 import { faUser } from "@fortawesome/free-regular-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useDispatch, useSelector } from "react-redux";
+import { fetchSingleRecipe } from "../app/slice/singleRecipe";
 
 const Bookmark = ({ isVisible, setIsVisible }) => {
   const handleCross = () => {
@@ -15,6 +16,10 @@ const Bookmark = ({ isVisible, setIsVisible }) => {
   const bookmarkedRecipes = useSelector(
     (state) => state?.bookmarkedRecipes || []
   );
+
+  function handleRecipeCall(id) {
+    dispatch(fetchSingleRecipe(id));
+  }
 
   console.log(bookmarkedRecipes);
   return (
@@ -31,13 +36,17 @@ const Bookmark = ({ isVisible, setIsVisible }) => {
           {bookmarkedRecipes.data.length > 0 ? (
             bookmarkedRecipes.data.map((item) => (
               <>
-                <section key={item.id} className="content">
+                <section
+                  key={item.id}
+                  className="content"
+                  onClick={() => handleRecipeCall(item.id)}
+                >
                   <section className="imageContainer">
                     <img src={item.image_url} alt={item.title} />
                   </section>
                   <section className="descriptionContainer">
-                    <p>{item.title}</p>
-                    <p>{item.publisher}</p>
+                    <p className="title">{item.title}</p>
+                    <p className="description">{item.publisher}</p>
                   </section>
                   <section className="userIcon">
                     <FontAwesomeIcon icon={faUser} />
