@@ -1,0 +1,199 @@
+.newRecipeRequestContainer {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 80px;
+  z-index: 3;
+  transition: all 0.3s ease-in-out;
+  animation: fadeIn 1s ease-in-out forwards;
+  padding-bottom: 20px;
+}
+
+.newRecipeRequestContainer .newRequestInner {
+  width: 70%;
+  gap: 20px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  padding: 20px;
+  background-color: #c0bebe;
+  border-radius: 12px;
+}
+
+.newRecipeRequestContainer .newRequestInner .crossContainer {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  width: 100%;
+}
+
+.newRecipeRequestContainer .crossContainer .crossIcon {
+  font-size: 24px;
+  cursor: pointer;
+}
+
+.newRecipeRequestContainer .newRequestInner .middleContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  gap: 50px;
+}
+
+.newRecipeRequestContainer .newRequestInner .middleContainer .middleLeft,
+.newRecipeRequestContainer .newRequestInner .middleContainer .middleRight {
+  width: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.newRecipeRequestContainer .newRequestInner .middleContainer .middleLeft .head,
+.newRecipeRequestContainer
+  .newRequestInner
+  .middleContainer
+  .middleRight
+  .head {
+  width: 100%;
+  font-size: 24px;
+}
+
+.newRecipeRequestContainer
+  .newRequestInner
+  .middleContainer
+  .middleLeft
+  .head
+  h1,
+.newRecipeRequestContainer
+  .newRequestInner
+  .middleContainer
+  .middleRight
+  .head
+  h1 {
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.newRecipeRequestContainer
+  .newRequestInner
+  .middleContainer
+  .middleLeft
+  .dataContainer,
+.newRecipeRequestContainer
+  .newRequestInner
+  .middleContainer
+  .middleRight
+  .dataContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+.newRecipeRequestContainer
+  .newRequestInner
+  .middleContainer
+  .middleLeft
+  .dataContainer
+  .textContainer,
+.newRecipeRequestContainer
+  .newRequestInner
+  .middleContainer
+  .middleRight
+  .dataContainer
+  .textContainer {
+  width: 30%;
+}
+
+.newRecipeRequestContainer
+  .newRequestInner
+  .middleContainer
+  .middleLeft
+  .dataContainer
+  .inputContainer,
+.newRecipeRequestContainer
+  .newRequestInner
+  .middleContainer
+  .middleRight
+  .dataContainer
+  .inputContainer {
+  width: 70%;
+}
+
+.newRecipeRequestContainer
+  .newRequestInner
+  .middleContainer
+  .middleLeft
+  .dataContainer
+  .inputContainer
+  input,
+.newRecipeRequestContainer
+  .newRequestInner
+  .middleContainer
+  .middleRight
+  .dataContainer
+  .inputContainer
+  input {
+  width: 100%;
+  border: none;
+  outline: none;
+  height: 50px;
+  border: 2px solid #c0bebe;
+  border-radius: 8px;
+  font-size: 20px;
+}
+
+.newRecipeRequestContainer .newRequestInner .footerContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+.newRecipeRequestContainer .newRequestInner .footerContainer button {
+  height: 50px;
+  width: 150px;
+  border-radius: 30px;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  font-size: 18px;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0px);
+  }
+}
+@media screen and (max-width: 1000px) {
+  .newRecipeRequestContainer .newRequestInner {
+    width: 95%;
+  }
+}
+
+@media screen and (max-width: 790px) {
+  .newRecipeRequestContainer .newRequestInner .middleContainer {
+    flex-direction: column;
+  }
+
+  .newRecipeRequestContainer .newRequestInner .middleContainer {
+    gap: 20px;
+  }
+
+  .newRecipeRequestContainer .newRequestInner .middleContainer .middleLeft,
+  .newRecipeRequestContainer .newRequestInner .middleContainer .middleRight {
+    width: 100%;
+  }
+  .newRecipeRequestContainer .newRequestInner {
+    padding: 8px;
+  }
+}
