@@ -1,7 +1,7 @@
 .newRecipeRequestContainer {
   width: 100%;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
   position: absolute;
   top: 80px;
@@ -9,6 +9,7 @@
   transition: all 0.3s ease-in-out;
   animation: fadeIn 1s ease-in-out forwards;
   padding-bottom: 20px;
+  min-height: 100%;
 }
 
 .newRecipeRequestContainer .newRequestInner {
