@@ -237,8 +237,8 @@
   .middleLeft
   .recipeButtonContainer
   .disabled {
-  opacity: 0.5; /* Makes it faded */
-  cursor: not-allowed; /* Shows "disabled" cursor */
+  opacity: 0.5;
+  cursor: not-allowed; 
   pointer-events: none;
   color: #737373;
   border: 3px solid #ffabab;
