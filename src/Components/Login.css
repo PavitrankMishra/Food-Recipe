@@ -1,5 +1,4 @@
 .loginContainer {
-  /* height: 88dvh; */
   height: 100%;
   width: 90%;
   display: flex;
@@ -23,6 +22,7 @@
 .loginContainer .loginLeftPart {
   height: 90%;
   width: 40%;
+  padding:70px 0;
 }
 
 .loginContainer .loginLeftPart img {
