@@ -56,6 +56,8 @@ const Recipes = () => {
     (state) => state?.bookmarkedRecipes || []
   );
 
+  console.log(singleRecipes);
+
   function handleBookmark() {
     dispatch(toggleBookmark());
     dispatch(handleBookmarks(singleRecipes));
@@ -147,7 +149,7 @@ const Recipes = () => {
   return (
     <>
       <Header />
-      {isAddRecipeVisible ? (
+      {!isAddRecipeVisible ? (
         <section className="recipesContainer">
           <section className="recipeHeadingContainer">
             <section className="recipeHeadingLeft">
@@ -163,11 +165,7 @@ const Recipes = () => {
             </section>
             <section className="recipeHeadingRight">
               <section className="bookmarkContainer">
-                <button
-                  onClick={handleAddRecipeVisibility}
-                >
-                  ADD RECIPES
-                </button>
+                <button onClick={handleAddRecipeVisibility}>ADD RECIPES</button>
                 <button
                   onClick={handleBookmarkViewVisibility}
                   onMouseEnter={handleBookmarkHoverVisiblity}
@@ -283,14 +281,14 @@ const Recipes = () => {
                         <FontAwesomeIcon
                           icon={faHeartSolid}
                           className="recipeBookmarkIcon"
-                          style={{ color: "#f48982" }}
+                          
                           onClick={() => handleBookmark()}
                         />
                       ) : (
                         <FontAwesomeIcon
                           icon={faHeart}
                           className="recipeBookmarkIcon"
-                          style={{ color: "#f48982" }}
+
                           onClick={() => handleBookmark()}
                         />
                       )}
@@ -352,7 +350,10 @@ const Recipes = () => {
           </section>
         </section>
       ) : (
-        <NewRecipe isAddRecipeVisible = {isAddRecipeVisible} setIsAddRecipeVisible = {setIsAddRecipeVisible}/>
+        <NewRecipe
+          isAddRecipeVisible={isAddRecipeVisible}
+          setIsAddRecipeVisible={setIsAddRecipeVisible}
+        />
       )}
     </>
   );

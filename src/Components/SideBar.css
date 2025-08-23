@@ -30,7 +30,7 @@
   margin-bottom: 10px;
   padding-left: 10px;
   font-size: 30px;
-  color: #ff7043;
+  color: var(--tertiary-color);
   cursor: pointer;
 }
 
@@ -49,9 +49,9 @@
   font-size: 20px;
   gap: 5px;
   cursor: pointer;
-  border: 2px solid #474747;
-  border: 2px solid #ff7043;
+  border: 2px solid var(--main-color);
   transition: all 0.3s ease-in-out;
+  color: var(--tertiary-color);
 }
 
 .sideBarContainer
@@ -67,6 +67,7 @@
   justify-content: center;
   height: 50px;
   font-size: 28px;
+  color: var(--tertiary-color);
 }
 
 .sideBarContainer
@@ -86,7 +87,7 @@
   .sideBarListContainer
   ul
   li:hover {
-  background-color: #ff7043;
+  background-color: var(--secondary-color);
   transition: all 0.3s ease-in-out;
 }
 

@@ -25,11 +25,13 @@
   min-height: 60px;
   border-radius: 12px;
   background-color: #ffabab;
+  background-color: var(--secondary-color);
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 10px;
   padding: 0 10px;
+  height: 65px;
 }
 
 .recipesContainer .recipeHeadingContainer .recipeHeadingLeft,
@@ -59,7 +61,7 @@
   height: 40px;
   border-radius: 100px;
   border: none;
-  border: 3px solid #f48982;
+  border: 2px solid var(--main-color);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -163,7 +165,8 @@
   justify-content: space-between;
   padding: 0 8px;
   border-radius: 12px;
-  border-bottom: 3px solid #f48982;
+  border-bottom: 3px solid var(--secondary-color);
+  border-bottom: 2px solid var(--main-color);
   cursor: pointer;
   transition: all 0.3s ease-in-out;
   width: 100%;
@@ -174,7 +177,7 @@
 }
 
 .recipesContainer .middleContainer .middleLeft .recipesList:hover {
-  background-color: #ffabab;
+  background-color: var(--secondary-color);
 }
 
 .recipesContainer
@@ -227,7 +230,8 @@
   width: 100px;
   border-radius: 30px;
   outline: none;
-  border: 3px solid #f48982;
+  border: 2px solid var(--secondary-color);
+    border: 2px solid var(--main-color);
   font-size: 16px;
   letter-spacing: 1.2px;
   transition: all 0.3s ease-in-out;
@@ -241,7 +245,7 @@
   .middleLeft
   .recipeButtonContainer
   button:hover {
-  background-color: #f48982;
+  background-color: var(--secondary-color);
 }
 
 .recipesContainer
@@ -253,7 +257,8 @@
   cursor: not-allowed;
   pointer-events: none;
   color: #737373;
-  border: 3px solid #ffabab;
+  border: 3px solid var(--secondary-color);
+  border: 2px solid var(--main-color);
 }
 .recipesContainer
   .middleContainer
@@ -295,7 +300,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  border: 2px solid #f48982;
+  border: 2px solid var(--main-color);
 }
 
 .recipesContainer .middleContainer .middleRight .imageContainer {
@@ -338,7 +343,7 @@
   .servingsIcon,
 .recipesContainer .middleContainer .middleRight .navigationContainer .minusIcon,
 .recipesContainer .middleContainer .middleRight .navigationContainer .plusIcon {
-  color: #f48982;
+  color: var(--main-color);
 }
 
 .recipesContainer
@@ -438,7 +443,8 @@
 .recipesContainer .middleContainer .middleRight .directionsContainer button {
   background-color: transparent;
   outline: none;
-  border: 3px solid #f48982;
+  border: 3px solid var(--secondary-color);
+  border: 2px solid var(--main-color);
   height: 50px;
   width: 150px;
   font-size: 16px;
@@ -452,7 +458,7 @@
   .middleRight
   .directionsContainer
   button:hover {
-  background-color: #f48982;
+  background-color: var(--secondary-color);
 }
 
 .recipesContainer
@@ -462,7 +468,7 @@
   .allItemContainer
   .itemContainer
   .recipeIcons {
-  color: #f48982;
+  color: var(--main-color);
 }
 .recipesContainer
   .middleContainer
@@ -479,7 +485,7 @@
   #publisherName {
   font-weight: 700;
   font-size: 20px;
-  color: #f48982;
+  color: var(--main-color);
 }
 
 .box1 {
@@ -492,14 +498,17 @@
 
 .box1 p {
   font-size: 20px;
-  color: #f48982;
-  color: #333;
+  color: var(--tertiary-color);
   font-weight: 500;
 }
 
 .box1 .smileIcon {
   font-size: 48px;
-  color: #f48982;
+  color: var(--main-color);
+}
+
+.recipeBookmarkIcon {
+  color: var(--main-color);
 }
 
 @keyframes fadeIn {
@@ -562,7 +571,7 @@
   .recipesContainer .recipeHeadingContainer .recipeHeadingRight {
     width: 20%;
     gap: 20px;
-    color: #f48982;
+    color: var(--secondary-color);
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -589,8 +598,7 @@
     .plusIcon,
   .bookmarkIcon {
     display: block;
-    color: #333;
-    /* font-size: 50px; */
+    color: var(--tertiary-color);
   }
 
   .recipesContainer
@@ -598,7 +606,7 @@
     .recipeHeadingRight
     .bookmarkContainer {
     justify-content: flex-end;
-    color: #333;
+    color: var(--tertiary-color);
   }
   .recipesContainer .middleContainer {
     flex-direction: column;
@@ -618,7 +626,6 @@
     .itemListContainer
     .allItemContainer {
     padding: 0px;
-    /* border: 2px solid red; */
     padding: 20px 0;
   }
   .recipesContainer .middleContainer .middleRight .navigationContainer {

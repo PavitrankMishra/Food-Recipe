@@ -19,7 +19,6 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  /* border: 2px solid red; */
 }
 
 .headerContainer .logoContainer img {
@@ -41,7 +40,7 @@
 
 .headerContainer .listContainer ul li a {
   text-decoration: none;
-  color: #333;
+  color: var(--tertiary-color);
   font-weight: 500;
 }
 
@@ -49,7 +48,7 @@
   content: "";
   width: 0%;
   height: 3px;
-  background-color: #fd6b47;
+  background-color: var(--main-color);
   position: absolute;
   bottom: -2px;
   left: 0;
@@ -63,12 +62,12 @@
 }
 
 .active a {
-  color: #fd6b47;
+  color: var(--main-color);
   width: 100%;
 }
 
 .headerContainer .headerLeft h1 {
-  color: #fd6b47;
+  color: var(--main-color);
   text-align: center;
   width: 100%;
   font-size: 3.5vw;
@@ -98,7 +97,7 @@
   .loginContainer button {
     font-size: 1.75vw;
   }
-    .headerContainer .listContainer ul li a {
+  .headerContainer .listContainer ul li a {
     font-size: 16px;
   }
 }
@@ -128,7 +127,7 @@
 
   .burgerMenu {
     cursor: pointer;
-    color: #fd6b47;
+    color: var(--main-color);
     font-size: 20px;
   }
 

@@ -19,8 +19,9 @@
   align-items: center;
   flex-direction: column;
   padding: 20px;
-  background-color: #c0bebe;
   border-radius: 12px;
+  border: 2px solid var(--main-color);
+  background-color: var(--secondary-color);
 }
 
 .newRecipeRequestContainer .newRequestInner .crossContainer {
@@ -28,6 +29,7 @@
   align-items: center;
   justify-content: flex-end;
   width: 100%;
+  color: var(--tertiary-color);
 }
 
 .newRecipeRequestContainer .crossContainer .crossIcon {
@@ -41,6 +43,7 @@
   justify-content: center;
   width: 100%;
   gap: 50px;
+  color: var(--tertiary-color);
 }
 
 .newRecipeRequestContainer .newRequestInner .middleContainer .middleLeft,
@@ -143,9 +146,10 @@
   border: none;
   outline: none;
   height: 50px;
-  border: 2px solid #c0bebe;
   border-radius: 8px;
   font-size: 20px;
+  padding-left: 5px;
+  border: 1px solid var(--main-color);
 }
 
 .newRecipeRequestContainer .newRequestInner .footerContainer {
@@ -163,6 +167,13 @@
   outline: none;
   cursor: pointer;
   font-size: 18px;
+  color: var(--tertiary-color);
+  border: 2px solid var(--main-color);
+  transition: all 0.3s ease-in-out;
+}
+
+.newRecipeRequestContainer .newRequestInner .footerContainer button:hover {
+  background-color: var(--main-color);
 }
 
 @keyframes fadeIn {
