@@ -30,7 +30,7 @@ const Hero = () => {
               className="styled-input"
             />
             <section className="magnifyingContainer">
-              <FontAwesomeIcon icon={faMagnifyingGlass} size="2xl" />
+              <FontAwesomeIcon icon={faMagnifyingGlass} size="xl" className="magnifyingIcon"/>
             </section>
           </section>
           {/* <Button location={"/recipes"}>Explore Recipes</Button> */}

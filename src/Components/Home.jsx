@@ -22,9 +22,9 @@ const Home = () => {
     <>
       <Header />
       <Hero />
-      <ImageSlider />
-      <Card />
-      <Banner2 />
+      {/* <ImageSlider /> */}
+      {/* <Card /> */}
+      {/* <Banner2 /> */}
       {/* <section className="categoriesContainer">
         <h1 className="categoriesHeading">TOP CATEGORIES</h1>
         <section className="categoriesSection">

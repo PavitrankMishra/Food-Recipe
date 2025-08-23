@@ -3,6 +3,7 @@
   align-items: center;
   justify-content: center;
   margin-bottom: 50px;
+  width: 100%;
 }
 
 .heroContainer .heroLeft {
@@ -11,7 +12,6 @@
   align-items: flex-start;
   flex-direction: column;
   justify-content: center;
-  /* padding-left: 20px; */
   gap: 30px;
 }
 
@@ -28,12 +28,10 @@
   font-size: 80px;
   color: #fd6b47;
   letter-spacing: 4%;
-  /* -webkit-text-stroke: 0.3vw #000; */
 }
 
 .heroContainer .heroLeft .subtext {
-  font-size: 24px;
-  letter-spacing: 4%;
+  font-size: 18px;
   font-weight: 500;
   line-height: 30px;
   color: #5d5d5d;
@@ -42,7 +40,7 @@
 
 .heroContainer .heroLeft p {
   line-height: 1.4;
-  font-size: 1.7vw;
+  /* font-size: 1vw; */
   font-weight: 400;
   color: dimgray;
 }
@@ -54,42 +52,41 @@
   cursor: pointer;
 }
 
-.heroContainer .heroLeft input {
-  border: none;
-  border: 3px solid #fd6b47;
-  border-radius: 40px;
-  height: 60px;
-  width: 445px;
-}
-
-.heroContainer .heroLeft .styled-input {
-  color: #736d6d;
-  font-size: 20px;
-  letter-spacing: 40%;
-  line-height: 20px;
-  font-weight: 500;
-  padding-left: 40px;
-  outline: none;
-}
-
 .heroContainer .heroLeft .inputRecipe {
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   flex-direction: row;
   gap: 20px;
 }
 
-.heroContainer .heroLeft .magnifyingContainer {
-  height: 60px;
-  width: 60px;
+.heroContainer .heroLeft .inputRecipe input {
+  border: none;
+  outline: none;
+  border: 3px solid var(--main-color);
+  border-radius: 40px;
+  height: 50px;
+  font-size: 20px;
+  padding-left: 10px;
+  font-weight: 500;
+  color: var(--tertiary-color);
+}
+
+.heroContainer .heroLeft .inputRecipe .magnifyingContainer {
+  width: 30%;
+  height: 50px;
+  width: 50px;
   display: flex;
   align-items: center;
   justify-content: center;
   border-radius: 50%;
-  background-color: #fd6b47;
+  background-color: var(--main-color);
   color: #ffffff;
   cursor: pointer;
+}
+
+.heroContainer .heroLeft .inputRecipe .magnifyingContainer .magnifyingIcon {
+  width: 30px;
 }
 
 .heroContainer .heroLeft a,
@@ -115,9 +112,37 @@ a:active {
   max-height: 600px;
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 1000px) {
   .heroContainer {
     height: 100%;
+  }
+  .heroContainer .heroLeft {
+    width: 100%;
+  }
+
+  .heroContainer .heroLeft .inputRecipe {
+    width: 100%;
+  }
+
+  .heroContainer .heroLeft input {
+    width: 70%;
+  }
+
+  .heroContainer .heroLeft .inputRecipe .magnifyingContainer {
+    width: 30%;
+    height: 50px;
+    width: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background-color: var(--main-color);
+    color: #ffffff;
+    cursor: pointer;
+  }
+
+  .heroContainer .heroRight {
+    display: none;
   }
 
   .heroContainer .heroRight img {
@@ -126,13 +151,13 @@ a:active {
   }
 
   .heroContainer .heroLeft h1 {
-    font-size: 12vw;
+    font-size: 10vw;
   }
 
   .heroContainer .heroLeft span {
     font-size: 10vw;
     letter-spacing: 0.2px;
-    -webkit-text-stroke: 0.4vw #000;
+    /* -webkit-text-stroke: 0.4vw #000; */
   }
 
   .heroContainer .heroLeft {
@@ -141,7 +166,7 @@ a:active {
   }
 
   .heroContainer .heroLeft p {
-    font-size: 14px;
+    font-size: 12px;
     letter-spacing: 1.2px;
   }
 }
