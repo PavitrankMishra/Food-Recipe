@@ -1,21 +1,21 @@
 import React from "react";
 import "./Home.css";
 import Header from "./Header";
-import Pizza from "../Assets/Pizza.jpg";
-import Burger from "../Assets/Burger.webp";
-import Noodles from "../Assets/Noodles.jpg";
-import FrenchFries from "../Assets/FrenchFries.webp";
-import Pasta from "../Assets/Pasta.jpg";
-import Cake from "../Assets/cake.webp";
-import AboutUs from "./AboutUs";
-import Banner from "./Banner";
-import Working from "./Working";
+// import Pizza from "../Assets/Pizza.jpg";
+// import Burger from "../Assets/Burger.webp";
+// import Noodles from "../Assets/Noodles.jpg";
+// import FrenchFries from "../Assets/FrenchFries.webp";
+// import Pasta from "../Assets/Pasta.jpg";
+// import Cake from "../Assets/cake.webp";
+// import AboutUs from "./AboutUs";
+// import Banner from "./Banner";
+// import Working from "./Working";
 import Hero from "./Hero";
 import { faStar } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import ImageSlider from "./ImageSlider";
-import Card from "./Card";
-import Banner2 from "./Banner2";
+// import ImageSlider from "./ImageSlider";
+// import Card from "./Card";
+// import Banner2 from "./Banner2";
 
 const Home = () => {
   return (
