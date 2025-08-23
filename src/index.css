@@ -22,6 +22,11 @@
   /* background-color: red; */
   --border-gradient: linear-gradient(to right, #ffe8b4, #f48982);
   --border-gradient2: linear-gradient(to right, #f48982, #ffe8b4);
+  --main-color: #fd6b47;
+  --secondary-color: #fbaa96;
+  --tertiary-color: #333333;
+  --dark-border: #ff8668;
+  --hover-Section: #f8eaea;
 }
 
 html,
