@@ -1,6 +1,5 @@
 .bookmarksSection {
   position: absolute;
-  background: #ffffff;
   padding: 10px;
   top: 144px;
   top: 80px;
@@ -12,7 +11,7 @@
   align-items: center;
   justify-content: flex-start;
   flex-direction: column;
-  background-color: #ffabab;
+  background-color: var(--secondary-color);
   z-index: 1;
 }
 
@@ -28,6 +27,7 @@
 .bookmarksSection .bookmarkCrossContainer .crossIcon {
   cursor: pointer;
   color: #ffffff;
+  color: var(--tertiary-color);
 }
 
 .bookmarksSection .bookmarkrecipeContainer {
@@ -56,7 +56,6 @@
   transition: all 0.3s ease-in-out;
 }
 
-
 .bookmarksSection .bookmarkrecipeContainer .content:hover {
   background-color: #f8eaea;
 }
@@ -82,19 +81,28 @@
   width: 40%;
 }
 
-.bookmarksSection .bookmarkrecipeContainer .content .descriptionContainer .title {
+.bookmarksSection
+  .bookmarkrecipeContainer
+  .content
+  .descriptionContainer
+  .title {
   color: black;
   font-weight: 500;
   padding-bottom: 2px;
 }
 
-.bookmarksSection .bookmarkrecipeContainer .content .descriptionContainer .description {
+.bookmarksSection
+  .bookmarkrecipeContainer
+  .content
+  .descriptionContainer
+  .description {
   font-size: 14px;
 }
 
 .bookmarksSection .bookmarkrecipeContainer .content .userIcon {
-  color: #333;
+  color: var(--tertiary-color);
   border: 2px solid #f48982;
+  border: 2px solid var(--secondary-color);
   border-radius: 50%;
   padding: 7px 10px;
 }
@@ -108,7 +116,7 @@
 }
 
 .emptyContainer p {
-  color: #ffffff;
+  color: var(--tertiary-color);
   font-size: 20px;
 }
 
