@@ -6,6 +6,18 @@
   margin: auto;
   min-height: 100dvh;
   flex-direction: column;
+  animation: fadeIn 1s ease-in-out forwards;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-100px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0px);
+  }
 }
 
 .recipesContainer .recipeHeadingContainer {
@@ -238,7 +250,7 @@
   .recipeButtonContainer
   .disabled {
   opacity: 0.5;
-  cursor: not-allowed; 
+  cursor: not-allowed;
   pointer-events: none;
   color: #737373;
   border: 3px solid #ffabab;
