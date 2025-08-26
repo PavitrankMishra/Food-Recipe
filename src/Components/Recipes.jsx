@@ -31,9 +31,10 @@ import { decrementServings } from "../app/slice/singleRecipe";
 import { handleBookmarks } from "../app/slice/bookmarks";
 import Button from "./Button";
 import NewRecipe from "./NewRecipe";
+import { handleInputField } from "../app/slice/inputValue";
 
 const Recipes = () => {
-  const [inputValue, setInputValue] = useState("");
+  // const [inputValue, setInputValue] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
   const [recipesPerPage, setRecipesPerPage] = useState(10);
   const [totalPages, setTotalPages] = useState(0);
@@ -55,6 +56,9 @@ const Recipes = () => {
   const bookMarkedRecipe = useSelector(
     (state) => state?.bookmarkedRecipes || []
   );
+
+  const inputValue = useSelector((state) => state?.inputRecipe?.data);
+  console.log("The input value is: ", inputValue);
 
   console.log(singleRecipes);
 
@@ -115,12 +119,14 @@ const Recipes = () => {
     };
   }, [inputValue]);
 
+  console.log("The value of inputValue: ", inputValue);
+
   const handleSingleRecipe = (id) => {
     dispatch(fetchSingleRecipe(id));
   };
 
   function updateInputValue(e) {
-    setInputValue(e.target.value);
+    dispatch(handleInputField(e.target.value));
   }
 
   function handleBookmarkViewVisibility() {
@@ -281,14 +287,12 @@ const Recipes = () => {
                         <FontAwesomeIcon
                           icon={faHeartSolid}
                           className="recipeBookmarkIcon"
-                          
                           onClick={() => handleBookmark()}
                         />
                       ) : (
                         <FontAwesomeIcon
                           icon={faHeart}
                           className="recipeBookmarkIcon"
-
                           onClick={() => handleBookmark()}
                         />
                       )}
