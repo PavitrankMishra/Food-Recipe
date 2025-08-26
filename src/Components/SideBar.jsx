@@ -1,6 +1,6 @@
 import React from "react";
 import "./SideBar.css";
-import { faXmark } from "@fortawesome/free-solid-svg-icons";
+import { faBowlFood, faXmark } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHouse } from "@fortawesome/free-solid-svg-icons";
 import { faRightToBracket } from "@fortawesome/free-solid-svg-icons";
@@ -34,7 +34,10 @@ const SideBar = ({ show, onClose }) => {
                   <li>
                     <section className="buttonContainer">
                       <section className="iconContainer">
-                        <FontAwesomeIcon icon={faInfo} className="infoIcon" />
+                        <FontAwesomeIcon
+                          icon={faBowlFood}
+                          className="foodIcon"
+                        />
                       </section>
                       <span>Recipes</span>
                     </section>
@@ -44,7 +47,10 @@ const SideBar = ({ show, onClose }) => {
                   <li>
                     <section className="buttonContainer">
                       <section className="iconContainer">
-                        <FontAwesomeIcon icon={faInfo} className="infoIcon" />
+                        <FontAwesomeIcon
+                          icon={faRightToBracket}
+                          className="loginIcon"
+                        />
                       </section>
                       <span>Login</span>
                     </section>
