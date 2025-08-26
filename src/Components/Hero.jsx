@@ -5,8 +5,14 @@ import Button from "./Button";
 import HeroRight from "../Assets/HeroRight.png";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
+import { handleInputField } from "../app/slice/inputValue";
 
 const Hero = () => {
+  const inputValue = useSelector((state) => state?.inputRecipe?.data);
+  const dispatch = useDispatch();
   return (
     <>
       <section className="heroContainer">
@@ -26,12 +32,20 @@ const Hero = () => {
           <section className="inputRecipe">
             <input
               type="text"
-              value="Falafel Burgers"
+              value={inputValue}
               className="styled-input"
+              onChange={(e) => dispatch(handleInputField(e.target.value))}
+              placeholder="Falafel Burgers"
             />
-            <section className="magnifyingContainer">
-              <FontAwesomeIcon icon={faMagnifyingGlass} size="xl" className="magnifyingIcon"/>
-            </section>
+            <Link to="/recipes">
+              <section className="magnifyingContainer">
+                <FontAwesomeIcon
+                  icon={faMagnifyingGlass}
+                  size="xl"
+                  className="magnifyingIcon"
+                />
+              </section>
+            </Link>
           </section>
           {/* <Button location={"/recipes"}>Explore Recipes</Button> */}
         </section>
