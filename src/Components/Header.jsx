@@ -36,15 +36,15 @@ const Header = () => {
             <li className={location.pathname === "/" ? "active" : ""}>
               <Link to="/">Home</Link>
             </li>
-            <li className={location.pathname === "/about" ? "active" : ""}>
+            {/* <li className={location.pathname === "/about" ? "active" : ""}>
               <Link to="/about">About</Link>
-            </li>
+            </li> */}
             <li className={location.pathname === "/recipes" ? "active" : ""}>
               <Link to="/recipes">Recipes</Link>
             </li>
-            <li className={location.pathname === "/bookmarks" ? "active" : ""}>
+            {/* <li className={location.pathname === "/bookmarks" ? "active" : ""}>
               <Link to="/bookmarks">Bookmarks</Link>
-            </li>
+            </li> */}
           </ul>
         </section>
         <section className="loginButtonContainer">
