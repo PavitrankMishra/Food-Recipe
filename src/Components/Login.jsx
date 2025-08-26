@@ -3,11 +3,28 @@ import "./Login.css";
 import Header from "./Header";
 import LoginLeft from "../Assets/Login2.jpeg";
 import Logo from "../Assets/Logo.png";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { handleLogin } from "../app/slice/loginValue";
 
 const Login = () => {
   const [inputUserName, setInputUserName] = useState("");
   const [inputUserPassword, setInputUserPassword] = useState("");
+
+  const dispatch = useDispatch();
+
+  const loginValue = useSelector((state) => state?.loginValue?.data);
+  console.log("The login values is: ", loginValue);
+
+  const handleRecipeLogin = () => {
+    dispatch(handleLogin());
+    if (loginValue == false) {
+      navigate("/recipes");
+    }
+  };
+
+  const navigate = useNavigate();
+
   return (
     <>
       <Header />
@@ -39,9 +56,10 @@ const Login = () => {
               name="inputPassword"
               onChange={(e) => setInputUserPassword(e.target.value)}
             />
-            <Link to="/recipes">
-              <button className="loginButton">Login</button>
-            </Link>
+
+            <button className="loginButton" onClick={() => handleRecipeLogin()}>
+              Login
+            </button>
           </section>
         </section>
       </section>
