@@ -6,6 +6,7 @@ import { faHouse } from "@fortawesome/free-solid-svg-icons";
 import { faRightToBracket } from "@fortawesome/free-solid-svg-icons";
 import { faInfo } from "@fortawesome/free-solid-svg-icons";
 import Logo from "../Assets/Logo.png";
+import { Link } from "react-router-dom";
 
 const SideBar = ({ show, onClose }) => {
   console.log(show);
@@ -19,27 +20,36 @@ const SideBar = ({ show, onClose }) => {
             </section>
             <section className="sideBarListContainer">
               <ul>
-                <li>
-                  <section className="iconContainer">
-                    <FontAwesomeIcon icon={faHouse} className="homeIcon" />
-                  </section>
-                  <span>Home</span>
-                </li>
-                <li>
-                  <section className="iconContainer">
-                    <FontAwesomeIcon icon={faInfo} className="infoIcon" />
-                  </section>
-                  <span>About</span>
-                </li>
-                <li>
-                  <section className="iconContainer">
-                    <FontAwesomeIcon
-                      icon={faRightToBracket}
-                      className="rightIcon"
-                    />
-                  </section>
-                  <span>Login</span>
-                </li>
+                <Link to="/">
+                  <li>
+                    <section className="buttonContainer">
+                      <section className="iconContainer">
+                        <FontAwesomeIcon icon={faHouse} className="homeIcon" />
+                      </section>
+                      <span>Home</span>
+                    </section>
+                  </li>
+                </Link>
+                <Link to="/recipes">
+                  <li>
+                    <section className="buttonContainer">
+                      <section className="iconContainer">
+                        <FontAwesomeIcon icon={faInfo} className="infoIcon" />
+                      </section>
+                      <span>Recipes</span>
+                    </section>
+                  </li>
+                </Link>
+                <Link to="/login">
+                  <li>
+                    <section className="buttonContainer">
+                      <section className="iconContainer">
+                        <FontAwesomeIcon icon={faInfo} className="infoIcon" />
+                      </section>
+                      <span>Login</span>
+                    </section>
+                  </li>
+                </Link>
               </ul>
             </section>
           </section>

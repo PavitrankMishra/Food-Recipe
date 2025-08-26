@@ -52,6 +52,19 @@
   border: 2px solid var(--main-color);
   transition: all 0.3s ease-in-out;
   color: var(--tertiary-color);
+  flex-direction: row;
+}
+
+.sideBarContainer .sideBarInnerContainer .sideBarListContainer ul li .buttonContainer {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
 }
 
 .sideBarContainer
