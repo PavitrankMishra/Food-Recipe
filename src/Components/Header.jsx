@@ -52,6 +52,10 @@ const Header = () => {
     }
   }
 
+  function handleHomeDivert() {
+    navigate("/");
+  }
+
   console.log("The login value is: ", loginValue);
 
   return (
@@ -70,14 +74,17 @@ const Header = () => {
         </section>
         <section className="listContainer">
           <ul>
-            <li className={location.pathname === "/" ? "active" : ""}>
-              <Link to="/">Home</Link>
+            <li
+              className={location.pathname === "/" ? "active" : ""}
+              onClick={handleHomeDivert}
+            >
+              <span>Home</span>
             </li>
             <li
               className={location.pathname === "/recipes" ? "active" : ""}
               onClick={handleRecipeDivert}
             >
-              Recipes
+              <span>Recipes</span>
             </li>
           </ul>
         </section>

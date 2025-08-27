@@ -59,13 +59,13 @@
   position: relative;
 }
 
-.headerContainer .listContainer ul li a {
+.headerContainer .listContainer ul li span {
   text-decoration: none;
   color: var(--tertiary-color);
   font-weight: 500;
 }
 
-.headerContainer .listContainer ul li a::after {
+.headerContainer .listContainer ul li span::after {
   content: "";
   width: 0%;
   height: 3px;
@@ -77,12 +77,12 @@
   transition: all 0.3s ease-in-out;
 }
 
-.headerContainer .listContainer ul li:hover a::after,
-.headerContainer .listContainer ul li.active a:after {
+.headerContainer .listContainer ul li:hover span::after,
+.headerContainer .listContainer ul li.active span:after {
   width: 100%;
 }
 
-.active a {
+.active span {
   color: var(--main-color);
   width: 100%;
 }
