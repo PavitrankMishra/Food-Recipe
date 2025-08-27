@@ -20,24 +20,28 @@ const Login = () => {
   const dispatch = useDispatch();
 
   const loginValue = useSelector((state) => state?.loginValue?.data);
-  console.log("The login values is: ", loginValue);
 
   const handleRecipeLogin = () => {
     if (
-      inputUserName.length >= inputLength &&
-      inputUserPassword.length >= inputLength &&
+      inputUserN.length >= inputLength &&
+      inputUserP.length >= inputLength &&
       loginValue == false
     ) {
       dispatch(handleLogin());
       navigate("/recipes");
-      console.log("Now it is called");
+      isInvalid(false);
+    } else if (
+      inputUserN.length >= 0 &&
+      inputUserN.length < 8 &&
+      inputUserP.length >= 0 &&
+      inputUserP.length < 8
+    ) {
+      setIsInvalid(true);
     }
   };
 
   const handleUserNameInput = (e) => {
     inputUserName += e.target.value;
-    console.log(inputUserName);
-    console.log(inputUserName.length);
     setInputUserN(inputUserName);
 
     if (inputUserName.length < 8) {
@@ -48,8 +52,6 @@ const Login = () => {
 
   const handleUserPasswordInput = (e) => {
     inputUserPassword += e.target.value;
-    console.log(inputUserPassword);
-    console.log(inputUserPassword.length);
     setInputUserP(inputUserPassword);
 
     if (inputUserPassword.length < 8) {
@@ -58,7 +60,6 @@ const Login = () => {
     }
   };
 
-  console.log(inputUserName);
   const navigate = useNavigate();
 
   return (
@@ -127,6 +128,11 @@ const Login = () => {
               >
                 Login
               </button>
+            )}
+            {isInvalid == true ? (
+              <p>Username and password must be 8 characters.</p>
+            ) : (
+              <p>{""}</p>
             )}
           </section>
         </section>

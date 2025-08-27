@@ -5,7 +5,6 @@ import Hero from "./Hero";
 import { faStar } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-
 const Home = () => {
   return (
     <>

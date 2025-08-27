@@ -44,6 +44,7 @@
   width: 80%;
   margin: auto;
   gap: 25px;
+  min-height: 500px;
 }
 
 .loginContainer .loginRightPart .loginInnerRightPart img {
@@ -86,11 +87,20 @@
   background-color: transparent;
 }
 
-.loginContainer .loginRightPart .loginInnerRightPart .inputContainer .iconContainer {
+.loginContainer
+  .loginRightPart
+  .loginInnerRightPart
+  .inputContainer
+  .iconContainer {
   width: 10%;
 }
 
-.loginContainer .loginRightPart .loginInnerRightPart .inputContainer .iconContainer .invalidIcon {
+.loginContainer
+  .loginRightPart
+  .loginInnerRightPart
+  .inputContainer
+  .iconContainer
+  .invalidIcon {
   font-size: 32px;
   color: var(--main-color);
 }
