@@ -6,31 +6,59 @@ import Logo from "../Assets/Logo.png";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { handleLogin, handleLogout } from "../app/slice/loginValue";
+import { faCircleExclamation } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const Login = () => {
-  const [inputUserName, setInputUserName] = useState("");
-  const [inputUserPassword, setInputUserPassword] = useState("");
+  const [inputUserN, setInputUserN] = useState("");
+  const [inputUserP, setInputUserP] = useState("");
+  const [inputLength, setInputLength] = useState(8);
+  const [isInvalid, setIsInvalid] = useState(false);
+  let inputUserName = "";
+  let inputUserPassword = "";
 
   const dispatch = useDispatch();
 
   const loginValue = useSelector((state) => state?.loginValue?.data);
   console.log("The login values is: ", loginValue);
 
-  // console.log(loginValue);
   const handleRecipeLogin = () => {
-    dispatch(handleLogin());
-    if (loginValue == false) {
+    if (
+      inputUserName.length >= inputLength &&
+      inputUserPassword.length >= inputLength &&
+      loginValue == false
+    ) {
+      dispatch(handleLogin());
       navigate("/recipes");
+      console.log("Now it is called");
     }
   };
 
-  const handleRecipeLogout = () => {
-    dispatch(handleLogout());
-    if (loginValue == true) {
-      navigate("/");
+  const handleUserNameInput = (e) => {
+    inputUserName += e.target.value;
+    console.log(inputUserName);
+    console.log(inputUserName.length);
+    setInputUserN(inputUserName);
+
+    if (inputUserName.length < 8) {
+      console.log("User name is less than 8");
+      console.log(inputUserName.length);
     }
   };
 
+  const handleUserPasswordInput = (e) => {
+    inputUserPassword += e.target.value;
+    console.log(inputUserPassword);
+    console.log(inputUserPassword.length);
+    setInputUserP(inputUserPassword);
+
+    if (inputUserPassword.length < 8) {
+      console.log("User password is less than 8");
+      console.log(inputUserPassword.length);
+    }
+  };
+
+  console.log(inputUserName);
   const navigate = useNavigate();
 
   return (
@@ -48,23 +76,50 @@ const Login = () => {
               Your one stop destination for quick delicious and hassle free
               recipes to brighten every mealtime.
             </p>
-            <input
-              type="text"
-              value={inputUserName}
-              placeholder="Enter Username"
-              className="inputField"
-              name="inputName"
-              onChange={(e) => setInputUserName(e.target.value)}
-            />
-            <input
-              type="text"
-              value={inputUserPassword}
-              placeholder="Enter Password"
-              className="passwordField"
-              name="inputPassword"
-              onChange={(e) => setInputUserPassword(e.target.value)}
-            />
-
+            <section className="inputContainer">
+              <input
+                type="text"
+                value={inputUserN}
+                placeholder="Enter Username"
+                className={`inputField ${
+                  inputUserN.length < 8 ? "invalid" : ""
+                }`}
+                name="inputName"
+                onChange={(e) => handleUserNameInput(e)}
+              />
+              {inputUserN.length > 0 && inputUserN.length < 8 ? (
+                <section className="iconContainer">
+                  <FontAwesomeIcon
+                    icon={faCircleExclamation}
+                    className="invalidIcon"
+                  />
+                </section>
+              ) : (
+                ""
+              )}
+            </section>
+            <section className="inputContainer">
+              <input
+                type="text"
+                value={inputUserP}
+                placeholder="Enter Password"
+                className={`passwordField ${
+                  inputUserP.length < 8 ? "invalid" : ""
+                }`}
+                name="inputPassword"
+                onChange={(e) => handleUserPasswordInput(e)}
+              />
+              {inputUserP.length > 0 && inputUserP.length < 8 ? (
+                <section className="iconContainer">
+                  <FontAwesomeIcon
+                    icon={faCircleExclamation}
+                    className="invalidIcon"
+                  />
+                </section>
+              ) : (
+                ""
+              )}
+            </section>
             {loginValue == false && (
               <button
                 className="loginButton"
