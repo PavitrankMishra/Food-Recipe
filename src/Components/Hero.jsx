@@ -5,7 +5,7 @@ import Button from "./Button";
 import HeroRight from "../Assets/HeroRight.png";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import { handleInputField } from "../app/slice/inputValue";
@@ -13,6 +13,19 @@ import { handleInputField } from "../app/slice/inputValue";
 const Hero = () => {
   const inputValue = useSelector((state) => state?.inputRecipe?.data);
   const dispatch = useDispatch();
+
+  const loginValue = useSelector((state) => state?.loginValue?.data);
+
+  const navigate = useNavigate("");
+
+  function handleRecipeLogin() {
+    if (loginValue == false) {
+      navigate("/login");
+    } else {
+      navigate("/recipes");
+    }
+  }
+
   return (
     <>
       <section className="heroContainer">
@@ -37,17 +50,17 @@ const Hero = () => {
               onChange={(e) => dispatch(handleInputField(e.target.value))}
               placeholder="Falafel Burgers"
             />
-            <Link to="/recipes">
-              <section className="magnifyingContainer">
-                <FontAwesomeIcon
-                  icon={faMagnifyingGlass}
-                  size="xl"
-                  className="magnifyingIcon"
-                />
-              </section>
-            </Link>
+            <section
+              className="magnifyingContainer"
+              onClick={handleRecipeLogin}
+            >
+              <FontAwesomeIcon
+                icon={faMagnifyingGlass}
+                size="xl"
+                className="magnifyingIcon"
+              />
+            </section>
           </section>
-          {/* <Button location={"/recipes"}>Explore Recipes</Button> */}
         </section>
         <section className="heroRight">
           <img src={HeroRight} alt="Hero Image" />
