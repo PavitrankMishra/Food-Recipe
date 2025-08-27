@@ -5,7 +5,7 @@ import LoginLeft from "../Assets/Login2.jpeg";
 import Logo from "../Assets/Logo.png";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { handleLogin } from "../app/slice/loginValue";
+import { handleLogin, handleLogout } from "../app/slice/loginValue";
 
 const Login = () => {
   const [inputUserName, setInputUserName] = useState("");
@@ -16,10 +16,18 @@ const Login = () => {
   const loginValue = useSelector((state) => state?.loginValue?.data);
   console.log("The login values is: ", loginValue);
 
+  // console.log(loginValue);
   const handleRecipeLogin = () => {
     dispatch(handleLogin());
     if (loginValue == false) {
       navigate("/recipes");
+    }
+  };
+
+  const handleRecipeLogout = () => {
+    dispatch(handleLogout());
+    if (loginValue == true) {
+      navigate("/");
     }
   };
 
@@ -57,9 +65,14 @@ const Login = () => {
               onChange={(e) => setInputUserPassword(e.target.value)}
             />
 
-            <button className="loginButton" onClick={() => handleRecipeLogin()}>
-              Login
-            </button>
+            {loginValue == false && (
+              <button
+                className="loginButton"
+                onClick={() => handleRecipeLogin()}
+              >
+                Login
+              </button>
+            )}
           </section>
         </section>
       </section>

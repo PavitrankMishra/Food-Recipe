@@ -8,12 +8,16 @@ const loginValueSlice = createSlice({
   reducers: {
     handleLogin: (state) => {
       if (state.data == false) {
-        console.log("The value of state is false");
         state.data = true;
+      }
+    },
+    handleLogout: (state) => {
+      if (state.data == true) {
+        state.data = false;
       }
     },
   },
 });
 
-export const { handleLogin } = loginValueSlice.actions;
+export const { handleLogin, handleLogout } = loginValueSlice.actions;
 export default loginValueSlice.reducer;

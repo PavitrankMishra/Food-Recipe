@@ -9,7 +9,7 @@ import Logo from "../Assets/Logo.png";
 import { Link } from "react-router-dom";
 
 const SideBar = ({ show, onClose }) => {
-  console.log(show);
+  // console.log(show);
   return (
     <>
       <section className={`sideBarContainer ${show ? "show" : ""}`}>
