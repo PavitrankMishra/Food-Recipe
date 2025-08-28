@@ -37,6 +37,10 @@ const Login = () => {
       inputUserP.length < 8
     ) {
       setIsInvalid(true);
+
+      setTimeout(() => {
+        setIsInvalid(false);
+      }, 5000);
     }
   };
 
