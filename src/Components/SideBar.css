@@ -28,38 +28,20 @@
   text-align: left;
   width: 100%;
   margin-bottom: 10px;
-  padding-left: 10px;
   font-size: 30px;
   color: var(--tertiary-color);
   cursor: pointer;
 }
 
-.sideBarContainer .sideBarInnerContainer .sideBarListContainer ul {
-  list-style: none;
-}
-
-.sideBarContainer .sideBarInnerContainer .sideBarListContainer ul li {
-  height: 60px;
-  border-radius: 5px;
+.sideBarContainer
+  .sideBarInnerContainer
+  .sideBarInnerContainer1
+  .sideBarListContainer {
   display: flex;
   align-items: center;
   justify-content: flex-start;
-  margin-bottom: 10px;
-  letter-spacing: 1.4px;
-  font-size: 20px;
-  gap: 5px;
-  cursor: pointer;
-  border: 2px solid var(--main-color);
-  transition: all 0.3s ease-in-out;
-  color: var(--tertiary-color);
-  flex-direction: row;
-}
-
-.sideBarContainer .sideBarInnerContainer .sideBarListContainer ul li .buttonContainer {
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  flex-direction: column;
+  gap: 15px;
 }
 
 a {
@@ -71,8 +53,6 @@ a {
   .sideBarInnerContainer
   .sideBarInnerContainer1
   .sideBarListContainer
-  ul
-  li
   .iconContainer {
   width: 60px;
   display: flex;
@@ -87,14 +67,44 @@ a {
   .sideBarInnerContainer
   .sideBarInnerContainer1
   .sideBarListContainer
-  ul
-  li
-  span {
+  .buttonContainer {
   width: 100%;
-  font-weight: 500;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 5px;
+  border-radius: 5px;
+  height: 60px;
+  border: 2px solid var(--main-color);
+  transition: all 0.3s ease-in-out;
 }
 
 .sideBarContainer
+  .sideBarInnerContainer
+  .sideBarInnerContainer1
+  .sideBarListContainer
+  .buttonContainer:hover {
+  background-color: var(--secondary-color);
+}
+.sideBarContainer
+  .sideBarInnerContainer
+  .sideBarInnerContainer1
+  .sideBarListContainer
+  .buttonContainer
+  .iconContainer {
+  width: 15%;
+}
+
+.sideBarContainer
+  .sideBarInnerContainer
+  .sideBarInnerContainer1
+  .sideBarListContainer
+  .buttonContainer
+  .iconNameContainer {
+  width: 85%;
+  font-size: 26px;
+}
+/* .sideBarContainer
   .sideBarInnerContainer
   .sideBarInnerContainer1
   .sideBarListContainer
@@ -102,7 +112,7 @@ a {
   li:hover {
   background-color: var(--secondary-color);
   transition: all 0.3s ease-in-out;
-}
+} */
 
 .sideBarContainer .sideBarInnerContainer .sideBarInnerContainer2 {
   display: flex;
