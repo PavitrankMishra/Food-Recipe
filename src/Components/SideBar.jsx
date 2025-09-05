@@ -96,51 +96,6 @@ const SideBar = ({ show, onClose }) => {
                   </section>
                 </section>
               )}
-              {/* <ul>
-                <Link to="/">
-                  <li>
-                    <section className="buttonContainer">
-                      <section className="iconContainer">
-                        <FontAwesomeIcon icon={faHouse} className="homeIcon" />
-                      </section>
-                      <span>Home</span>
-                    </section>
-                  </li>
-                </Link>
-                <Link to="/recipes">
-                  <li>
-                    <section className="buttonContainer">
-                      <section className="iconContainer">
-                        <FontAwesomeIcon
-                          icon={faBowlFood}
-                          className="foodIcon"
-                        />
-                      </section>
-                      <span>Recipes</span>
-                    </section>
-                  </li>
-                </Link> */}
-              {/* <Link to="/login">
-                  <li>
-                    <section className="buttonContainer">
-                      <section className="iconContainer">
-                        <FontAwesomeIcon
-                          icon={faRightToBracket}
-                          className="loginIcon"
-                        />
-                      </section>
-                      <span>Login</span>
-                    </section>
-                  </li>
-                </Link> */}
-              {/* <section className="loginButtonContainer">
-                  {loginValue == false ? (
-                    <button onClick={handleButtonLogin}>Login</button>
-                  ) : (
-                    <button onClick={handleButtonLogout}>Logout</button>
-                  )}
-                </section>
-              </ul> */}
             </section>
           </section>
           <section className="sideBarInnerContainer2">
