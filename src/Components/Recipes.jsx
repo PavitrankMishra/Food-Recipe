@@ -154,7 +154,7 @@ const Recipes = () => {
 
   return (
     <>
-      <Header />
+      {!isAddRecipeVisible ? <Header /> : ""}
       {!isAddRecipeVisible ? (
         <section className="recipesContainer">
           <section className="recipeHeadingContainer">
