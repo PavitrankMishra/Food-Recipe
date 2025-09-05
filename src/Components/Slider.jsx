@@ -3,7 +3,7 @@ import "./Slider.css";
 import Avocado from "../Assets/avocado-dish.jpg";
 import Burger from "../Assets/Burger.webp";
 import Cake from "../Assets/cake.webp";
-import Chinese from "../Assets/Chinese2.jpeg";
+import Chinese from "../Assets/chinese2.jpeg";
 import Chole from "../Assets/chole-recipe.jpg";
 import Chowmein from "../Assets/chowmein.jpg";
 import Croissant from "../Assets/Croissant.jpg";
