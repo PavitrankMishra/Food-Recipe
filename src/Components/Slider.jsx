@@ -14,8 +14,6 @@ const Slider = () => {
   return (
     <section className="sliderContainer">
       <section className="headingContainer">
-        {/* <span className="main-heading">Flavors of </span>
-        <span className="main-heading2">the World</span> */}
         <p className="main-heading">Flavors of the World</p>
         <p className="sub-heading">A taste crafted with love & flavor</p>
       </section>
@@ -49,6 +47,64 @@ const Slider = () => {
         </section>
 
         {/* Second section */}
+        <section className="slide-Image">
+          <img src={Avocado} alt="a dream catcher" />
+        </section>
+        <section className="slide-Image">
+          <img src={Burger} alt="burger" />
+        </section>
+        <section className="slide-Image">
+          <img src={Cake} alt="cake" />
+        </section>
+        <section className="slide-Image">
+          <img src={Chinese} alt="chinese" />
+        </section>
+        <section className="slide-Image">
+          <img src={Chole} alt="chole" />
+        </section>
+        <section className="slide-Image">
+          <img src={Chowmein} alt="chowmein" />
+        </section>
+        <section className="slide-Image">
+          <img src={Croissant} alt="croissant" />
+        </section>
+        <section className="slide-Image">
+          <img src={Dal} alt="dal" />
+        </section>
+        <section className="slide-Image">
+          <img src={Dosa} alt="dosa" />
+        </section>
+
+        {/* Third Section */}
+        <section className="slide-Image">
+          <img src={Avocado} alt="a dream catcher" />
+        </section>
+        <section className="slide-Image">
+          <img src={Burger} alt="burger" />
+        </section>
+        <section className="slide-Image">
+          <img src={Cake} alt="cake" />
+        </section>
+        <section className="slide-Image">
+          <img src={Chinese} alt="chinese" />
+        </section>
+        <section className="slide-Image">
+          <img src={Chole} alt="chole" />
+        </section>
+        <section className="slide-Image">
+          <img src={Chowmein} alt="chowmein" />
+        </section>
+        <section className="slide-Image">
+          <img src={Croissant} alt="croissant" />
+        </section>
+        <section className="slide-Image">
+          <img src={Dal} alt="dal" />
+        </section>
+        <section className="slide-Image">
+          <img src={Dosa} alt="dosa" />
+        </section>
+
+        {/* Fourth  */}
         <section className="slide-Image">
           <img src={Avocado} alt="a dream catcher" />
         </section>
