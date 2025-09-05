@@ -1,14 +1,14 @@
 .sliderContainer {
-  min-height: 500px;
   margin: auto;
   position: relative;
   width: 100%;
   display: flex;
   align-items: center;
   overflow: hidden;
-  gap: 63px;
   flex-direction: column;
   justify-content: flex-start;
+  min-height: 300px;
+  gap: 30px;
 }
 
 .main-heading,
@@ -46,7 +46,7 @@
 
 .slide-container {
   display: flex;
-  width: calc(250px * 18);
+  /* width: calc(250px * 18); */
   animation: scroll 20s linear infinite;
 }
 
@@ -80,9 +80,10 @@
 
 @media screen and (max-width: 720px) {
   .sliderContainer {
-    gap: 50px;
+    gap: 20px;
+    min-height: 300px;
   }
-  
+
   .sliderContainer .main-heading {
     padding-left: 15px;
     text-transform: uppercase;
