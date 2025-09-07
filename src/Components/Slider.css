@@ -11,6 +11,9 @@
   gap: 30px;
 }
 
+.main-heading {
+  color: #333;
+}
 .main-heading,
 .main-heading2 {
   font-size: 2.5rem;
@@ -18,7 +21,7 @@
   font-weight: 700;
   position: relative;
   font-size: 72px;
-  font-size: 6vw;
+  font-size: 5vw;
   text-transform: uppercase;
 }
 
@@ -33,7 +36,7 @@
 }
 
 .sub-heading {
-  font-size: 1.75rem;
+  font-size: 1.5rem;
   text-align: center;
   color: #666;
   margin-top: 8px;
