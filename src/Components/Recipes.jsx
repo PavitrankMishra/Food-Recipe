@@ -173,12 +173,12 @@ const Recipes = () => {
             </section>
             <section className="recipeHeadingRight">
               <section className="bookmarkContainer">
-                <button onClick={handleAddRecipeVisibility}>ADD RECIPES</button>
+                <button onClick={handleAddRecipeVisibility}>Add Recipes</button>
                 <button
                   onClick={handleBookmarkViewVisibility}
                   onMouseEnter={handleBookmarkHoverVisiblity}
                 >
-                  BOOKMARK
+                  Bookmark
                 </button>
                 <FontAwesomeIcon
                   icon={faPlus}
