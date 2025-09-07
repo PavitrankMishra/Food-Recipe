@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import "./NewRecipe.css";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { a } from "motion/react-client";
 
 const NewRecipe = ({ isAddRecipeVisible, setIsAddRecipeVisible }) => {
   function handleRecipeUpload() {
