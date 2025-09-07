@@ -104,7 +104,9 @@ const Recipes = () => {
   }
 
   function handleDecrementServings() {
-    dispatch(decrementServings());
+    if (singleRecipes.servings > 1) {
+      dispatch(decrementServings());
+    }
   }
 
   useEffect(() => {
@@ -263,7 +265,7 @@ const Recipes = () => {
                       <span className="minutes">
                         {singleRecipes.cookingTime ||
                           singleRecipes.cooking_time}{" "}
-                        MINUTES
+                        Minutes
                       </span>
                     </section>
                     <section className="servingsContainer">
