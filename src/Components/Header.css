@@ -71,10 +71,11 @@
   height: 3px;
   background-color: var(--main-color);
   position: absolute;
-  bottom: -2px;
+  bottom: -4px;
   left: 0;
   border-radius: 10px;
   transition: all 0.3s ease-in-out;
+  background: linear-gradient(90deg, orange, tomato);
 }
 
 .headerContainer .listContainer ul li:hover span::after,
