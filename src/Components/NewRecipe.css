@@ -159,12 +159,28 @@ span {
   outline: none;
   height: 50px;
   border-radius: 8px;
-  font-size: 20px;
+  font-size: 18px;
   padding-left: 5px;
   border: 0.5px solid #d0cfcf;
   background-color: #f7f5f5;
   background-color: transparent;
   border-color: #ddd;
+  letter-spacing: 1.2px;
+  color: #ddd;
+  letter-spacing: 1.2px;
+  color: #5b5959;
+  font-family: "Barlow", sans-serif;
+  font-size: 14px;
+}
+
+.newRecipeRequestContainer
+  .newRequestInner
+  .middleContainer
+  .middleRight
+  .dataContainer
+  .inputContainer
+  input::placeholder {
+  font-size: 14px;
 }
 
 .newRecipeRequestContainer .newRequestInner .footerContainer {
