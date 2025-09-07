@@ -108,7 +108,7 @@ const Login = () => {
             </section>
             <section className="inputContainer">
               <input
-                type="text"
+                type="password"
                 value={inputUserP}
                 placeholder="Password"
                 className={`passwordField ${
