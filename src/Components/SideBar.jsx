@@ -11,21 +11,18 @@ import { useSelector, useDispatch } from "react-redux";
 import { handleLogout } from "../app/slice/loginValue";
 
 const SideBar = ({ show, onClose }) => {
-  console.log(show);
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const loginValue = useSelector((state) => state?.loginValue?.data);
   function handleButtonLogin() {
     if (loginValue == false) {
       navigate("/login");
-      console.log("Handle Button Login called");
     }
   }
   function handleButtonLogout() {
     dispatch(handleLogout());
     if (loginValue == true) {
       navigate("/");
-      console.log("Handle Button logout called");
     }
   }
 

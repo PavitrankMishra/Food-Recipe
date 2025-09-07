@@ -16,22 +16,18 @@ const Login = () => {
   const [isInvalid, setIsInvalid] = useState(false);
   const [invalidInput, setInvalidInput] = useState(false);
 
-  console.log(inputUserN);
   const dispatch = useDispatch();
 
   const loginValue = useSelector((state) => state?.loginValue?.data);
 
   const handleRecipeLogin = () => {
     const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    console.log(inputUserP);
-    console.log(inputUserN);
 
     if (
       emailPattern.test(inputUserN) &&
       inputUserP.length >= 8 &&
       loginValue == false
     ) {
-      console.log("This is 1st");
       dispatch(handleLogin());
       navigate("/recipes");
       setIsInvalid(false);
@@ -40,13 +36,11 @@ const Login = () => {
       (inputUserN.length >= 0 && inputUserN.length < 8) ||
       (inputUserP.length >= 0 && inputUserP.length < 8)
     ) {
-      console.log("This is 2nd");
       setIsInvalid(true);
       setTimeout(() => {
         setIsInvalid(false);
       }, 5000);
     } else {
-      console.log("This is 3rd");
       setInvalidInput(true);
       setTimeout(() => {
         setInvalidInput(false);
@@ -56,8 +50,6 @@ const Login = () => {
 
   const handleUserNameInput = (e) => {
     const value = e.target.value;
-
-    console.log(value);
     const allowedPattern = /^[a-zA-Z0-9.@]*$/;
     if (allowedPattern.test(value)) {
       setInputUserN(value);

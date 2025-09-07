@@ -27,20 +27,17 @@ const Header = () => {
   const dispatch = useDispatch();
 
   const loginValue = useSelector((state) => state?.loginValue?.data);
-  console.log("The login value is: ", loginValue);
 
   const navigate = useNavigate();
   function handleButtonLogin() {
     if (loginValue == false) {
       navigate("/login");
-      console.log("Handle Button Login called");
     }
   }
   function handleButtonLogout() {
     dispatch(handleLogout());
     if (loginValue == true) {
       navigate("/");
-      console.log("Handle Button logout called");
     }
   }
 
@@ -55,8 +52,6 @@ const Header = () => {
   function handleHomeDivert() {
     navigate("/");
   }
-
-  console.log("The login value is: ", loginValue);
 
   return (
     <>

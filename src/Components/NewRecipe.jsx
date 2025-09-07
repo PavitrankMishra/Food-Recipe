@@ -4,8 +4,9 @@ import { faXmark } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const NewRecipe = ({ isAddRecipeVisible, setIsAddRecipeVisible }) => {
+  const [numberOfComma, setNumberOfComma] = useState(0);
+  const [ingredient, setIngredient] = useState([]);
   function handleRecipeUpload() {
-    console.log("Recipe Upload clicked");
     setIsAddRecipeVisible((prev) => !prev);
   }
 
@@ -34,12 +35,6 @@ const NewRecipe = ({ isAddRecipeVisible, setIsAddRecipeVisible }) => {
     ],
   });
 
-  const demoUpload = async () => {
-    console.log("The uploaded data is: ", formData);
-  };
-
-  const [numberOfComma, setNumberOfComma] = useState(0);
-  const [ingredient, setIngredient] = useState([]);
   const handleChange = (index, value) => {
     const commaCount = (value.match(/,/g) || []).length;
 
@@ -65,9 +60,7 @@ const NewRecipe = ({ isAddRecipeVisible, setIsAddRecipeVisible }) => {
     const updated = [...ingredient];
     updated[index] = value;
     setIngredient(updated);
-    console.log("Updated: ", updated);
   };
-  console.log(formData);
 
   const uploadRecipe = async () => {
     const ingredientObject = ingredient
@@ -75,13 +68,13 @@ const NewRecipe = ({ isAddRecipeVisible, setIsAddRecipeVisible }) => {
         const parts = ing.split(",").map((el) => el.trim());
         if (parts.length !== 3) {
           console.log("Length must be 3");
-          return null; 
+          return null;
         }
 
         const [quantity, unit, description] = parts;
 
         return {
-          quantity: quantity ? +quantity : undefined, 
+          quantity: quantity ? +quantity : undefined,
           unit,
           description,
         };
@@ -98,8 +91,6 @@ const NewRecipe = ({ isAddRecipeVisible, setIsAddRecipeVisible }) => {
       ingredients: ingredientObject,
     };
 
-    console.log("Final payload:", newFormData);
-
     try {
       const res = await fetch(
         "https://forkify-api.herokuapp.com/api/v2/recipes?key=d348a0b0-c7b8-4539-b6a6-80f883fdef51",
@@ -113,8 +104,6 @@ const NewRecipe = ({ isAddRecipeVisible, setIsAddRecipeVisible }) => {
       );
 
       const data = await res.json();
-      console.log("Response:", res);
-      console.log("Data:", data);
     } catch (error) {
       console.log("Error uploading recipe: ", error);
     }

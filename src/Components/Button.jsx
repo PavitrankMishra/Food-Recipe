@@ -4,7 +4,6 @@ import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 
 const Button = ({ children, location }) => {
-  console.log(location);
   const navigate = useNavigate();
   return (
     <>

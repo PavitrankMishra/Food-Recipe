@@ -9,7 +9,6 @@ import { fetchSingleRecipe } from "../app/slice/singleRecipe";
 const Bookmark = ({ isVisible, setIsVisible }) => {
   const handleCross = () => {
     setIsVisible((prev) => !prev);
-    console.log(isVisible);
   };
 
   const dispatch = useDispatch();
@@ -21,7 +20,6 @@ const Bookmark = ({ isVisible, setIsVisible }) => {
     dispatch(fetchSingleRecipe(id));
   }
 
-  console.log(bookmarkedRecipes);
   return (
     <>
       <section className="bookmarksSection">

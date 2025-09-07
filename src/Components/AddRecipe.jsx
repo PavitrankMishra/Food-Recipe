@@ -7,7 +7,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 const AddRecipe = ({ isRecipeVisible, setIsRecipeVisible }) => {
   const handleCross = () => {
     setIsRecipeVisible((prev) => !prev);
-    console.log(isRecipeVisible);
   };
   return (
     <>

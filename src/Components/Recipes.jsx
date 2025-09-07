@@ -34,7 +34,6 @@ import NewRecipe from "./NewRecipe";
 import { handleInputField } from "../app/slice/inputValue";
 
 const Recipes = () => {
-  // const [inputValue, setInputValue] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
   const [recipesPerPage, setRecipesPerPage] = useState(10);
   const [totalPages, setTotalPages] = useState(0);
@@ -43,7 +42,6 @@ const Recipes = () => {
   const dispatch = useDispatch();
   const [isBookmarkViewVisible, setIsBookmarkViewVisible] = useState(false);
   const [isAddRecipeVisible, setIsAddRecipeVisible] = useState(false);
-  console.log("The value of recipe visible", isAddRecipeVisible);
 
   const recipes = useSelector(
     (state) => state?.allRecipe?.data?.data?.recipes || []
@@ -58,9 +56,6 @@ const Recipes = () => {
   );
 
   const inputValue = useSelector((state) => state?.inputRecipe?.data);
-  console.log("The input value is: ", inputValue);
-
-  console.log(singleRecipes);
 
   function handleBookmark() {
     dispatch(toggleBookmark());
@@ -81,21 +76,16 @@ const Recipes = () => {
     setTotalPages(dataLength);
   }, [recipes]);
 
-  useEffect(() => {
-    console.log("The current page is: ", currentPage);
-  }, [currentPage]);
 
   function handlePageDecrement() {
     if (currentPage > 1) {
       setCurrentPage(currentPage - 1);
-      console.log("Decrement clicked");
     }
   }
 
   function handlePageIncrement() {
     if (currentPage < totalPages) {
       setCurrentPage(currentPage + 1);
-      console.log("Increment clicked");
     }
   }
 
@@ -120,8 +110,6 @@ const Recipes = () => {
       clearTimeout(timerId);
     };
   }, [inputValue]);
-
-  console.log("The value of inputValue: ", inputValue);
 
   const handleSingleRecipe = (id) => {
     dispatch(fetchSingleRecipe(id));
