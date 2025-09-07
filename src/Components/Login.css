@@ -85,6 +85,27 @@
   border: none;
   outline: none;
   background-color: transparent;
+  background: transparent;
+}
+
+.loginContainer
+  .loginRightPart
+  .loginInnerRightPart
+  .inputContainer
+  input:focus {
+  background-color: transparent;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  -webkit-box-shadow: 0 0 0px 1000px transparent inset !important;
+  -webkit-text-fill-color: inherit !important;
+  background-color: transparent !important;
+  transition: background-color 5000s ease-in-out 0s;
 }
 
 .loginContainer

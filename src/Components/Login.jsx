@@ -14,53 +14,64 @@ const Login = () => {
   const [inputUserP, setInputUserP] = useState("");
   const [inputLength, setInputLength] = useState(8);
   const [isInvalid, setIsInvalid] = useState(false);
-  let inputUserName = "";
-  let inputUserPassword = "";
+  const [invalidInput, setInvalidInput] = useState(false);
 
+  console.log(inputUserN);
   const dispatch = useDispatch();
 
   const loginValue = useSelector((state) => state?.loginValue?.data);
 
   const handleRecipeLogin = () => {
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    console.log(inputUserP);
+    console.log(inputUserN);
+
     if (
-      inputUserN.length >= inputLength &&
-      inputUserP.length >= inputLength &&
+      emailPattern.test(inputUserN) &&
+      inputUserP.length >= 8 &&
       loginValue == false
     ) {
+      console.log("This is 1st");
       dispatch(handleLogin());
       navigate("/recipes");
-      isInvalid(false);
+      setIsInvalid(false);
+      setInvalidInput(false);
     } else if (
-      inputUserN.length >= 0 &&
-      inputUserN.length < 8 &&
-      inputUserP.length >= 0 &&
-      inputUserP.length < 8
+      (inputUserN.length >= 0 && inputUserN.length < 8) ||
+      (inputUserP.length >= 0 && inputUserP.length < 8)
     ) {
+      console.log("This is 2nd");
       setIsInvalid(true);
-
       setTimeout(() => {
         setIsInvalid(false);
+      }, 5000);
+    } else {
+      console.log("This is 3rd");
+      setInvalidInput(true);
+      setTimeout(() => {
+        setInvalidInput(false);
       }, 5000);
     }
   };
 
   const handleUserNameInput = (e) => {
-    inputUserName += e.target.value;
-    setInputUserN(inputUserName);
+    const value = e.target.value;
 
-    if (inputUserName.length < 8) {
-      console.log("User name is less than 8");
-      console.log(inputUserName.length);
+    console.log(value);
+    const allowedPattern = /^[a-zA-Z0-9.@]*$/;
+    if (allowedPattern.test(value)) {
+      setInputUserN(value);
+    } else {
+      return;
     }
   };
 
   const handleUserPasswordInput = (e) => {
-    inputUserPassword += e.target.value;
-    setInputUserP(inputUserPassword);
-
-    if (inputUserPassword.length < 8) {
-      console.log("User password is less than 8");
-      console.log(inputUserPassword.length);
+    const allowedPattern = /^[^\s]*$/;
+    if (allowedPattern.test(e.target.value)) {
+      setInputUserP(e.target.value);
+    } else {
+      return;
     }
   };
 
@@ -85,7 +96,7 @@ const Login = () => {
               <input
                 type="text"
                 value={inputUserN}
-                placeholder="Enter Username"
+                placeholder="Email ID"
                 className={`inputField ${
                   inputUserN.length < 8 ? "invalid" : ""
                 }`}
@@ -107,7 +118,7 @@ const Login = () => {
               <input
                 type="text"
                 value={inputUserP}
-                placeholder="Enter Password"
+                placeholder="Password"
                 className={`passwordField ${
                   inputUserP.length < 8 ? "invalid" : ""
                 }`}
@@ -138,6 +149,7 @@ const Login = () => {
             ) : (
               <p>{""}</p>
             )}
+            {invalidInput == true ? <p>Enter valid emailId or Password</p> : ""}
           </section>
         </section>
       </section>
