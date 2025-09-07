@@ -237,13 +237,6 @@ const NewRecipe = ({ isAddRecipeVisible, setIsAddRecipeVisible }) => {
               <section className="inputContainer">
                 <input
                   type="text"
-                  // value={
-                  //   formData.ingredients[0]
-                  //     ? `${formData.ingredients[0].quantity || ""} ${
-                  //         formData.ingredients[0].unit
-                  //       } ${formData.ingredients[0].description || ""}`
-                  //     : ""
-                  // }
                   value={ingredient[0] || ""}
                   placeholder="Format: 'Quantity,Unit,Description'"
                   onChange={(e) => handleChange(0, e.target.value)}
@@ -257,13 +250,6 @@ const NewRecipe = ({ isAddRecipeVisible, setIsAddRecipeVisible }) => {
               <section className="inputContainer">
                 <input
                   type="text"
-                  // value={
-                  //   formData.ingredients[1]
-                  //     ? `${formData.ingredients[1].quantity || ""}, ${
-                  //         formData.ingredients[1].unit
-                  //       }, ${formData.ingredients[1].description || ""}`
-                  //     : ""
-                  // }
                   value={ingredient[1] || ""}
                   placeholder="Format: 'Quantity,Unit,Description'"
                   onChange={(e) => handleChange(1, e.target.value)}
