@@ -173,6 +173,26 @@ span {
   font-size: 14px;
 }
 
+.confirmMessage {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.confirmMessage .smileIcon {
+  font-size: 40px;
+  color: var(--main-color);
+}
+
+.confirmMessage .message {
+  font-size: 20px;
+}
+
+.rejectMessage {
+  font-size: 32px;
+}
 .newRecipeRequestContainer
   .newRequestInner
   .middleContainer
@@ -246,4 +266,8 @@ span {
   .newRecipeRequestContainer .newRequestInner {
     padding: 8px;
   }
+  .confirmMessage, .rejectMessage {
+    font-size: 4vw;
+  }
+
 }

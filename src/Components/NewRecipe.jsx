@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "./NewRecipe.css";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faFaceSmileBeam } from "@fortawesome/free-regular-svg-icons";
 
 const NewRecipe = ({ isAddRecipeVisible, setIsAddRecipeVisible }) => {
   const [numberOfComma, setNumberOfComma] = useState(0);
@@ -14,6 +15,9 @@ const NewRecipe = ({ isAddRecipeVisible, setIsAddRecipeVisible }) => {
     setIsAddRecipeVisible((prev) => !prev);
   }
 
+  const [recipeFormOpen, setRecipeFormOpen] = useState(true);
+  const [isRecipeAdded, setIsRecipeAdded] = useState(false);
+  const [recipeNotAdded, setRecipeNotAdded] = useState(false);
   const [formData, setFormData] = useState({
     title: "",
     source_url: "",
@@ -21,18 +25,7 @@ const NewRecipe = ({ isAddRecipeVisible, setIsAddRecipeVisible }) => {
     publisher: "",
     servings: "",
     cooking_time: "",
-    ingredients: [
-      {
-        quantity: 1,
-        unit: "KG",
-        description: "Wheat",
-      },
-      {
-        quantity: 2,
-        unit: "",
-        description: "Carrot",
-      },
-    ],
+    ingredients: [],
   });
 
   const handleChange = (index, value) => {
@@ -104,10 +97,23 @@ const NewRecipe = ({ isAddRecipeVisible, setIsAddRecipeVisible }) => {
       );
 
       const data = await res.json();
+      if (res.ok) {
+        setRecipeFormOpen(false);
+        setIsRecipeAdded(true);
+      } else {
+        setRecipeFormOpen(false);
+        setRecipeNotAdded(true);
+      }
+
+      console.log(data);
+      console.log(res);
+      console.log(newFormData);
     } catch (error) {
       console.log("Error uploading recipe: ", error);
     }
   };
+
+  console.log(formData);
 
   return (
     <section className="newRecipeRequestContainer">
@@ -120,185 +126,211 @@ const NewRecipe = ({ isAddRecipeVisible, setIsAddRecipeVisible }) => {
           />
         </section>
         <section className="middleContainer">
-          <section className="middleLeft">
-            <section className="head">
-              <h1>RECIPE DATA</h1>
+          {recipeFormOpen && (
+            <>
+              <section className="middleLeft">
+                <section className="head">
+                  <h1>RECIPE DATA</h1>
+                </section>
+                <section className="dataContainer">
+                  <section className="textContainer">
+                    <span>Title</span>
+                  </section>
+                  <section className="inputContainer">
+                    <input
+                      type="text"
+                      value={formData.title}
+                      onChange={(e) =>
+                        setFormData({ ...formData, title: e.target.value })
+                      }
+                    />
+                  </section>
+                </section>
+                <section className="dataContainer">
+                  <section className="textContainer">
+                    <span>URL</span>
+                  </section>
+                  <section className="inputContainer">
+                    <input
+                      type="text"
+                      value={formData.source_url}
+                      onChange={(e) =>
+                        setFormData({ ...formData, source_url: e.target.value })
+                      }
+                    />
+                  </section>
+                </section>
+                <section className="dataContainer">
+                  <section className="textContainer">
+                    <span>Image URL</span>
+                  </section>
+                  <section className="inputContainer">
+                    <input
+                      type="text"
+                      value={formData.image_url}
+                      onChange={(e) =>
+                        setFormData({ ...formData, image_url: e.target.value })
+                      }
+                    />
+                  </section>
+                </section>
+                <section className="dataContainer">
+                  <section className="textContainer">
+                    <span>Publisher</span>
+                  </section>
+                  <section className="inputContainer">
+                    <input
+                      type="text"
+                      value={formData.publisher}
+                      onChange={(e) =>
+                        setFormData({ ...formData, publisher: e.target.value })
+                      }
+                    />
+                  </section>
+                </section>
+                <section className="dataContainer">
+                  <section className="textContainer">
+                    <span>Prep Time</span>
+                  </section>
+                  <section className="inputContainer">
+                    <input
+                      type="number"
+                      value={formData.cooking_time}
+                      onChange={(e) =>
+                        setFormData({
+                          ...formData,
+                          cooking_time: parseInt(e.target.value),
+                        })
+                      }
+                    />
+                  </section>
+                </section>
+                <section className="dataContainer">
+                  <section className="textContainer">
+                    <span>Servings</span>
+                  </section>
+                  <section className="inputContainer">
+                    <input
+                      type="number"
+                      value={formData.servings}
+                      onChange={(e) =>
+                        setFormData({
+                          ...formData,
+                          servings: parseInt(e.target.value),
+                        })
+                      }
+                    />
+                  </section>
+                </section>
+              </section>
+              <section className="middleRight">
+                <section className="head">
+                  <h1>INGREDIENTS</h1>
+                </section>
+                <section className="dataContainer">
+                  <section className="textContainer">
+                    <span>Ingredient 1</span>
+                  </section>
+                  <section className="inputContainer">
+                    <input
+                      type="text"
+                      value={ingredient[0] || ""}
+                      placeholder="Format: 'Quantity,Unit,Description'"
+                      onChange={(e) => handleChange(0, e.target.value)}
+                    />
+                  </section>
+                </section>
+                <section className="dataContainer">
+                  <section className="textContainer">
+                    <span>Ingredient 2</span>
+                  </section>
+                  <section className="inputContainer">
+                    <input
+                      type="text"
+                      value={ingredient[1] || ""}
+                      placeholder="Format: 'Quantity,Unit,Description'"
+                      onChange={(e) => handleChange(1, e.target.value)}
+                    />
+                  </section>
+                </section>
+                <section className="dataContainer">
+                  <section className="textContainer">
+                    <span>Ingredient 3</span>
+                  </section>
+                  <section className="inputContainer">
+                    <input
+                      type="text"
+                      value={ingredient[2] || ""}
+                      placeholder="Format: 'Quantity,Unit,Description'"
+                      onChange={(e) => handleChange(2, e.target.value)}
+                    />
+                  </section>
+                </section>
+                <section className="dataContainer">
+                  <section className="textContainer">
+                    <span>Ingredient 4</span>
+                  </section>
+                  <section className="inputContainer">
+                    <input
+                      type="text"
+                      value={ingredient[3] || ""}
+                      placeholder="Format: 'Quantity,Unit,Description'"
+                      onChange={(e) => handleChange(3, e.target.value)}
+                    />
+                  </section>
+                </section>
+                <section className="dataContainer">
+                  <section className="textContainer">
+                    <span>Ingredient 5</span>
+                  </section>
+                  <section className="inputContainer">
+                    <input
+                      type="text"
+                      value={ingredient[4] || ""}
+                      placeholder="Format: 'Quantity,Unit,Description'"
+                      onChange={(e) => handleChange(4, e.target.value)}
+                    />
+                  </section>
+                </section>
+                <section className="dataContainer">
+                  <section className="textContainer">
+                    <span>Ingredient 6</span>
+                  </section>
+                  <section className="inputContainer">
+                    <input
+                      type="text"
+                      value={ingredient[5] || ""}
+                      placeholder="Format: 'Quantity,Unit,Description"
+                      onChange={(e) => handleChange(5, e.target.value)}
+                    />
+                  </section>
+                </section>
+              </section>
+            </>
+          )}
+
+          {isRecipeAdded && (
+            <section className="confirmMessage">
+              <FontAwesomeIcon icon={faFaceSmileBeam} className="smileIcon" />
+              <p className="message">Recipe Added Successfully</p>
             </section>
-            <section className="dataContainer">
-              <section className="textContainer">
-                <span>Title</span>
+          )}
+
+          {recipeNotAdded && (
+            <>
+              <section className="rejectMessage">
+                <span className="message">
+                  Recipe upload failed. Check your input and try again.
+                </span>
               </section>
-              <section className="inputContainer">
-                <input
-                  type="text"
-                  value={formData.title}
-                  onChange={(e) =>
-                    setFormData({ ...formData, title: e.target.value })
-                  }
-                />
-              </section>
-            </section>
-            <section className="dataContainer">
-              <section className="textContainer">
-                <span>URL</span>
-              </section>
-              <section className="inputContainer">
-                <input
-                  type="text"
-                  value={formData.source_url}
-                  onChange={(e) =>
-                    setFormData({ ...formData, source_url: e.target.value })
-                  }
-                />
-              </section>
-            </section>
-            <section className="dataContainer">
-              <section className="textContainer">
-                <span>Image URL</span>
-              </section>
-              <section className="inputContainer">
-                <input
-                  type="text"
-                  value={formData.image_url}
-                  onChange={(e) =>
-                    setFormData({ ...formData, image_url: e.target.value })
-                  }
-                />
-              </section>
-            </section>
-            <section className="dataContainer">
-              <section className="textContainer">
-                <span>Publisher</span>
-              </section>
-              <section className="inputContainer">
-                <input
-                  type="text"
-                  value={formData.publisher}
-                  onChange={(e) =>
-                    setFormData({ ...formData, publisher: e.target.value })
-                  }
-                />
-              </section>
-            </section>
-            <section className="dataContainer">
-              <section className="textContainer">
-                <span>Prep Time</span>
-              </section>
-              <section className="inputContainer">
-                <input
-                  type="number"
-                  value={formData.cooking_time}
-                  onChange={(e) =>
-                    setFormData({
-                      ...formData,
-                      cooking_time: parseInt(e.target.value),
-                    })
-                  }
-                />
-              </section>
-            </section>
-            <section className="dataContainer">
-              <section className="textContainer">
-                <span>Servings</span>
-              </section>
-              <section className="inputContainer">
-                <input
-                  type="number"
-                  value={formData.servings}
-                  onChange={(e) =>
-                    setFormData({
-                      ...formData,
-                      servings: parseInt(e.target.value),
-                    })
-                  }
-                />
-              </section>
-            </section>
-          </section>
-          <section className="middleRight">
-            <section className="head">
-              <h1>INGREDIENTS</h1>
-            </section>
-            <section className="dataContainer">
-              <section className="textContainer">
-                <span>Ingredient 1</span>
-              </section>
-              <section className="inputContainer">
-                <input
-                  type="text"
-                  value={ingredient[0] || ""}
-                  placeholder="Format: 'Quantity,Unit,Description'"
-                  onChange={(e) => handleChange(0, e.target.value)}
-                />
-              </section>
-            </section>
-            <section className="dataContainer">
-              <section className="textContainer">
-                <span>Ingredient 2</span>
-              </section>
-              <section className="inputContainer">
-                <input
-                  type="text"
-                  value={ingredient[1] || ""}
-                  placeholder="Format: 'Quantity,Unit,Description'"
-                  onChange={(e) => handleChange(1, e.target.value)}
-                />
-              </section>
-            </section>
-            <section className="dataContainer">
-              <section className="textContainer">
-                <span>Ingredient 3</span>
-              </section>
-              <section className="inputContainer">
-                <input
-                  type="text"
-                  value=""
-                  placeholder="Format: 'Quantity,Unit,Description'"
-                />
-              </section>
-            </section>
-            <section className="dataContainer">
-              <section className="textContainer">
-                <span>Ingredient 4</span>
-              </section>
-              <section className="inputContainer">
-                <input
-                  type="text"
-                  value=""
-                  placeholder="Format: 'Quantity,Unit,Description'"
-                />
-              </section>
-            </section>
-            <section className="dataContainer">
-              <section className="textContainer">
-                <span>Ingredient 5</span>
-              </section>
-              <section className="inputContainer">
-                <input
-                  type="text"
-                  value=""
-                  placeholder="Format: 'Quantity,Unit,Description'"
-                />
-              </section>
-            </section>
-            <section className="dataContainer">
-              <section className="textContainer">
-                <span>Ingredient 6</span>
-              </section>
-              <section className="inputContainer">
-                <input
-                  type="text"
-                  value=""
-                  placeholder="Format: 'Quantity,Unit,Description"
-                />
-              </section>
-            </section>
-          </section>
+            </>
+          )}
         </section>
-        <section className="footerContainer">
-          <button onClick={() => uploadRecipe()}>UPLOAD</button>
-        </section>
-        {/* <p>{JSON.stringify(formData)}</p> */}
+        {recipeFormOpen && (
+          <section className="footerContainer">
+            <button onClick={() => uploadRecipe()}>UPLOAD</button>
+          </section>
+        )}
       </section>
     </section>
   );
