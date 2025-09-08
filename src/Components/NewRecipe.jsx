@@ -3,6 +3,7 @@ import "./NewRecipe.css";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFaceSmileBeam } from "@fortawesome/free-regular-svg-icons";
+import Loader from "./Loader";
 
 const NewRecipe = ({ isAddRecipeVisible, setIsAddRecipeVisible }) => {
   const [numberOfComma, setNumberOfComma] = useState(0);
@@ -18,6 +19,7 @@ const NewRecipe = ({ isAddRecipeVisible, setIsAddRecipeVisible }) => {
   const [recipeFormOpen, setRecipeFormOpen] = useState(true);
   const [isRecipeAdded, setIsRecipeAdded] = useState(false);
   const [recipeNotAdded, setRecipeNotAdded] = useState(false);
+  const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({
     title: "",
     source_url: "",
@@ -30,61 +32,60 @@ const NewRecipe = ({ isAddRecipeVisible, setIsAddRecipeVisible }) => {
 
   const handleChange = (index, value) => {
     const commaCount = (value.match(/,/g) || []).length;
-
     if (commaCount == 0) {
       if (!/^\d*$/.test(value)) {
         return;
       }
     }
-
     if (commaCount == 1) {
       const parts = value.split(",");
       const unit = parts[1];
-
       if (!/^[a-zA-Z\s]*$/.test(unit)) {
         return;
       }
     }
-
     if (commaCount > 2) {
       return;
     }
-
     const updated = [...ingredient];
     updated[index] = value;
     setIngredient(updated);
   };
 
   const uploadRecipe = async () => {
-    const ingredientObject = ingredient
-      .map((ing) => {
-        const parts = ing.split(",").map((el) => el.trim());
-        if (parts.length !== 3) {
-          console.log("Length must be 3");
-          return null;
-        }
-
-        const [quantity, unit, description] = parts;
-
-        return {
-          quantity: quantity ? +quantity : undefined,
-          unit,
-          description,
-        };
-      })
-      .filter((ing) => ing && ing.description);
-
-    const newFormData = {
-      title: formData.title,
-      source_url: formData.source_url,
-      image_url: formData.image_url,
-      publisher: formData.publisher,
-      cooking_time: +formData.cooking_time,
-      servings: +formData.servings,
-      ingredients: ingredientObject,
-    };
-
     try {
+      const ingredientObject = ingredient
+        .map((ing) => {
+          const parts = ing.split(",").map((el) => el.trim());
+          if (parts.length !== 3) {
+            console.log("Length must be 3");
+            return null;
+          }
+
+          const [quantity, unit, description] = parts;
+
+          return {
+            quantity: quantity ? +quantity : undefined,
+            unit,
+            description,
+          };
+        })
+        .filter((ing) => ing && ing.description);
+
+      const newFormData = {
+        title: formData.title,
+        source_url: formData.source_url,
+        image_url: formData.image_url,
+        publisher: formData.publisher,
+        cooking_time: +formData.cooking_time,
+        servings: +formData.servings,
+        ingredients: ingredientObject,
+      };
+
+      console.log("Upload Recipe clicked");
+      setRecipeFormOpen(false);
+      setLoading(true);
+
       const res = await fetch(
         "https://forkify-api.herokuapp.com/api/v2/recipes?key=d348a0b0-c7b8-4539-b6a6-80f883fdef51",
         {
@@ -96,24 +97,35 @@ const NewRecipe = ({ isAddRecipeVisible, setIsAddRecipeVisible }) => {
         }
       );
 
-      const data = await res.json();
-      if (res.ok) {
-        setRecipeFormOpen(false);
-        setIsRecipeAdded(true);
-      } else {
-        setRecipeFormOpen(false);
-        setRecipeNotAdded(true);
-      }
-
-      console.log(data);
-      console.log(res);
-      console.log(newFormData);
-    } catch (error) {
-      console.log("Error uploading recipe: ", error);
+      setTimeout(() => {
+        if (res.ok) {
+          setLoading(false);
+          setIsRecipeAdded(true);
+          setTimeout(() => {
+            setIsRecipeAdded(false);
+            setRecipeFormOpen(true);
+          }, 3000);
+        }
+      }, 2000);
+      setTimeout(() => {
+        if (!res.ok) {
+          setLoading(false);
+          setRecipeNotAdded(true);
+          setTimeout(() => {
+            setRecipeNotAdded(false);
+            setRecipeFormOpen(true);
+          }, 3000);
+        }
+      }, 2000);
+    } catch (err) {
+      setLoading(false);
+      setRecipeNotAdded(true);
+      setTimeout(() => {
+        setRecipeNotAdded(false);
+        setRecipeFormOpen(true);
+      }, 5000);
     }
   };
-
-  console.log(formData);
 
   return (
     <section className="newRecipeRequestContainer">
@@ -309,8 +321,14 @@ const NewRecipe = ({ isAddRecipeVisible, setIsAddRecipeVisible }) => {
             </>
           )}
 
+          {loading && (
+            <section className="loadingContainer">
+              <Loader />
+            </section>
+          )}
+
           {isRecipeAdded && (
-            <section className="confirmMessage">
+            <section className="confirmMessageContainer">
               <FontAwesomeIcon icon={faFaceSmileBeam} className="smileIcon" />
               <p className="message">Recipe Added Successfully</p>
             </section>
@@ -318,10 +336,9 @@ const NewRecipe = ({ isAddRecipeVisible, setIsAddRecipeVisible }) => {
 
           {recipeNotAdded && (
             <>
-              <section className="rejectMessage">
-                <span className="message">
-                  Recipe upload failed. Check your input and try again.
-                </span>
+              <section className="rejectMessageContainer">
+                <p className="message">Recipe upload failed.</p>
+                <p className="message">Check your input and try again.</p>
               </section>
             </>
           )}
