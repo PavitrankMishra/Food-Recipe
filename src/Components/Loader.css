@@ -1,17 +1,19 @@
-.loadingContainer {
+.loaderContainer {
   display: flex;
   gap: 12px;
   align-items: center;
   justify-content: center;
-  margin-top: 150px;
+  min-width: 100%;
 }
 
-.loadingContainer section {
+.loadingContainer .circle {
   width: 40px;
   height: 40px;
   border-radius: 50%;
   background-color: #f48982;
   animation: circle 1s ease-in-out infinite;
+  background: linear-gradient(90deg, orange, tomato);
+  background: var(--border-gradient);
 }
 
 .loadingContainer section:nth-child(1) {
