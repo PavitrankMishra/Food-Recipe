@@ -198,52 +198,53 @@ const Recipes = () => {
           </section>
           <section className="middleContainer">
             <section className="middleLeft">
-              {currentData &&
-                currentData.length > 0 &&
-                currentData.map((item) => (
-                  <section
-                    className="recipesList"
-                    key={item.id}
-                    onClick={() => handleSingleRecipe(item.id)}
-                  >
-                    <section className="recipesLeft">
-                      <section className="imageContainer">
-                        <img src={item.image_url} alt={item.recipe_title} />
-                      </section>
-                      <section className="nameContainer">
-                        <p className="itemTitle">{item.title}</p>
-                        <p className="itemPublisher">{item.publisher}</p>
-                      </section>
-                    </section>
-                    {currentData && currentData.length > 0 && (
-                      <section className="userContainer">
-                        <FontAwesomeIcon icon={faUser} />
-                      </section>
-                    )}
-                  </section>
-                ))}
-              {currentData?.length > 0 && (
-                <section className="recipeButtonContainer">
-                  <button
-                    onClick={handlePageDecrement}
-                    className={currentPage == 1 ? "disabled" : ""}
-                  >
-                    PREV
-                  </button>
-                  <button
-                    onClick={handlePageIncrement}
-                    className={currentPage == totalPages ? "disabled" : ""}
-                  >
-                    NEXT
-                  </button>
-                </section>
-              )}
-              {loading && (
+              {loading ? (
                 <section className="loadingContainer">
                   <Loader />
                 </section>
+              ) : currentData && currentData.length > 0 ? (
+                <>
+                  {currentData.map((item) => (
+                    <section
+                      className="recipesList"
+                      key={item.id}
+                      onClick={() => handleSingleRecipe(item.id)}
+                    >
+                      <section className="recipesLeft">
+                        <section className="imageContainer">
+                          <img src={item.image_url} alt={item.recipe_title} />
+                        </section>
+                        <section className="nameContainer">
+                          <p className="itemTitle">{item.title}</p>
+                          <p className="itemPublisher">{item.publisher}</p>
+                        </section>
+                      </section>
+                      <section className="userContainer">
+                        <FontAwesomeIcon icon={faUser} />
+                      </section>
+                    </section>
+                  ))}
+
+                  <section className="recipeButtonContainer">
+                    <button
+                      onClick={handlePageDecrement}
+                      className={currentPage === 1 ? "disabled" : ""}
+                    >
+                      PREV
+                    </button>
+                    <button
+                      onClick={handlePageIncrement}
+                      className={currentPage === totalPages ? "disabled" : ""}
+                    >
+                      NEXT
+                    </button>
+                  </section>
+                </>
+              ) : (
+                <p>{""}</p>
               )}
             </section>
+
             <section className="middleRight" key={singleRecipes?.id}>
               {singleRecipes &&
               typeof (singleRecipes === "object") &&
