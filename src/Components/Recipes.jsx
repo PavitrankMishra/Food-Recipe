@@ -32,6 +32,7 @@ import { handleBookmarks } from "../app/slice/bookmarks";
 import Button from "./Button";
 import NewRecipe from "./NewRecipe";
 import { handleInputField } from "../app/slice/inputValue";
+import Loader from "./Loader";
 
 const Recipes = () => {
   const [currentPage, setCurrentPage] = useState(1);
@@ -39,6 +40,7 @@ const Recipes = () => {
   const [totalPages, setTotalPages] = useState(0);
   const [startIndex, setStartIndex] = useState(0);
   const [endIndex, setEndIndex] = useState(10);
+  const [loading, setLoading] = useState(false);
   const dispatch = useDispatch();
   const [isBookmarkViewVisible, setIsBookmarkViewVisible] = useState(false);
   const [isAddRecipeVisible, setIsAddRecipeVisible] = useState(false);
@@ -76,7 +78,6 @@ const Recipes = () => {
     setTotalPages(dataLength);
   }, [recipes]);
 
-
   function handlePageDecrement() {
     if (currentPage > 1) {
       setCurrentPage(currentPage - 1);
@@ -100,15 +101,18 @@ const Recipes = () => {
   }
 
   useEffect(() => {
-    const timerId = setTimeout(() => {
-      if (inputValue.length > 3) {
+    if (inputValue.length > 3) {
+      setLoading(true);
+      const timerId = setTimeout(() => {
         dispatch(fetchAllRecipe(inputValue));
-      }
-    }, 1000);
+        setLoading(false);
+      }, 2000);
 
-    return () => {
-      clearTimeout(timerId);
-    };
+      return () => {
+        setLoading(false);
+        clearTimeout(timerId);
+      };
+    }
   }, [inputValue]);
 
   const handleSingleRecipe = (id) => {
@@ -218,7 +222,7 @@ const Recipes = () => {
                     )}
                   </section>
                 ))}
-              {currentData?.length > 0 ? (
+              {currentData?.length > 0 && (
                 <section className="recipeButtonContainer">
                   <button
                     onClick={handlePageDecrement}
@@ -233,8 +237,11 @@ const Recipes = () => {
                     NEXT
                   </button>
                 </section>
-              ) : (
-                ""
+              )}
+              {loading && (
+                <section className="loadingContainer">
+                  <Loader />
+                </section>
               )}
             </section>
             <section className="middleRight" key={singleRecipes?.id}>

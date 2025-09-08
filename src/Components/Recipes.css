@@ -147,8 +147,9 @@
   height: 100%;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
   flex-direction: column;
+  min-height: 500px;
 }
 
 .recipesContainer .middleContainer .middleRight {
