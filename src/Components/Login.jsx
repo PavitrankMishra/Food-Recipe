@@ -137,7 +137,7 @@ const Login = () => {
               </button>
             )}
             {isInvalid == true ? (
-              <p>Username and password must be 8 characters.</p>
+              <p>EmailId and password must be 8 characters.</p>
             ) : (
               <p>{""}</p>
             )}
