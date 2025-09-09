@@ -187,8 +187,8 @@ span {
   align-items: center;
   justify-content: center;
   margin-bottom: 20px;
-  flex-direction: column;
   width: 100%;
+  gap: 10px;
 }
 
 .newRecipeRequestContainer
@@ -201,20 +201,12 @@ span {
   .middleContainer
   .rejectMessageContainer
   p {
-  font-size: 20px;
+  font-size: 1.75vw;
 }
 
 .confirmMessageContainer .smileIcon {
   font-size: 40px;
   color: var(--main-color);
-}
-
-/* .confirmMessage .message {
-  font-size: 20px;
-} */
-
-.rejectMessage {
-  font-size: 32px;
 }
 
 .newRecipeRequestContainer
@@ -258,7 +250,6 @@ span {
 }
 
 .newRecipeRequestContainer .newRequestInner .loadingContainer {
-  /* border: 2px solid blue; */
   width: 100%;
   height: 100%;
 }
@@ -281,10 +272,6 @@ span {
 }
 
 @media screen and (max-width: 790px) {
-  /* .newRecipeRequestContainer .newRequestInner {
-    height: 900px;
-  } */
-
   .newRecipeRequestContainer .newRequestInner .middleContainer {
     flex-direction: column;
   }
@@ -297,20 +284,38 @@ span {
   .newRecipeRequestContainer .newRequestInner .middleContainer .middleRight {
     width: 100%;
   }
+
   .newRecipeRequestContainer .newRequestInner {
     padding: 8px;
+  }
+
+    .newRecipeRequestContainer
+    .newRequestInner
+    .middleContainer
+    .rejectMessageContainer
+    p {
+      font-size: 3.5vw;
+    } 
+  .newRecipeRequestContainer
+    .newRequestInner
+    .middleContainer
+    .confirmMessageContainer {
+    gap: 5px;
   }
 
   .newRecipeRequestContainer
     .newRequestInner
     .middleContainer
     .confirmMessageContainer
-    span,
+    p {
+    font-size: 3.75vw;
+  }
+
   .newRecipeRequestContainer
     .newRequestInner
     .middleContainer
-    .rejectMessageContainer
-    span {
-    font-size: 4vw;
+    .confirmMessageContainer
+    .smileIcon {
+    width: 7vw;
   }
 }

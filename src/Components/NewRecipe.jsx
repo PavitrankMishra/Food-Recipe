@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./NewRecipe.css";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -82,7 +82,6 @@ const NewRecipe = ({ isAddRecipeVisible, setIsAddRecipeVisible }) => {
         ingredients: ingredientObject,
       };
 
-      console.log("Upload Recipe clicked");
       setRecipeFormOpen(false);
       setLoading(true);
 
@@ -97,33 +96,36 @@ const NewRecipe = ({ isAddRecipeVisible, setIsAddRecipeVisible }) => {
         }
       );
 
-      setTimeout(() => {
-        if (res.ok) {
+      if (res.ok) {
+        setTimeout(() => {
           setLoading(false);
           setIsRecipeAdded(true);
-          setTimeout(() => {
-            setIsRecipeAdded(false);
-            setRecipeFormOpen(true);
-          }, 3000);
-        }
-      }, 2000);
-      setTimeout(() => {
-        if (!res.ok) {
+        }, 2000);
+
+        setTimeout(() => {
+          setIsRecipeAdded(false);
+          setRecipeFormOpen(true);
+        }, 4000);
+      }
+
+      if (!res.ok) {
+        setTimeout(() => {
           setLoading(false);
           setRecipeNotAdded(true);
-          setTimeout(() => {
-            setRecipeNotAdded(false);
-            setRecipeFormOpen(true);
-          }, 3000);
-        }
-      }, 2000);
+        }, 2000);
+
+        setTimeout(() => {
+          setRecipeNotAdded(false);
+          setRecipeFormOpen(true);
+        }, 4000);
+      }
     } catch (err) {
       setLoading(false);
       setRecipeNotAdded(true);
       setTimeout(() => {
         setRecipeNotAdded(false);
         setRecipeFormOpen(true);
-      }, 5000);
+      }, 3000);
     }
   };
 
@@ -337,8 +339,9 @@ const NewRecipe = ({ isAddRecipeVisible, setIsAddRecipeVisible }) => {
           {recipeNotAdded && (
             <>
               <section className="rejectMessageContainer">
-                <p className="message">Recipe upload failed.</p>
-                <p className="message">Check your input and try again.</p>
+                <p className="message">
+                  Recipe upload failed check your input and try again.
+                </p>
               </section>
             </>
           )}
