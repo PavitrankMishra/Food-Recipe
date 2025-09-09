@@ -1,0 +1,29 @@
+.newRecipeRequestContainer
+  .newRequestInner
+  .middleContainer
+  .rejectMessageContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+  width: 100%;
+  gap: 10px;
+}
+
+.newRecipeRequestContainer
+  .newRequestInner
+  .middleContainer
+  .rejectMessageContainer
+  p {
+  font-size: 1.75vw;
+}
+
+@media screen and (max-width: 790px) {
+  .newRecipeRequestContainer
+    .newRequestInner
+    .middleContainer
+    .rejectMessageContainer
+    p {
+    font-size: 3.5vw;
+  }
+}

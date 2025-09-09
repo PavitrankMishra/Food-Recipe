@@ -30,7 +30,7 @@ import { incrementServings } from "../../app/slice/singleRecipe";
 import { decrementServings } from "../../app/slice/singleRecipe";
 import { handleBookmarks } from "../../app/slice/bookmarks";
 import Button from "../Button";
-import NewRecipe from "../NewRecipe";
+import NewRecipe from "../NewRecipes/NewRecipe";
 import { handleInputField } from "../../app/slice/inputValue";
 import Loader from "../Loader";
 import RecipeHeader from "./RecipeHeader";

@@ -1,0 +1,49 @@
+.newRecipeRequestContainer
+  .newRequestInner
+  .middleContainer
+  .confirmMessageContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+  width: 100%;
+  gap: 10px;
+}
+
+.newRecipeRequestContainer
+  .newRequestInner
+  .middleContainer
+  .confirmMessageContainer
+  p {
+  font-size: 1.75vw;
+}
+
+.confirmMessageContainer .smileIcon {
+  font-size: 40px;
+  color: var(--main-color);
+}
+
+@media screen and (max-width: 790px) {
+  .newRecipeRequestContainer
+    .newRequestInner
+    .middleContainer
+    .confirmMessageContainer {
+    gap: 5px;
+  }
+
+  .newRecipeRequestContainer
+    .newRequestInner
+    .middleContainer
+    .confirmMessageContainer
+    p {
+    font-size: 3.75vw;
+  }
+
+  .newRecipeRequestContainer
+    .newRequestInner
+    .middleContainer
+    .confirmMessageContainer
+    .smileIcon {
+    width: 7vw;
+  }
+}
