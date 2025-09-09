@@ -103,15 +103,13 @@ const Recipes = () => {
   useEffect(() => {
     if (inputValue.length > 3) {
       setLoading(true);
+
       const timerId = setTimeout(() => {
         dispatch(fetchAllRecipe(inputValue));
-        setLoading(false);
-      }, 2000);
+        setTimeout(() => setLoading(false), 2000);
+      }, 1000);
 
-      return () => {
-        setLoading(false);
-        clearTimeout(timerId);
-      };
+      return () => clearTimeout(timerId);
     }
   }, [inputValue]);
 
