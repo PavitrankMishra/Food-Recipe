@@ -3,23 +3,12 @@
 * {
   margin: 0;
   padding: 0;
-  /* font-family: "Poppins", sans-serif;
-  font-family: "Inter", sans-serif;
-  font-family: "Nunito", sans-serif;
-  font-family: "Rubik", sans-serif;
-  font-family: "Mulish", sans-serif;
-  font-family: "Raleway", sans-serif;
-  font-family: "Quicksand", sans-serif; */
   font-family: "Barlow", sans-serif;
-  /* font-family: "Cabin", sans-serif; */
   font-family: "Inter", sans-serif;
   box-sizing: border-box;
 }
 
 :root {
-  /* background-color: rgb(224, 224, 223); */
-  /* overflow-x: hidden; */
-  /* background-color: red; */
   --border-gradient: linear-gradient(to right, #ffe8b4, #f48982);
   --border-gradient2: linear-gradient(to right, #f48982, #ffe8b4);
   --main-color: #fd6b47;
