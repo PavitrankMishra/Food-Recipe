@@ -1,7 +1,7 @@
 import React from "react";
 import { BrowserRouter, Router, Routes, Route } from "react-router-dom";
 import Home from "../src/Components/Home";
-import Recipes from "./Components/Recipes";
+import Recipes from "./Components/Recipes/Recipes";
 import NotFound from "./Components/NotFound";
 import { useState, useEffect } from "react";
 import AddRecipe from "./Components/AddRecipe";
@@ -13,7 +13,6 @@ import { fetchSingleRecipe } from "./app/slice/singleRecipe";
 const App = () => {
   const [data, setData] = useState([]);
   const [recipe, setRecipe] = useState([]);
-  // const [data2, setData2] = useState([]);
   const API_KEY = "d348a0b0-c7b8-4539-b6a6-80f883fdef51";
 
   const [inputV, setInputV] = useState("Pizza");
