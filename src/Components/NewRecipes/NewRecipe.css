@@ -36,18 +36,7 @@ span {
   color: #333;
 }
 
-.newRecipeRequestContainer .newRequestInner .crossContainer {
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  width: 100%;
-  color: var(--tertiary-color);
-}
 
-.newRecipeRequestContainer .crossContainer .crossIcon {
-  font-size: 24px;
-  cursor: pointer;
-}
 
 .newRecipeRequestContainer .newRequestInner .middleContainer,
 .newRecipeRequestContainer .newRequestInner .loadingContainer {
@@ -178,40 +167,6 @@ span {
 .newRecipeRequestContainer
   .newRequestInner
   .middleContainer
-  .confirmMessageContainer,
-.newRecipeRequestContainer
-  .newRequestInner
-  .middleContainer
-  .rejectMessageContainer {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: 20px;
-  width: 100%;
-  gap: 10px;
-}
-
-.newRecipeRequestContainer
-  .newRequestInner
-  .middleContainer
-  .confirmMessageContainer
-  p,
-.newRecipeRequestContainer
-  .newRequestInner
-  .middleContainer
-  .rejectMessageContainer
-  p {
-  font-size: 1.75vw;
-}
-
-.confirmMessageContainer .smileIcon {
-  font-size: 40px;
-  color: var(--main-color);
-}
-
-.newRecipeRequestContainer
-  .newRequestInner
-  .middleContainer
   .middleRight
   .dataContainer
   .inputContainer
@@ -249,10 +204,7 @@ span {
   background-color: #e04e4e;
 }
 
-.newRecipeRequestContainer .newRequestInner .loadingContainer {
-  width: 100%;
-  height: 100%;
-}
+
 
 @keyframes fadeIn {
   from {
@@ -287,35 +239,5 @@ span {
 
   .newRecipeRequestContainer .newRequestInner {
     padding: 8px;
-  }
-
-    .newRecipeRequestContainer
-    .newRequestInner
-    .middleContainer
-    .rejectMessageContainer
-    p {
-      font-size: 3.5vw;
-    } 
-  .newRecipeRequestContainer
-    .newRequestInner
-    .middleContainer
-    .confirmMessageContainer {
-    gap: 5px;
-  }
-
-  .newRecipeRequestContainer
-    .newRequestInner
-    .middleContainer
-    .confirmMessageContainer
-    p {
-    font-size: 3.75vw;
-  }
-
-  .newRecipeRequestContainer
-    .newRequestInner
-    .middleContainer
-    .confirmMessageContainer
-    .smileIcon {
-    width: 7vw;
   }
 }
