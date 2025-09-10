@@ -94,7 +94,6 @@
   cursor: pointer;
   font-weight: 500;
   animation: fadeIn 0.5s ease-in-out forwards;
-  /* color: var(--main-color); */
 }
 
 .recipesContainer
@@ -368,6 +367,13 @@
 
 .recipeBookmarkIcon {
   color: var(--main-color);
+}
+
+.recipeBookmarkContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
 }
 
 @keyframes fadeIn {

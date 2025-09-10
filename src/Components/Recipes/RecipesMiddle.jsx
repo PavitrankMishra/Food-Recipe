@@ -3,6 +3,7 @@ import {
   faHeartBroken,
   faMinus,
   faPlus,
+  faTrash,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Loader from "../CustomLoader/Loader";
@@ -16,6 +17,7 @@ import {
 } from "@fortawesome/free-regular-svg-icons";
 
 import { faHeart as faHeartSolid } from "@fortawesome/free-solid-svg-icons";
+import RecipeDelete from "./RecipeDelete";
 const RecipesMiddle = ({
   loading,
   currentData,
@@ -28,6 +30,8 @@ const RecipesMiddle = ({
   handleDecrementServings,
   handleIncrementServings,
   handleBookmark,
+  handleRecipeDelete,
+  handleTrashClicked,
 }) => {
   return (
     <>
@@ -111,7 +115,12 @@ const RecipesMiddle = ({
                   />
                 </section>
               </section>
-              <section className="recipeBookmark">
+
+              <section className="recipeBookmarkContainer">
+                <RecipeDelete
+                  singleRecipes={singleRecipes}
+                  handleTrashClicked={handleTrashClicked}
+                />
                 {singleRecipes.isBookmarked ? (
                   <FontAwesomeIcon
                     icon={faHeartSolid}

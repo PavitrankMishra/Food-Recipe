@@ -14,6 +14,7 @@ import NewRecipe from "../NewRecipes/NewRecipe";
 import { handleInputField } from "../../app/slice/inputValue";
 import RecipeHeader from "./RecipeHeader";
 import RecipesMiddle from "./RecipesMiddle";
+import RecipeDeletePrompt from "./RecipeDeletePrompt";
 
 const Recipes = () => {
   const [currentPage, setCurrentPage] = useState(1);
@@ -23,6 +24,7 @@ const Recipes = () => {
   const dispatch = useDispatch();
   const [isBookmarkViewVisible, setIsBookmarkViewVisible] = useState(false);
   const [isAddRecipeVisible, setIsAddRecipeVisible] = useState(false);
+  const [isTrashClicked, setTrashClicked] = useState(false);
 
   const recipes = useSelector(
     (state) => state?.allRecipe?.data?.data?.recipes || []
@@ -124,10 +126,36 @@ const Recipes = () => {
     }
   }
 
+  function handleTrashClicked() {
+    setTrashClicked(true);
+    setIsAddRecipeVisible(false);
+  }
+
+  const handleRecipeDelete = async (id) => {
+    console.log("The id is: ", id);
+    try {
+      const res = await fetch(
+        `https://forkify-api.herokuapp.com/api/v2/recipes/${id}?key=d348a0b0-c7b8-4539-b6a6-80f883fdef51`,
+        {
+          method: "DELETE",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+
+      console.log(res);
+      console.log("The id is: ", id);
+      setTrashClicked(false);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   return (
     <>
-      {!isAddRecipeVisible ? <Header /> : ""}
-      {!isAddRecipeVisible ? (
+      {!isAddRecipeVisible && !isTrashClicked && <Header />}
+      {!isAddRecipeVisible && !isTrashClicked && (
         <section className="recipesContainer">
           <section className="recipeHeadingContainer">
             <RecipeHeader
@@ -153,13 +181,24 @@ const Recipes = () => {
               handleDecrementServings={handleDecrementServings}
               handleIncrementServings={handleIncrementServings}
               handleBookmark={handleBookmark}
+              handleTrashClicked={handleTrashClicked}
             />
           </section>
         </section>
-      ) : (
+      )}
+      {isAddRecipeVisible && (
         <NewRecipe
           isAddRecipeVisible={isAddRecipeVisible}
           setIsAddRecipeVisible={setIsAddRecipeVisible}
+        />
+      )}
+
+      {isTrashClicked && (
+        <RecipeDeletePrompt
+          singleRecipes={singleRecipes}
+          isTrashClicked={isTrashClicked}
+          setTrashClicked={setTrashClicked}
+          handleRecipeDelete={handleRecipeDelete}
         />
       )}
     </>
