@@ -1,0 +1,19 @@
+.deleteRecipeContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.deleteRecipeContainer button {
+  background-color: transparent;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  color: var(--main-color);
+}
+
+.deleteRecipeContainer .trashHidden {
+  display: none;
+}
+
+
