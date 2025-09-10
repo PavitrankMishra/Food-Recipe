@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "./NewRecipe.css";
-import { faXmark } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faFaceSmileBeam } from "@fortawesome/free-regular-svg-icons";
 // import Loader from "../Loader";
 import NewRecipeLoader from "./NewRecipeLoader";
 import NewRecipeConfirmMessage from "./NewRecipeConfirmMessage";

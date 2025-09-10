@@ -3,15 +3,6 @@ import Header from "../HomePage/Header";
 import "./Recipes.css";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faPlus,
-  faMinus,
-  faCartShopping,
-  faArrowRightLong,
-  faCheck,
-} from "@fortawesome/free-solid-svg-icons";
-import { Link } from "react-router-dom";
-import { faHeart as faHeartSolid } from "@fortawesome/free-solid-svg-icons";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchAllRecipe } from "../../app/slice/allRecipes";
 import { fetchSingleRecipe } from "../../app/slice/singleRecipe";
