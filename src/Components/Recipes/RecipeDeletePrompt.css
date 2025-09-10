@@ -1,0 +1,61 @@
+.recipeDeleteContainer {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--border-gradient);
+  min-height: 100vh;
+}
+
+.recipeDeleteContainer .recipeDeleteInner {
+  width: 500px;
+  padding: 20px;
+  border-radius: 12px;
+  backdrop-filter: blur(25px);
+  box-shadow: 0 0 10px rgb(147, 130, 130);
+  background: transparent;
+  backdrop-filter: blur(25px);
+  background-color: #fdfafa;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  flex-direction: column;
+}
+
+.recipeDeleteContainer .recipeDeleteInner .crossIconContainer {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.recipeDeleteContainer .recipeDeleteInner .crossIconContainer .crossIcon {
+  cursor: pointer;
+}
+.recipeDeleteContainer .recipeDeleteInner .messageContainer {
+  text-align: center;
+}
+
+.recipeDeleteContainer .recipeDeleteInner .confirmActionContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.recipeDeleteContainer .recipeDeleteInner .confirmActionContainer button {
+  background-color: transparent;
+  border: none;
+  outline: none;
+  border: 2px solid var(--main-color);
+  padding: 5px 10px;
+  border-radius: 5px;
+  color: var(--main-color);
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+
+.recipeDeleteContainer .recipeDeleteInner .confirmActionContainer button:hover {
+  background-color: var(--secondary-color);
+  border: 2px solid var(--tertiary-color);
+  color: var(--tertiary-color);
+}
