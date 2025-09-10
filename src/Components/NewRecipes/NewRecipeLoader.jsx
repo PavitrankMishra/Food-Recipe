@@ -1,6 +1,6 @@
 import React from "react";
 import "./NewRecipeLoader.css";
-import Loader from "../Loader";
+import Loader from "../CustomLoader/Loader";
 
 const NewRecipeLoader = ({ loading }) => {
   return (

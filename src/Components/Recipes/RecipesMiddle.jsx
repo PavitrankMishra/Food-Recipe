@@ -1,7 +1,11 @@
 import { faFaceSmileBeam } from "@fortawesome/free-regular-svg-icons";
-import { faMinus, faPlus } from "@fortawesome/free-solid-svg-icons";
+import {
+  faHeartBroken,
+  faMinus,
+  faPlus,
+} from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import Loader from "../Loader";
+import Loader from "../CustomLoader/Loader";
 import "./RecipesMiddle.css";
 
 import {
@@ -11,6 +15,7 @@ import {
   faCircleCheck,
 } from "@fortawesome/free-regular-svg-icons";
 
+import { faHeart as faHeartSolid } from "@fortawesome/free-solid-svg-icons";
 const RecipesMiddle = ({
   loading,
   currentData,
@@ -109,7 +114,7 @@ const RecipesMiddle = ({
               <section className="recipeBookmark">
                 {singleRecipes.isBookmarked ? (
                   <FontAwesomeIcon
-                    icon={faHeart}
+                    icon={faHeartSolid}
                     className="recipeBookmarkIcon"
                     onClick={() => handleBookmark()}
                   />

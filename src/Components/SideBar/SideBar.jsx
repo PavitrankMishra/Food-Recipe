@@ -5,10 +5,10 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHouse } from "@fortawesome/free-solid-svg-icons";
 import { faRightToBracket } from "@fortawesome/free-solid-svg-icons";
 import { faInfo } from "@fortawesome/free-solid-svg-icons";
-import Logo from "../Assets/Logo.png";
+import Logo from "../../Assets/Logo.png";
 import { Link, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { handleLogout } from "../app/slice/loginValue";
+import { handleLogout } from "../../app/slice/loginValue";
 
 const SideBar = ({ show, onClose }) => {
   const navigate = useNavigate();

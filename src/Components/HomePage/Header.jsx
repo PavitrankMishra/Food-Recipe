@@ -9,9 +9,9 @@ import {
 import Logo from "../../Assets/Logo.png";
 import { faBars } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import SideBar from "../SideBar";
+import SideBar from "../SideBar/SideBar";
 import { useState } from "react";
-import Button from "../Button";
+// import Button from "../Button";
 import { useSelector, useDispatch } from "react-redux";
 import { handleLogout } from "../../app/slice/loginValue";
 

@@ -1,7 +1,7 @@
 import React from "react";
 import "./Hero.css";
 import Hero1 from "../../Assets/Hero1.png";
-import Button from "../Button";
+// import Button from "../Button";
 import HeroRight from "../../Assets/HeroRight.png";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";

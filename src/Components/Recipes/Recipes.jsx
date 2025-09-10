@@ -3,14 +3,6 @@ import Header from "../HomePage/Header";
 import "./Recipes.css";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-// import {
-//   faUser,
-//   faBookmark,
-//   faClock,
-//   faHeart,
-//   faCircleCheck,
-//   faFaceSmile,
-// } from "@fortawesome/free-regular-svg-icons";
 import {
   faPlus,
   faMinus,
@@ -20,8 +12,6 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
 import { faHeart as faHeartSolid } from "@fortawesome/free-solid-svg-icons";
-import Bookmark from "../Bookmark";
-// import AddRecipe from "../AddRecipe";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchAllRecipe } from "../../app/slice/allRecipes";
 import { fetchSingleRecipe } from "../../app/slice/singleRecipe";
@@ -29,10 +19,8 @@ import { toggleBookmark } from "../../app/slice/singleRecipe";
 import { incrementServings } from "../../app/slice/singleRecipe";
 import { decrementServings } from "../../app/slice/singleRecipe";
 import { handleBookmarks } from "../../app/slice/bookmarks";
-import Button from "../Button";
 import NewRecipe from "../NewRecipes/NewRecipe";
 import { handleInputField } from "../../app/slice/inputValue";
-import Loader from "../Loader";
 import RecipeHeader from "./RecipeHeader";
 import RecipesMiddle from "./RecipesMiddle";
 
@@ -173,6 +161,7 @@ const Recipes = () => {
               singleRecipes={singleRecipes}
               handleDecrementServings={handleDecrementServings}
               handleIncrementServings={handleIncrementServings}
+              handleBookmark={handleBookmark}
             />
           </section>
         </section>
