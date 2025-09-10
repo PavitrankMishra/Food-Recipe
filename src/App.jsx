@@ -1,11 +1,11 @@
 import React from "react";
 import { BrowserRouter, Router, Routes, Route } from "react-router-dom";
-import Home from "../src/Components/Home";
+import Home from "../src/Components/HomePage/Home";
 import Recipes from "./Components/Recipes/Recipes";
 import NotFound from "./Components/NotFound";
 import { useState, useEffect } from "react";
-import AddRecipe from "./Components/AddRecipe";
-import Login from "./Components/Login";
+// import AddRecipe from "./Components/AddRecipe";
+import Login from "./Components/LoginPage/Login";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchAllRecipe } from "./app/slice/allRecipes";
 import { fetchSingleRecipe } from "./app/slice/singleRecipe";

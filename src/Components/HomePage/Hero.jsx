@@ -1,14 +1,14 @@
 import React from "react";
 import "./Hero.css";
-import Hero1 from "../Assets/Hero1.png";
-import Button from "./Button";
-import HeroRight from "../Assets/HeroRight.png";
+import Hero1 from "../../Assets/Hero1.png";
+import Button from "../Button";
+import HeroRight from "../../Assets/HeroRight.png";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
-import { handleInputField } from "../app/slice/inputValue";
+import { handleInputField } from "../../app/slice/inputValue";
 
 const Hero = () => {
   const inputValue = useSelector((state) => state?.inputRecipe?.data);

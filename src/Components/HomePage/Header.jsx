@@ -6,14 +6,14 @@ import {
   useNavigate,
   useSearchParams,
 } from "react-router-dom";
-import Logo from "../Assets/Logo.png";
+import Logo from "../../Assets/Logo.png";
 import { faBars } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import SideBar from "../Components/SideBar";
+import SideBar from "../SideBar";
 import { useState } from "react";
-import Button from "./Button";
+import Button from "../Button";
 import { useSelector, useDispatch } from "react-redux";
-import { handleLogout } from "../app/slice/loginValue";
+import { handleLogout } from "../../app/slice/loginValue";
 
 const Header = () => {
   const location = useLocation();

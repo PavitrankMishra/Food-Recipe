@@ -13,17 +13,12 @@
 
 .main-heading {
   color: #333;
-}
-.main-heading,
-.main-heading2 {
-  font-size: 2.5rem;
   text-align: center;
   font-weight: 700;
   position: relative;
-  font-size: 72px;
   font-size: 5vw;
   text-transform: uppercase;
-  line-height: 80px;
+  /* line-height: 40px; */
 }
 
 .main-heading::after {
@@ -41,7 +36,6 @@
   text-align: center;
   color: #666;
   margin-top: 12px;
-
 }
 .sliderContainer span {
   font-size: 56px;
@@ -51,7 +45,6 @@
 
 .slide-container {
   display: flex;
-  /* width: calc(250px * 18); */
   animation: scroll 20s linear infinite;
 }
 

@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from "react";
 import "./Slider.css";
-import Avocado from "../Assets/avocado-dish.jpg";
-import Burger from "../Assets/Burger.webp";
-import Cake from "../Assets/cake.webp";
-import Chinese from "../Assets/chinese2.jpeg";
-import Chole from "../Assets/chole-recipe.jpg";
-import Chowmein from "../Assets/chowmein.jpg";
-import Croissant from "../Assets/Croissant.jpg";
-import Dal from "../Assets/Dal.jpg";
-import Dosa from "../Assets/dosa.jpg";
+import Avocado from "../../Assets/avocado-dish.jpg";
+import Burger from "../../Assets/Burger.webp";
+import Cake from "../../Assets/cake.webp";
+import Chinese from "../../Assets/chinese2.jpeg";
+import Chole from "../../Assets/chole-recipe.jpg";
+import Chowmein from "../../Assets/chowmein.jpg";
+import Croissant from "../../Assets/Croissant.jpg";
+import Dal from "../../Assets/Dal.jpg";
+import Dosa from "../../Assets/dosa.jpg";
 
 const Slider = () => {
   return (
@@ -138,60 +138,3 @@ const Slider = () => {
 };
 
 export default Slider;
-
-{
-  /* <section className="slide-Image">
-          <img
-            src="https://picsum.photos/id/104/400/400"
-            alt="a dream catcher"
-          />
-        </section>
-        <section className="slide-Image">
-          <img
-            src="https://picsum.photos/id/104/400/400"
-            alt="a dream catcher"
-          />
-        </section>
-        <section className="slide-Image">
-          <img
-            src="https://picsum.photos/id/106/400/400"
-            alt="a dream catcher"
-          />
-        </section>
-        <section className="slide-Image">
-          <img
-            src="https://picsum.photos/id/106/400/400"
-            alt="a dream catcher"
-          />
-        </section>
-        <section className="slide-Image">
-          <img
-            src="https://picsum.photos/id/108/400/400"
-            alt="a dream catcher"
-          />
-        </section>
-        <section className="slide-Image">
-          <img
-            src="https://picsum.photos/id/109/400/400"
-            alt="a dream catcher"
-          />
-        </section>
-        <section className="slide-Image">
-          <img
-            src="https://picsum.photos/id/109/400/400"
-            alt="a dream catcher"
-          />
-        </section>
-        <section className="slide-Image">
-          <img
-            src="https://picsum.photos/id/109/400/400"
-            alt="a dream catcher"
-          />
-        </section>
-        <section className="slide-Image">
-          <img
-            src="https://picsum.photos/id/109/400/400"
-            alt="a dream catcher"
-          />
-        </section> */
-}

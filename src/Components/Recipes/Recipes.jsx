@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import Header from "../Header";
+import Header from "../HomePage/Header";
 import "./Recipes.css";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -21,7 +21,7 @@ import {
 import { Link } from "react-router-dom";
 import { faHeart as faHeartSolid } from "@fortawesome/free-solid-svg-icons";
 import Bookmark from "../Bookmark";
-import AddRecipe from "../AddRecipe";
+// import AddRecipe from "../AddRecipe";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchAllRecipe } from "../../app/slice/allRecipes";
 import { fetchSingleRecipe } from "../../app/slice/singleRecipe";
@@ -170,7 +170,7 @@ const Recipes = () => {
               currentPage={currentPage}
               handlePageIncrement={handlePageIncrement}
               totalPages={totalPages}
-              singleRecipes = {singleRecipes}
+              singleRecipes={singleRecipes}
               handleDecrementServings={handleDecrementServings}
               handleIncrementServings={handleIncrementServings}
             />

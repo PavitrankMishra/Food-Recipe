@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import "./Login.css";
-import Header from "./Header";
-import LoginLeft from "../Assets/Login2.jpeg";
-import Logo from "../Assets/Logo.png";
+import Header from "../HomePage/Header";
+import LoginLeft from "../../Assets/Login2.jpeg";
+import Logo from "../../Assets/Logo.png";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { handleLogin, handleLogout } from "../app/slice/loginValue";
+import { handleLogin, handleLogout } from "../../app/slice/loginValue";
 import { faCircleExclamation } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
