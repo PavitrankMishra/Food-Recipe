@@ -99,6 +99,10 @@ const NewRecipe = ({ isAddRecipeVisible, setIsAddRecipeVisible }) => {
         }
       );
 
+      const data = await res.json();
+      console.log(res);
+      console.log(data);
+
       if (res.ok) {
         setTimeout(() => {
           setLoading(false);
@@ -108,6 +112,7 @@ const NewRecipe = ({ isAddRecipeVisible, setIsAddRecipeVisible }) => {
         setTimeout(() => {
           setIsRecipeAdded(false);
           setRecipeFormOpen(true);
+          setIsAddRecipeVisible(false);
         }, 4000);
       }
 

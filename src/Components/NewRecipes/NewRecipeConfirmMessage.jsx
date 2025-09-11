@@ -1,6 +1,7 @@
 import { faFaceSmileBeam } from "@fortawesome/free-regular-svg-icons";
 import React from "react";
 import "./NewRecipeConfirmMessage.css";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const NewRecipeConfirmMessage = ({ isRecipeAdded }) => {
   return (

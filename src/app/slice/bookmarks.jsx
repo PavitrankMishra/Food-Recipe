@@ -12,13 +12,13 @@ const bookmarkRecipesSlice = createSlice({
 
       if (!exists) {
         state.data.push(currentRecipe);
-        console.log("Recipe added:", currentRecipe);
+        // console.log("Recipe added:", currentRecipe);
       } else {
         state.data = state.data.filter((item) => item.id !== currentRecipe.id);
-        console.log("Recipe removed:", currentRecipe);
+        // console.log("Recipe removed:", currentRecipe);
       }
 
-      console.log("Current bookmarks:", state.data);
+      // console.log("Current bookmarks:", state.data);
     },
   },
 });
