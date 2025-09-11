@@ -1,0 +1,24 @@
+.recipeDeleteFailMessageContainer {
+  position: fixed;
+  right: 0;
+  bottom: 30px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0px 10px;
+  z-index: 999;
+  border-top-left-radius: 12px;
+  border-bottom-left-radius: 12px;
+  background: linear-gradient(90deg, orange, tomato);
+  animation: fadeRightToLeft 0.5s ease-out;
+}
+
+@keyframes fadeRightToLeft {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
