@@ -15,6 +15,9 @@ import { handleInputField } from "../../app/slice/inputValue";
 import RecipeHeader from "./RecipeHeader";
 import RecipesMiddle from "./RecipesMiddle";
 import RecipeDeletePrompt from "./RecipeDeletePrompt";
+import RecipeDeleteMessage from "./RecipeDeleteSuccessMessage";
+import RecipeDeleteFailMessage from "./RecipeDeleteFailMessage";
+import RecipeDeleteSuccessMessage from "./RecipeDeleteSuccessMessage";
 
 const Recipes = () => {
   const [currentPage, setCurrentPage] = useState(1);
@@ -25,6 +28,9 @@ const Recipes = () => {
   const [isBookmarkViewVisible, setIsBookmarkViewVisible] = useState(false);
   const [isAddRecipeVisible, setIsAddRecipeVisible] = useState(false);
   const [isTrashClicked, setTrashClicked] = useState(false);
+  const [recipeDeletedSuccessfull, setRecipeDeletedSuccessfull] =
+    useState(false);
+  const [recipeDeletedFail, setRecipeDeletedFail] = useState(false);
 
   const recipes = useSelector(
     (state) => state?.allRecipe?.data?.data?.recipes || []
@@ -104,25 +110,21 @@ const Recipes = () => {
 
   function handleBookmarkViewVisibility() {
     setIsBookmarkViewVisible((prev) => !prev);
-    console.log("Bookmark clicked");
   }
 
   function handleAddRecipeVisibility() {
     setIsAddRecipeVisible((prev) => !prev);
-    console.log("Add recipe clicked");
   }
 
   function handleBookmarkHoverVisiblity() {
     if (!isBookmarkViewVisible) {
       setIsBookmarkViewVisible((prev) => !prev);
-      console.log("Bokkmark Hover");
     }
   }
 
   function handleAddRecipeHoverVisibility() {
     if (!isAddRecipeVisible) {
       setIsAddRecipeVisible((prev) => !prev);
-      console.log("Add Recipe Hover");
     }
   }
 
@@ -132,7 +134,6 @@ const Recipes = () => {
   }
 
   const handleRecipeDelete = async (id) => {
-    console.log("The id is: ", id);
     try {
       const res = await fetch(
         `https://forkify-api.herokuapp.com/api/v2/recipes/${id}?key=d348a0b0-c7b8-4539-b6a6-80f883fdef51`,
@@ -143,10 +144,20 @@ const Recipes = () => {
           },
         }
       );
-
-      console.log(res);
-      console.log("The id is: ", id);
       setTrashClicked(false);
+      dispatch(fetchAllRecipe(inputValue));
+      if (res.status == 204 || res.statusText == "No Content") {
+        setRecipeDeletedSuccessfull(true);
+        setTimeout(() => {
+          setRecipeDeletedSuccessfull(false);
+        }, 5000);
+      }
+      if (res.status == 401 || res.statusText == "Unauthorized") {
+        setRecipeDeletedFail(true);
+        setTimeout(() => {
+          setRecipeDeletedFail(false);
+        }, 5000);
+      }
     } catch (err) {
       console.log(err);
     }
@@ -199,8 +210,11 @@ const Recipes = () => {
           isTrashClicked={isTrashClicked}
           setTrashClicked={setTrashClicked}
           handleRecipeDelete={handleRecipeDelete}
+          inputValue={inputValue}
         />
       )}
+      {recipeDeletedSuccessfull && <RecipeDeleteSuccessMessage />}
+      {recipeDeletedFail && <RecipeDeleteFailMessage />}
     </>
   );
 };
