@@ -2,16 +2,21 @@ import { faXmark } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
 import "./RecipeDeletePrompt.css";
+import { useDispatch } from "react-redux";
+import { fetchAllRecipe } from "../../app/slice/allRecipes";
 
 const RecipeDeletePrompt = ({
   singleRecipes,
   isTrashClicked,
   setTrashClicked,
   handleRecipeDelete,
+  inputValue,
 }) => {
+  const dispatch = useDispatch();
   const handleClosePrompt = () => {
     setTrashClicked(false);
   };
+
   return (
     <>
       <section className="recipeDeleteContainer">

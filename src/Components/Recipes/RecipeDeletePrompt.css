@@ -59,3 +59,9 @@
   border: 2px solid var(--tertiary-color);
   color: var(--tertiary-color);
 }
+
+@media screen and (max-width: 600px) {
+  .recipeDeleteContainer .recipeDeleteInner {
+    width: 90%;
+  }
+}
