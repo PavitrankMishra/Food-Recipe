@@ -189,6 +189,32 @@ const NewRecipeMiddle = ({
                 />
               </section>
             </section>
+            <section className="dataContainer">
+              <section className="textContainer">
+                <span>Ingredient 6</span>
+              </section>
+              <section className="inputContainer">
+                <input
+                  type="text"
+                  value={ingredient[5] || ""}
+                  placeholder="Format: 'Quantity,Unit,Description"
+                  onChange={(e) => handleChange(5, e.target.value)}
+                />
+              </section>
+            </section>
+                        <section className="dataContainer">
+              <section className="textContainer">
+                <span>Ingredient 6</span>
+              </section>
+              <section className="inputContainer">
+                <input
+                  type="text"
+                  value={ingredient[5] || ""}
+                  placeholder="Format: 'Quantity,Unit,Description"
+                  onChange={(e) => handleChange(5, e.target.value)}
+                />
+              </section>
+            </section>
           </section>
         </>
       )}
