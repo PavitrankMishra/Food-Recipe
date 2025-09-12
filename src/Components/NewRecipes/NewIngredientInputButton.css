@@ -1,0 +1,29 @@
+.newIngredientButtonContainer {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.newIngredientButtonContainer button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    padding: 10px 15px;
+    background: transparent;
+    border: none;
+    outline: none;
+    border: 2px solid var(--main-color);
+    border-radius: 6px;
+    color: var(--main-color);
+    transition: all 0.3s ease-in-out;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.newIngredientButtonContainer button:hover {
+    border-color: #333;
+    background-color: var(--secondary-color);
+    color: var(--tertiary-color);
+}

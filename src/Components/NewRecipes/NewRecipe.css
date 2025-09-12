@@ -36,8 +36,6 @@ span {
   color: #333;
 }
 
-
-
 .newRecipeRequestContainer .newRequestInner .middleContainer,
 .newRecipeRequestContainer .newRequestInner .loadingContainer {
   display: flex;
@@ -47,6 +45,10 @@ span {
   gap: 50px;
   color: var(--tertiary-color);
   min-height: 400px;
+}
+
+.newRecipeRequestContainer .newRequestInner .middleContainer {
+  align-items: flex-start;
 }
 
 
@@ -79,8 +81,6 @@ span {
   background-color: var(--secondary-color);
   background-color: #e04e4e;
 }
-
-
 
 @keyframes fadeIn {
   from {

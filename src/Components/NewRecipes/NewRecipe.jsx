@@ -7,6 +7,7 @@ import NewRecipeConfirmMessage from "./NewRecipeConfirmMessage";
 import NewRecipeCrossContainer from "./NewRecipeCrossContainer";
 import NewRecipeMiddle from "./NewRecipeMiddle";
 import NewRecipeRejectMessage from "./NewRecipeRejectMessage";
+import NewIngredientInputButton from "./NewIngredientInputButton";
 
 const NewRecipe = ({ isAddRecipeVisible, setIsAddRecipeVisible }) => {
   const [numberOfComma, setNumberOfComma] = useState(0);
@@ -100,8 +101,6 @@ const NewRecipe = ({ isAddRecipeVisible, setIsAddRecipeVisible }) => {
       );
 
       const data = await res.json();
-      console.log(res);
-      console.log(data);
 
       if (res.ok) {
         setTimeout(() => {
@@ -137,6 +136,8 @@ const NewRecipe = ({ isAddRecipeVisible, setIsAddRecipeVisible }) => {
     }
   };
 
+  let [inputFields, setInputFields] = useState([1, 2, 3, 4, 5, 6]);
+
   return (
     <section className="newRecipeRequestContainer">
       <section className="newRequestInner">
@@ -150,6 +151,8 @@ const NewRecipe = ({ isAddRecipeVisible, setIsAddRecipeVisible }) => {
             setFormData={setFormData}
             handleChange={handleChange}
             ingredient={ingredient}
+            inputFields={inputFields}
+            setInputFields={setInputFields}
           />
 
           <NewRecipeLoader loading={loading} />
@@ -158,6 +161,10 @@ const NewRecipe = ({ isAddRecipeVisible, setIsAddRecipeVisible }) => {
 
           <NewRecipeRejectMessage recipeNotAdded={recipeNotAdded} />
         </section>
+        <NewIngredientInputButton
+          inputFields={inputFields}
+          setInputFields={setInputFields}
+        />
         {recipeFormOpen && (
           <section className="footerContainer">
             <button onClick={() => uploadRecipe()}>UPLOAD</button>

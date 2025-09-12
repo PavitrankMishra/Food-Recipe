@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "./NewRecipeMiddle.css";
 
 const NewRecipeMiddle = ({
@@ -7,6 +7,8 @@ const NewRecipeMiddle = ({
   setFormData,
   handleChange,
   ingredient,
+  inputFields,
+  setInputFields,
 }) => {
   return (
     <>
@@ -111,110 +113,21 @@ const NewRecipeMiddle = ({
             <section className="head">
               <h1>INGREDIENTS</h1>
             </section>
-            <section className="dataContainer">
-              <section className="textContainer">
-                <span>Ingredient 1</span>
+            {inputFields.map((item, index) => (
+              <section className="dataContainer" key={index}>
+                <section className="textContainer">
+                  <span>Ingredient {item}</span>
+                </section>
+                <section className="inputContainer">
+                  <input
+                    type="text"
+                    value={ingredient[index] || ""}
+                    placeholder="Format: 'Quantity,Unit,Description'"
+                    onChange={(e) => handleChange(index, e.target.value)}
+                  />
+                </section>
               </section>
-              <section className="inputContainer">
-                <input
-                  type="text"
-                  value={ingredient[0] || ""}
-                  placeholder="Format: 'Quantity,Unit,Description'"
-                  onChange={(e) => handleChange(0, e.target.value)}
-                />
-              </section>
-            </section>
-            <section className="dataContainer">
-              <section className="textContainer">
-                <span>Ingredient 2</span>
-              </section>
-              <section className="inputContainer">
-                <input
-                  type="text"
-                  value={ingredient[1] || ""}
-                  placeholder="Format: 'Quantity,Unit,Description'"
-                  onChange={(e) => handleChange(1, e.target.value)}
-                />
-              </section>
-            </section>
-            <section className="dataContainer">
-              <section className="textContainer">
-                <span>Ingredient 3</span>
-              </section>
-              <section className="inputContainer">
-                <input
-                  type="text"
-                  value={ingredient[2] || ""}
-                  placeholder="Format: 'Quantity,Unit,Description'"
-                  onChange={(e) => handleChange(2, e.target.value)}
-                />
-              </section>
-            </section>
-            <section className="dataContainer">
-              <section className="textContainer">
-                <span>Ingredient 4</span>
-              </section>
-              <section className="inputContainer">
-                <input
-                  type="text"
-                  value={ingredient[3] || ""}
-                  placeholder="Format: 'Quantity,Unit,Description'"
-                  onChange={(e) => handleChange(3, e.target.value)}
-                />
-              </section>
-            </section>
-            <section className="dataContainer">
-              <section className="textContainer">
-                <span>Ingredient 5</span>
-              </section>
-              <section className="inputContainer">
-                <input
-                  type="text"
-                  value={ingredient[4] || ""}
-                  placeholder="Format: 'Quantity,Unit,Description'"
-                  onChange={(e) => handleChange(4, e.target.value)}
-                />
-              </section>
-            </section>
-            <section className="dataContainer">
-              <section className="textContainer">
-                <span>Ingredient 6</span>
-              </section>
-              <section className="inputContainer">
-                <input
-                  type="text"
-                  value={ingredient[5] || ""}
-                  placeholder="Format: 'Quantity,Unit,Description"
-                  onChange={(e) => handleChange(5, e.target.value)}
-                />
-              </section>
-            </section>
-            <section className="dataContainer">
-              <section className="textContainer">
-                <span>Ingredient 6</span>
-              </section>
-              <section className="inputContainer">
-                <input
-                  type="text"
-                  value={ingredient[5] || ""}
-                  placeholder="Format: 'Quantity,Unit,Description"
-                  onChange={(e) => handleChange(5, e.target.value)}
-                />
-              </section>
-            </section>
-                        <section className="dataContainer">
-              <section className="textContainer">
-                <span>Ingredient 6</span>
-              </section>
-              <section className="inputContainer">
-                <input
-                  type="text"
-                  value={ingredient[5] || ""}
-                  placeholder="Format: 'Quantity,Unit,Description"
-                  onChange={(e) => handleChange(5, e.target.value)}
-                />
-              </section>
-            </section>
+            ))}
           </section>
         </>
       )}
