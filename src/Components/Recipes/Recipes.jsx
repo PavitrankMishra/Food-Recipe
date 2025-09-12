@@ -36,7 +36,7 @@ const Recipes = () => {
     (state) => state?.allRecipe?.data?.data?.recipes || []
   );
 
-  const singleRecipes = useSelector(
+  let singleRecipes = useSelector(
     (state) => state?.singleRecipe?.data?.data?.recipe || []
   );
 
@@ -148,12 +148,14 @@ const Recipes = () => {
       dispatch(fetchAllRecipe(inputValue));
       if (res.status == 204 || res.statusText == "No Content") {
         setRecipeDeletedSuccessfull(true);
+        dispatch(fetchSingleRecipe(recipes[0].id));
         setTimeout(() => {
           setRecipeDeletedSuccessfull(false);
         }, 5000);
       }
       if (res.status == 401 || res.statusText == "Unauthorized") {
         setRecipeDeletedFail(true);
+
         setTimeout(() => {
           setRecipeDeletedFail(false);
         }, 5000);
