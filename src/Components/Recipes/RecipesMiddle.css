@@ -7,6 +7,29 @@
   min-height: 500px;
 }
 
+.recipesContainer .middleContainer .middleLeft .featuresContainer {
+  margin: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 10px 20px;
+  gap: 50px;
+  flex-wrap: wrap;
+}
+
+.recipesContainer .middleContainer .middleLeft .featuresContainer .box {
+  background: linear-gradient(135deg, #ff8c42, #ff5e62);
+  background:var(--secondary-color);
+  width: 40%;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 150px;
+  text-align: center;
+}
+
 .recipesContainer .middleContainer .middleLeft .loadingContainer {
   margin-top: 200px;
 }
