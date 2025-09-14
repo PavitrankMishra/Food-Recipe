@@ -9,6 +9,7 @@
   justify-content: flex-start;
   min-height: 300px;
   gap: 30px;
+  margin-bottom: 40px;
 }
 
 .headingContainer {
@@ -43,9 +44,7 @@
   color: #666;
   margin-top: 12px;
   width: 80%;
-
 }
-
 
 .sliderContainer span {
   font-size: 56px;
@@ -74,7 +73,6 @@
   border-radius: 50%;
   object-fit: cover;
   object-position: center;
-  /* box-shadow: 0 0 10px var(--main-color); */
 }
 
 @keyframes scroll {

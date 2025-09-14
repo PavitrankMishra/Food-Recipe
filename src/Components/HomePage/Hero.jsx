@@ -29,7 +29,33 @@ const Hero = () => {
   return (
     <>
       <section className="heroContainer">
-        <section className="heroLeft">
+        <section className="heroTextContainer">
+          <p>Bringing together flavors, stories, and recipes</p>
+          <p> to make every meal unforgettable.</p>
+        </section>
+        <section className="inputRecipe">
+          <section className="searchBar">
+            <input
+              type="text"
+              value={inputValue}
+              className="styled-input"
+              onChange={(e) => dispatch(handleInputField(e.target.value))}
+              placeholder="Falafel Burgers"
+            />
+            <button className="search-btn" onClick={handleRecipeLogin}>
+              Search
+            </button>
+          </section>
+        </section>
+      </section>
+    </>
+  );
+};
+
+export default Hero;
+
+{
+  /* <section className="heroLeft">
           <section className="leftText">
             <h1>Experience the</h1>
             <h1>
@@ -64,10 +90,5 @@ const Hero = () => {
         </section>
         <section className="heroRight">
           <img src={HeroRight} alt="Hero Image" />
-        </section>
-      </section>
-    </>
-  );
-};
-
-export default Hero;
+        </section> */
+}

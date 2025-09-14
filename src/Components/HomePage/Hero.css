@@ -2,11 +2,95 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: 50px;
+  margin-bottom: 40px;
   width: 100%;
+  min-height: 70vh;
+  background: linear-gradient(135deg, #ff8c42, #ff5e62);
+  color: #fff;
+  text-align: center;
+  padding: 40px 20px;
+  flex-direction: column;
+  gap: 20px;
 }
 
-.heroContainer .heroLeft {
+.heroTextContainer {
+  max-width: 900px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  align-items: center;
+  justify-content: center;
+}
+
+.heroTextContainer p {
+  font-size: 3rem;
+  font-weight: 700;
+  line-height: 1.3;
+  text-transform: none;
+  text-shadow: 2px 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+.heroTextContainer p:nth-child(2) {
+  font-weight: 500;
+  font-size: 2rem;
+  opacity: 0.9;
+}
+
+.searchBar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.styled-input {
+  padding: 14px 18px;
+  border: 2px solid #ff6b35;
+  border-radius: 50px;
+  outline: none;
+  font-size: 1rem;
+  width: 300px;
+  transition: all 0.3s ease;
+}
+
+.search-btn {
+  padding: 14px 24px;
+  border: none;
+  border-radius: 50px;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #fff;
+  cursor: pointer;
+  transition: all 0.5s ease-in-out;
+  background: transparent;
+  border: 2px solid #fff;
+}
+
+.search-btn:hover {
+  border-color: #333;
+  color: #333;
+  background-color: var(--secondary-color);
+}
+
+@media (max-width: 768px) {
+  .styled-input {
+    width: 200px;
+  }
+  .search-btn {
+    padding: 12px 18px;
+    font-size: 0.9rem;
+  }
+
+  .heroTextContainer p {
+    font-size: 2rem;
+  }
+  .heroTextContainer p:nth-child(2) {
+    font-size: 1.5rem;
+  }
+}
+
+/* .heroContainer .heroLeft {
   width: 50%;
   display: flex;
   align-items: flex-start;
@@ -40,7 +124,6 @@
 
 .heroContainer .heroLeft p {
   line-height: 1.4;
-  /* font-size: 1vw; */
   font-weight: 400;
   color: dimgray;
 }
@@ -110,9 +193,9 @@ a:active {
 .heroContainer .heroRight img {
   width: 100%;
   max-height: 600px;
-}
+} */
 
-@media screen and (max-width: 1000px) {
+/* @media screen and (max-width: 1000px) {
   .heroContainer {
     height: 100%;
   }
@@ -157,7 +240,6 @@ a:active {
   .heroContainer .heroLeft span {
     font-size: 10vw;
     letter-spacing: 0.2px;
-    /* -webkit-text-stroke: 0.4vw #000; */
   }
 
   .heroContainer .heroLeft {
@@ -169,4 +251,4 @@ a:active {
     font-size: 12px;
     letter-spacing: 1.2px;
   }
-}
+} */

@@ -21,8 +21,8 @@
   align-items: center;
   justify-content: center;
   gap: 40px;
-  flex-wrap: wrap; /* ✅ Allow wrapping of cards */
-  align-items: stretch; /* ✅ Make all cards same height */
+  flex-wrap: wrap;
+  align-items: stretch;
 }
 
 .categoriesContainer .categoriesSection .card1 {
