@@ -1,0 +1,98 @@
+.recipesContainer .middleContainer .middleLeft .recipesList {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 8px;
+  border-radius: 12px;
+  border-bottom: 3px solid var(--secondary-color);
+  border-bottom: 2px solid var(--main-color);
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  width: 100%;
+  min-height: 80px;
+  gap: 10px;
+  animation: fadeIn 0.5s ease-in-out forwards;
+  margin-bottom: 5px;
+}
+
+.recipesContainer .middleContainer .middleLeft .recipesList:hover {
+  background: var(--secondary-color);
+}
+
+.recipesContainer
+  .middleContainer
+  .middleLeft
+  .recipesList
+  .recipesLeft
+  .imageContainer {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.recipesContainer .middleContainer .middleLeft .recipesList .recipesLeft {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 19px;
+  width: 80%;
+}
+
+.recipesContainer
+  .middleContainer
+  .middleLeft
+  .recipesList
+  .recipesLeft
+  .nameContainer {
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+  height: 75px;
+  padding-top: 10px;
+  width: 70%;
+  padding-left: 6px;
+}
+
+.recipesContainer
+  .middleContainer
+  .middleLeft
+  .recipesList
+  .nameContainer
+  .itemTitle {
+  font-weight: 500;
+  letter-spacing: 0.8px;
+  max-height: 42px;
+  overflow: hidden;
+}
+
+.recipesContainer
+  .middleContainer
+  .middleLeft
+  .recipesList
+  .nameContainer
+  .itemPublisher {
+  font-size: 16px;
+  color: #575454;
+}
+
+.recipesContainer
+  .middleContainer
+  .middleLeft
+  .recipesList
+  .imageContainer
+  img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.recipesContainer .middleContainer .middleLeft .recipesList .userContainer {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid var(--main-color);
+}

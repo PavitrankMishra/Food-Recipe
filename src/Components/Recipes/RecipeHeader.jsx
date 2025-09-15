@@ -8,13 +8,9 @@ import RecipeHeadingLeft from "./RecipeHeadingLeft";
 import RecipeHeadingRight from "./RecipeHeadingRight";
 
 const RecipeHeader = ({
-  handleBookmarkViewVisibility,
-  handleBookmarkHoverVisiblity,
-  handleAddRecipeVisibility,
+  setIsAddRecipeVisible,
   inputValue,
   updateInputValue,
-  isBookmarkViewVisible,
-  setIsBookmarkViewVisible,
 }) => {
   return (
     <>
@@ -25,13 +21,7 @@ const RecipeHeader = ({
         />
       </section>
       <section className="recipeHeadingRight">
-        <RecipeHeadingRight
-          handleAddRecipeVisibility={handleAddRecipeVisibility}
-          handleBookmarkViewVisibility={handleBookmarkViewVisibility}
-          handleBookmarkHoverVisiblity={handleBookmarkHoverVisiblity}
-          isBookmarkViewVisible={isBookmarkViewVisible}
-          setIsBookmarkViewVisible={setIsBookmarkViewVisible}
-        />
+        <RecipeHeadingRight setIsAddRecipeVisible={setIsAddRecipeVisible} />
       </section>
     </>
   );

@@ -1,8 +1,26 @@
 import React from "react";
 import "./RecipeHeadingLeft.css";
 import Logo from "../../Assets/Logo.png";
+import { useDispatch, useSelector } from "react-redux";
+import { handleInputField } from "../../app/slice/inputValue";
 
-const RecipeHeadingLeft = ({ inputValue, updateInputValue }) => {
+const RecipeHeadingLeft = () => {
+  /**
+   * Selects the current input value from the Redux store
+   */
+  const inputValue = useSelector((state) => state?.inputRecipe?.data);
+
+  /**
+   * Gets the disptach function to send actions to the Redux store
+   */
+  const dispatch = useDispatch();
+  /**
+   * Function that updates the value of input when we change
+   */
+  function updateInputValue(e) {
+    dispatch(handleInputField(e.target.value));
+  }
+
   return (
     <>
       <img src={Logo} alt="Website Logo" />

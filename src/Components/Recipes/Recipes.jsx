@@ -7,11 +7,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchAllRecipe } from "../../app/slice/allRecipes";
 import { fetchSingleRecipe } from "../../app/slice/singleRecipe";
 import { toggleBookmark } from "../../app/slice/singleRecipe";
-import { incrementServings } from "../../app/slice/singleRecipe";
-import { decrementServings } from "../../app/slice/singleRecipe";
+
 import { handleBookmarks } from "../../app/slice/bookmarks";
 import NewRecipe from "../NewRecipes/NewRecipe";
-import { handleInputField } from "../../app/slice/inputValue";
 import RecipeHeader from "./RecipeHeader";
 import RecipesMiddle from "./RecipesMiddle";
 import RecipeDeletePrompt from "./RecipeDeletePrompt";
@@ -20,22 +18,14 @@ import RecipeDeleteFailMessage from "./RecipeDeleteFailMessage";
 import RecipeDeleteSuccessMessage from "./RecipeDeleteSuccessMessage";
 
 /**
- * Responsible for rendering the recipes page and it's components 
- * - Responsible for the 
- * @returns 
+ * Responsible for rendering the recipes page and it's components
  */
 const Recipes = () => {
-  const [currentPage, setCurrentPage] = useState(1);
-  const [recipesPerPage, setRecipesPerPage] = useState(10);
-  const [totalPages, setTotalPages] = useState(0);
-  const [loading, setLoading] = useState(false);
   const dispatch = useDispatch();
-  const [isBookmarkViewVisible, setIsBookmarkViewVisible] = useState(false);
-  const [isAddRecipeVisible, setIsAddRecipeVisible] = useState(false);
-  const [isTrashClicked, setTrashClicked] = useState(false);
-  const [recipeDeletedSuccessfull, setRecipeDeletedSuccessfull] =
-    useState(false);
-  const [recipeDeletedFail, setRecipeDeletedFail] = useState(false);
+
+  /**
+   * Selects the current recipes value from the redux store
+   */
 
   const recipes = useSelector(
     (state) => state?.allRecipe?.data?.data?.recipes || []
@@ -51,6 +41,17 @@ const Recipes = () => {
 
   const inputValue = useSelector((state) => state?.inputRecipe?.data);
 
+  const [currentPage, setCurrentPage] = useState(1);
+  const [recipesPerPage, setRecipesPerPage] = useState(10);
+  const [totalPages, setTotalPages] = useState(0);
+  const [loading, setLoading] = useState(false);
+
+  const [isAddRecipeVisible, setIsAddRecipeVisible] = useState(false);
+  const [isTrashClicked, setTrashClicked] = useState(false);
+  const [recipeDeletedSuccessfull, setRecipeDeletedSuccessfull] =
+    useState(false);
+  const [recipeDeletedFail, setRecipeDeletedFail] = useState(false);
+
   function handleBookmark() {
     dispatch(toggleBookmark());
     dispatch(handleBookmarks(singleRecipes));
@@ -61,36 +62,28 @@ const Recipes = () => {
     dispatch(fetchAllRecipe());
   }, []);
 
+  /**
+   * Determines the recipeStartingIndex
+   */
   const recipeStartingIndex = (currentPage - 1) * recipesPerPage;
+
+  /**
+   * Determines the recipeEndIndex
+   */
   const recipeEndIndex = currentPage * recipesPerPage;
+
+  /**
+   * Determines the current recipe list to be displayed
+   */
   const currentData = recipes?.slice(recipeStartingIndex, recipeEndIndex);
 
+  /**
+   * Updates the value of total pages based on the data whenever the recipes dependency changes.
+   */
   useEffect(() => {
     const dataLength = Math.ceil(recipes?.length / recipesPerPage);
     setTotalPages(dataLength);
   }, [recipes]);
-
-  function handlePageDecrement() {
-    if (currentPage > 1) {
-      setCurrentPage(currentPage - 1);
-    }
-  }
-
-  function handlePageIncrement() {
-    if (currentPage < totalPages) {
-      setCurrentPage(currentPage + 1);
-    }
-  }
-
-  function handleIncrementServings() {
-    dispatch(incrementServings());
-  }
-
-  function handleDecrementServings() {
-    if (singleRecipes.servings > 1) {
-      dispatch(decrementServings());
-    }
-  }
 
   useEffect(() => {
     if (inputValue.length > 3) {
@@ -104,39 +97,6 @@ const Recipes = () => {
       return () => clearTimeout(timerId);
     }
   }, [inputValue]);
-
-  const handleSingleRecipe = (id) => {
-    dispatch(fetchSingleRecipe(id));
-  };
-
-  function updateInputValue(e) {
-    dispatch(handleInputField(e.target.value));
-  }
-
-  function handleBookmarkViewVisibility() {
-    setIsBookmarkViewVisible((prev) => !prev);
-  }
-
-  function handleAddRecipeVisibility() {
-    setIsAddRecipeVisible((prev) => !prev);
-  }
-
-  function handleBookmarkHoverVisiblity() {
-    if (!isBookmarkViewVisible) {
-      setIsBookmarkViewVisible((prev) => !prev);
-    }
-  }
-
-  function handleAddRecipeHoverVisibility() {
-    if (!isAddRecipeVisible) {
-      setIsAddRecipeVisible((prev) => !prev);
-    }
-  }
-
-  function handleTrashClicked() {
-    setTrashClicked(true);
-    setIsAddRecipeVisible(false);
-  }
 
   const handleRecipeDelete = async (id) => {
     try {
@@ -177,29 +137,22 @@ const Recipes = () => {
         <section className="recipesContainer">
           <section className="recipeHeadingContainer">
             <RecipeHeader
-              handleBookmarkViewVisibility={handleBookmarkViewVisibility}
-              handleBookmarkHoverVisiblity={handleBookmarkHoverVisiblity}
-              handleAddRecipeVisibility={handleAddRecipeVisibility}
+              isAddRecipeVisible={isAddRecipeVisible}
+              setIsAddRecipeVisible={setIsAddRecipeVisible}
               inputValue={inputValue}
-              updateInputValue={updateInputValue}
-              isBookmarkViewVisible={isBookmarkViewVisible}
-              setIsBookmarkViewVisible={setIsBookmarkViewVisible}
             />
           </section>
           <section className="middleContainer">
             <RecipesMiddle
               loading={loading}
               currentData={currentData}
-              handleSingleRecipe={handleSingleRecipe}
-              handlePageDecrement={handlePageDecrement}
               currentPage={currentPage}
-              handlePageIncrement={handlePageIncrement}
+              setCurrentPage={setCurrentPage}
               totalPages={totalPages}
               singleRecipes={singleRecipes}
-              handleDecrementServings={handleDecrementServings}
-              handleIncrementServings={handleIncrementServings}
               handleBookmark={handleBookmark}
-              handleTrashClicked={handleTrashClicked}
+              setIsAddRecipeVisible={setIsAddRecipeVisible}
+              setTrashClicked={setTrashClicked}
             />
           </section>
         </section>

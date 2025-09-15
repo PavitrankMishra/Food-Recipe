@@ -1,16 +1,41 @@
 import { faBookmark } from "@fortawesome/free-regular-svg-icons";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import React from "react";
+import React, { useState } from "react";
 import "./RecipeHeadingRight.css";
+import Bookmark from "../Bookmark";
 
-const RecipeHeadingRight = ({
-  handleAddRecipeVisibility,
-  handleBookmarkViewVisibility,
-  handleBookmarkHoverVisiblity,
-  isBookmarkViewVisible,
-  setIsBookmarkViewVisible,
-}) => {
+const RecipeHeadingRight = ({ setIsAddRecipeVisible }) => {
+  /**
+   * State that makes bookmarkViewVisible when true and hide when false
+   */
+
+  const [isBookmarkViewVisible, setIsBookmarkViewVisible] = useState(false);
+
+  /**
+   * Function that toggles the state isBookmarkViewVisible
+   */
+  function handleBookmarkViewVisibility() {
+    setIsBookmarkViewVisible((prev) => !prev);
+  }
+
+  /**
+   * Function that toggles the state isBookmarkViewVisible if isBookmarkViewVisible is false
+   */
+
+  function handleBookmarkHoverVisiblity() {
+    if (!isBookmarkViewVisible) {
+      setIsBookmarkViewVisible((prev) => !prev);
+    }
+  }
+
+  /**
+   * Function that updates the state isAddRecipeVisible
+   */
+  function handleAddRecipeVisibility() {
+    setIsAddRecipeVisible((prev) => !prev);
+  }
+
   return (
     <>
       <section className="bookmarkContainer">
