@@ -1,5 +1,5 @@
 import React from "react";
-import "./RecipeSMiddleLeftFeatures.css";
+import "./RecipesMiddleLeftFeatures.css";
 
 const RecipesMiddleLeftFeatures = () => {
   return (
