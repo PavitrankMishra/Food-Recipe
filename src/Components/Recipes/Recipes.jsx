@@ -19,6 +19,11 @@ import RecipeDeleteMessage from "./RecipeDeleteSuccessMessage";
 import RecipeDeleteFailMessage from "./RecipeDeleteFailMessage";
 import RecipeDeleteSuccessMessage from "./RecipeDeleteSuccessMessage";
 
+/**
+ * Responsible for rendering the recipes page and it's components 
+ * - Responsible for the 
+ * @returns 
+ */
 const Recipes = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [recipesPerPage, setRecipesPerPage] = useState(10);

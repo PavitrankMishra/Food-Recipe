@@ -1,0 +1,91 @@
+.recipesContainer
+  .recipeHeadingContainer
+  .recipeHeadingRight
+  .bookmarkContainer {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  width: 30vw;
+  gap: 20px;
+}
+
+.recipesContainer
+  .recipeHeadingContainer
+  .recipeHeadingRight
+  .bookmarkContainer
+  button {
+  cursor: pointer;
+  letter-spacing: 1.2px;
+  font-weight: 500;
+  font-family: "Inter", sans-serif;
+  color: #333;
+  background: transparent;
+  border: none;
+  outline: none;
+  font-size: 18px;
+}
+
+.recipesContainer
+  .recipeHeadingContainer
+  .recipeHeadingRight
+  .bookmarkContainer
+  .plusIcon,
+.bookmarkIcon {
+  display: none;
+}
+
+@media screen and (max-width: 1060px) {
+  .recipesContainer
+    .recipeHeadingContainer
+    .recipeHeadingRight
+    .bookmarkContainer {
+    gap: 5px;
+    justify-content: space-around;
+  }
+
+  .recipesContainer
+    .recipeHeadingContainer
+    .recipeHeadingRight
+    .bookmarkContainer
+    button {
+    font-size: 14px;
+    letter-spacing: 1.2px;
+  }
+}
+
+@media screen and (max-width: 765px) {
+  .recipesContainer
+    .recipeHeadingContainer
+    .recipeHeadingRight
+    .bookmarkContainer {
+    gap: 10px;
+  }
+
+  .recipesContainer
+    .recipeHeadingContainer
+    .recipeHeadingRight
+    .bookmarkContainer
+    button {
+    font-size: 2vw;
+    display: none;
+  }
+
+  .recipesContainer
+    .recipeHeadingContainer
+    .recipeHeadingRight
+    .bookmarkContainer
+    .plusIcon,
+  .bookmarkIcon {
+    display: block;
+    color: var(--tertiary-color);
+    font-size: large;
+  }
+
+  .recipesContainer
+    .recipeHeadingContainer
+    .recipeHeadingRight
+    .bookmarkContainer {
+    justify-content: flex-end;
+    color: var(--tertiary-color);
+  }
+}

@@ -141,7 +141,6 @@
   cursor: pointer;
   font-weight: 500;
   animation: fadeIn 0.5s ease-in-out forwards;
-  /* color: var(--main-color); */
 }
 
 .recipesContainer
