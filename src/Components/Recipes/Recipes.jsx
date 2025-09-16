@@ -16,6 +16,7 @@ import RecipeDeletePrompt from "./RecipeDeletePrompt";
 import RecipeDeleteMessage from "./RecipeDeleteSuccessMessage";
 import RecipeDeleteFailMessage from "./RecipeDeleteFailMessage";
 import RecipeDeleteSuccessMessage from "./RecipeDeleteSuccessMessage";
+import { deleteSingleRecipe } from "../../app/slice/recipeDelete";
 
 /**
  * Responsible for rendering the recipes page and it's components
@@ -24,43 +25,77 @@ const Recipes = () => {
   const dispatch = useDispatch();
 
   /**
-   * Selects the current recipes value from the redux store
+   * Selects the recipes value from the redux store
    */
 
   const recipes = useSelector(
     (state) => state?.allRecipe?.data?.data?.recipes || []
   );
 
+  /**
+   * Selects the singleRecipes value from the redux store
+   */
   let singleRecipes = useSelector(
     (state) => state?.singleRecipe?.data?.data?.recipe || []
   );
 
+  /**
+   * Selects the bookmarkedRecipe value from the redux store
+   */
   const bookMarkedRecipe = useSelector(
     (state) => state?.bookmarkedRecipes || []
   );
 
+  /**
+   * Selects the value of input from the redux store
+   */
   const inputValue = useSelector((state) => state?.inputRecipe?.data);
 
+  /**
+   * State that sets the current page of the recipes list
+   */
   const [currentPage, setCurrentPage] = useState(1);
+
+  /**
+   * State that contains the number of recipes to be displayed per page
+   */
   const [recipesPerPage, setRecipesPerPage] = useState(10);
+
+  /**
+   * State that sets the totalPages from the recipes list
+   */
   const [totalPages, setTotalPages] = useState(0);
+
+  /**
+   * State that determines the loading state
+   */
   const [loading, setLoading] = useState(false);
 
+  /**
+   * State that determines if the new recipe input form is open so true otherwise false
+   */
   const [isAddRecipeVisible, setIsAddRecipeVisible] = useState(false);
+
+  /**
+   * State that determines if the recipe delete button is clicked so true otherwise false
+   */
   const [isTrashClicked, setTrashClicked] = useState(false);
+
+  /**
+   * State that determines if the recipe deletion is successfull than true otherwise false
+   */
   const [recipeDeletedSuccessfull, setRecipeDeletedSuccessfull] =
     useState(false);
+
+  /**
+   * State that determines if the recipe deletion is fail than true otherwise false
+   */
   const [recipeDeletedFail, setRecipeDeletedFail] = useState(false);
 
   function handleBookmark() {
     dispatch(toggleBookmark());
     dispatch(handleBookmarks(singleRecipes));
   }
-
-  useEffect(() => {
-    dispatch(fetchSingleRecipe());
-    dispatch(fetchAllRecipe());
-  }, []);
 
   /**
    * Determines the recipeStartingIndex
@@ -78,12 +113,12 @@ const Recipes = () => {
   const currentData = recipes?.slice(recipeStartingIndex, recipeEndIndex);
 
   /**
-   * Updates the value of total pages based on the data whenever the recipes dependency changes.
+   * Updates the value of total pages when the recipes length changes or the number of recipes per page change.
    */
   useEffect(() => {
     const dataLength = Math.ceil(recipes?.length / recipesPerPage);
     setTotalPages(dataLength);
-  }, [recipes]);
+  }, [recipes.length, recipesPerPage]);
 
   useEffect(() => {
     if (inputValue.length > 3) {
@@ -100,15 +135,7 @@ const Recipes = () => {
 
   const handleRecipeDelete = async (id) => {
     try {
-      const res = await fetch(
-        `https://forkify-api.herokuapp.com/api/v2/recipes/${id}?key=d348a0b0-c7b8-4539-b6a6-80f883fdef51`,
-        {
-          method: "DELETE",
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
-      );
+      const res = await dispatch(deleteSingleRecipe(id)).unwrap();
       setTrashClicked(false);
       dispatch(fetchAllRecipe(inputValue));
       if (res.status == 204 || res.statusText == "No Content") {
@@ -120,7 +147,6 @@ const Recipes = () => {
       }
       if (res.status == 401 || res.statusText == "Unauthorized") {
         setRecipeDeletedFail(true);
-
         setTimeout(() => {
           setRecipeDeletedFail(false);
         }, 5000);
