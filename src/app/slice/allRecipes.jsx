@@ -1,7 +1,5 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
-// createAsyncThunk - When we want to do a delayed task we use this createAsyncThunk middleware
-
 // We are creating a action here
 export const fetchAllRecipe = createAsyncThunk(
   "fetchAllRecipe",
