@@ -162,6 +162,7 @@ const NewRecipe = ({ isAddRecipeVisible, setIsAddRecipeVisible }) => {
           <NewRecipeRejectMessage recipeNotAdded={recipeNotAdded} />
         </section>
         <NewIngredientInputButton
+          recipeFormOpen={recipeFormOpen}
           inputFields={inputFields}
           setInputFields={setInputFields}
         />
