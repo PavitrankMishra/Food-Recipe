@@ -5,7 +5,7 @@ export const fetchSingleRecipe = createAsyncThunk(
   "fetchSingleRecipe",
   async (recipeId) => {
     const response = await fetch(
-      `https://forkify-api.herokuapp.com/api/v2/recipes/${recipeId}`
+      `${import.meta.VITE_API_URL}/${recipeId}`
     );
     return response.json();
   }

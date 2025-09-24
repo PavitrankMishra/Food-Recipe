@@ -4,7 +4,7 @@ export const deleteSingleRecipe = createAsyncThunk(
   "recipeDelete",
   async (id) => {
     const response = await fetch(
-      `https://forkify-api.herokuapp.com/api/v2/recipes/${id}?key=d348a0b0-c7b8-4539-b6a6-80f883fdef51`,
+      `${import.meta.VITE_API_URL}/${id}?key=${import.meta.VITE_API_KEY}`,
       {
         method: "DELETE",
       }
