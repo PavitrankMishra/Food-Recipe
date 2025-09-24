@@ -90,7 +90,7 @@ const NewRecipe = ({ isAddRecipeVisible, setIsAddRecipeVisible }) => {
       setLoading(true);
 
       const res = await fetch(
-        "https://forkify-api.herokuapp.com/api/v2/recipes?key=d348a0b0-c7b8-4539-b6a6-80f883fdef51",
+        `${import.meta.VITE_API_URL}?key=${import.meta.VITE_API_KEY}`,
         {
           method: "POST",
           headers: {
