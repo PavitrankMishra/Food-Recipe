@@ -22,6 +22,10 @@ app.get("/", (req, res) => {
   return res.status(200).send("Welcome to Food Server");
 });
 
+app.get("/api/v1/auth", (req, res) => {
+  return res.status(200).send("This is the auth route");
+})
+
 // middlewares
 
 const PORT = 8000;
