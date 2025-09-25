@@ -4,7 +4,7 @@ export const deleteSingleRecipe = createAsyncThunk(
   "recipeDelete",
   async (id) => {
     const response = await fetch(
-      `${import.meta.VITE_API_URL}/${id}?key=${import.meta.VITE_API_KEY}`,
+      `${import.meta.env.VITE_API_URL}/${id}?key=${import.meta.env.VITE_API_KEY}`,
       {
         method: "DELETE",
       }

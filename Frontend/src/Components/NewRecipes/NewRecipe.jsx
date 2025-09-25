@@ -90,7 +90,7 @@ const NewRecipe = ({ isAddRecipeVisible, setIsAddRecipeVisible }) => {
       setLoading(true);
 
       const res = await fetch(
-        `${import.meta.VITE_API_URL}?key=${import.meta.VITE_API_KEY}`,
+        `${import.meta.env.VITE_API_URL}?key=${import.meta.env.VITE_API_KEY}`,
         {
           method: "POST",
           headers: {

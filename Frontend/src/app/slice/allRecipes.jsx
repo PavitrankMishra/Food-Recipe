@@ -5,8 +5,8 @@ export const fetchAllRecipe = createAsyncThunk(
   "fetchAllRecipe",
   async (inputV) => {
     const response = await fetch(
-      `${import.meta.VITE_API_URL}/?search=${inputV}&key=${
-        import.meta.VITE_API_KEY
+      `${import.meta.env.VITE_API_URL}/?search=${inputV}&key=${
+        import.meta.env.VITE_API_KEY
       }`
     );
     return response.json();
