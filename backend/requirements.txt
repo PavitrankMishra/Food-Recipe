@@ -1,0 +1,5 @@
+flask
+gtts
+playsound
+SpeechRecognition
+pyaudio
