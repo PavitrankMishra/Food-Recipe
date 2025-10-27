@@ -1,5 +1,5 @@
 flask
 gtts
-playsound
+playsound==1.2.2
 SpeechRecognition
 pyaudio
