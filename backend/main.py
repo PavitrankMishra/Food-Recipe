@@ -7,7 +7,7 @@ import playsound
 app = Flask(__name__)
 CORS(app)
 
-latest_text = ""  # store latest recognized text
+latest_text = ""
 
 def speak(text):
     tts = gTTS(text=text, lang="en")
@@ -32,20 +32,3 @@ def get_audio():
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=5000)
-    
-# @app.route("/listen", methods=["GET"])
-# def listen():
-#     return jsonify({"text": latest_text})
-    
-# @app.route("/upload_audio", methods=["POST"])
-# def upload_audio():
-#     if "audio" not in request.files:
-#         return jsonify({"error": "No audio file found"}), 400
-
-#     audio = request.files["audio"]
-#     save_path = os.path.join("uploads", audio.filename)
-#     os.makedirs("uploads", exist_ok=True)
-#     audio.save(save_path)
-
-#     print("✅ Audio received and saved at:", save_path)
-#     return jsonify({"message": "Audio uploaded successfully!", "path": save_path})
