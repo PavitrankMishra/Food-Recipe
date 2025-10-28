@@ -1,7 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import Header from "../HomePage/Header";
 import "./Recipes.css";
-
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchAllRecipe } from "../../app/slice/allRecipes";
@@ -201,7 +200,7 @@ const Recipes = () => {
       )}
       {recipeDeletedSuccessfull && <RecipeDeleteSuccessMessage />}
       {recipeDeletedFail && <RecipeDeleteFailMessage />}
-      
+
     </>
   );
 };

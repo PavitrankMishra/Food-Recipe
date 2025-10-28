@@ -12,6 +12,7 @@ const RecipeHeader = ({
   inputValue,
   updateInputValue,
 }) => {
+  
   return (
     <>
       <section className="recipeHeadingLeft">
