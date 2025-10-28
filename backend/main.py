@@ -1,37 +1,51 @@
-from flask import Flask, request, jsonify
+from flask import Flask, jsonify
 from gtts import gTTS
-import time
-import os
+import speech_recognition as sr
 from flask_cors import CORS
-from flask import jsonify
+import playsound
 
 app = Flask(__name__)
 CORS(app)
 
-@app.route("/")
-def home():
-    return "Voice Assistant Flask API is running!"
+latest_text = ""  # store latest recognized text
+
+def speak(text):
+    tts = gTTS(text=text, lang="en")
+    filename = "voice.mp3"
+    tts.save(filename)
+    playsound.playsound(filename)
 
 @app.route("/speak")
-def speak():
-    data = {"message": "I am getting noticed"}
-    return jsonify(data)
-    # data = request.get_json()
-    # text = data.get("text", "")
-
-    # if not text:
-    #     return jsonify({"error": "No text provided"}), 400
-
-    # filename = f"voice_{int(time.time() * 1000)}.mp3"
-    # tts = gTTS(text=text, lang="en")
-    # tts.save(filename)
-
-    # # Return file to frontend (so it can play it)
-    # with open(filename, "rb") as f:
-    #     audio_data = f.read()
-
-    # os.remove(filename)
-    # return audio_data, 200, {"Content-Type": "audio/mpeg"}
+def get_audio():
+    global latest_text
+    r = sr.Recognizer()
+    with sr.Microphone() as source:
+        audio = r.listen(source)
+        said = ""
+        try:
+            said = r.recognize_google(audio)
+            print(said)
+            latest_text = said
+        except Exception as e:
+            print("Exception: " + str(e))
+    return jsonify({"status": "recorded", "text": said})
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=5000)
+    
+# @app.route("/listen", methods=["GET"])
+# def listen():
+#     return jsonify({"text": latest_text})
+    
+# @app.route("/upload_audio", methods=["POST"])
+# def upload_audio():
+#     if "audio" not in request.files:
+#         return jsonify({"error": "No audio file found"}), 400
+
+#     audio = request.files["audio"]
+#     save_path = os.path.join("uploads", audio.filename)
+#     os.makedirs("uploads", exist_ok=True)
+#     audio.save(save_path)
+
+#     print("✅ Audio received and saved at:", save_path)
+#     return jsonify({"message": "Audio uploaded successfully!", "path": save_path})
