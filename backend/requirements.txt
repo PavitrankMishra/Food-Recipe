@@ -1,5 +1,0 @@
-flask
-gtts
-playsound==1.2.2
-SpeechRecognition
-Flask-Cors
