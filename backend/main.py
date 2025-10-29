@@ -18,16 +18,30 @@ def speak(text):
 @app.route("/speak")
 def get_audio():
     global latest_text
+
     r = sr.Recognizer()
-    with sr.Microphone() as source:
-        audio = r.listen(source)
-        said = ""
-        try:
-            said = r.recognize_google(audio)
-            print(said)
-            latest_text = said
-        except Exception as e:
-            print("Exception: " + str(e))
+    said = "" 
+
+    try:
+        with sr.Microphone(device_index=1) as source:
+            r.pause_threshold = 1
+            audio = r.listen(source)
+
+        query = r.recognize_google(audio, language='en-in')
+        print("🗣️ User said:", query)
+        said = query
+        latest_text = said
+
+    except sr.UnknownValueError:
+        print("⚠️ Could not understand audio")
+        said = "Could not understand audio"
+    except sr.RequestError as e:
+        print(f"⚠️ Could not request results; {e}")
+        said = "Speech recognition service error"
+    except Exception as e:
+        print(f"❌ Exception: {e}")
+        said = "Error recognizing speech"
+
     return jsonify({"status": "recorded", "text": said})
 
 if __name__ == "__main__":
