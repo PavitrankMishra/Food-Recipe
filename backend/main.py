@@ -1,8 +1,9 @@
 from flask import Flask, request, jsonify
 from flask_cors import CORS
 import speech_recognition as sr
-import tempfile
 from pydub import AudioSegment
+import tempfile
+import os
 
 app = Flask(__name__)
 CORS(app)
@@ -10,22 +11,36 @@ CORS(app)
 @app.route("/speak", methods=["POST"])
 def handle_speech():
     try:
-        r = sr.Recognizer()
-        with sr.Microphone() as source:
-            print("Listening...")
-            audio = r.listen(source)
+        if "audio" not in request.files:
+            return jsonify({"error": "No audio file provided"}), 400
 
-        text = r.recognize_google(audio)
-        print("Recognized:", text)
+        audio_file = request.files["audio"]
+
+        # Save uploaded WebM file temporarily
+        with tempfile.NamedTemporaryFile(delete=False, suffix=".webm") as temp:
+            audio_file.save(temp.name)
+            webm_path = temp.name
+
+        # Convert WebM → WAV using pydub (requires ffmpeg installed)
+        wav_path = webm_path.replace(".webm", ".wav")
+        AudioSegment.from_file(webm_path, format="webm").export(wav_path, format="wav")
+
+        # Use speech recognition on the converted WAV
+        recognizer = sr.Recognizer()
+        with sr.AudioFile(wav_path) as source:
+            audio_data = recognizer.record(source)
+            text = recognizer.recognize_google(audio_data)
+
+        # Clean up temporary files
+        os.remove(webm_path)
+        os.remove(wav_path)
+
         return jsonify({"text": text})
 
     except sr.UnknownValueError:
-        # Google could not understand the audio
         return jsonify({"error": "Could not understand audio"}), 400
-
-    except sr.RequestError as e:
-        # Network or API issue
-        return jsonify({"error": f"Speech recognition service failed: {e}"}), 500
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=5000)
