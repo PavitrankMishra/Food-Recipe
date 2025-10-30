@@ -1,6 +1,7 @@
 Flask
 Flask-Cors
-gTTS
 SpeechRecognition
+gTTS
 playsound==1.2.2
 pydub
+requests
