@@ -1,31 +1,32 @@
 from flask import Flask, request, jsonify
 from flask_cors import CORS
 import speech_recognition as sr
-import tempfile
-from pydub import AudioSegment
+import os
 
 app = Flask(__name__)
 CORS(app)
 
 @app.route("/speak", methods=["POST"])
 def handle_speech():
-    try:
-        r = sr.Recognizer()
-        with sr.Microphone() as source:
-            print("Listening...")
-            audio = r.listen(source)
+    if "audio" not in request.files:
+        return jsonify({"error": "No audio file found"}), 400
 
-        text = r.recognize_google(audio)
-        print("Recognized:", text)
-        return jsonify({"text": text})
+    audio_file = request.files["audio"]
+    temp_path = "temp_audio.wav"
+    audio_file.save(temp_path)
 
-    except sr.UnknownValueError:
-        # Google could not understand the audio
-        return jsonify({"error": "Could not understand audio"}), 400
+    recognizer = sr.Recognizer()
+    with sr.AudioFile(temp_path) as source:
+        audio_data = recognizer.record(source)
+        try:
+            text = recognizer.recognize_google(audio_data)
+        except sr.UnknownValueError:
+            text = "Sorry, I couldn't understand the audio."
+        except sr.RequestError:
+            text = "Error: Could not request results from Google Speech Recognition service."
 
-    except sr.RequestError as e:
-        # Network or API issue
-        return jsonify({"error": f"Speech recognition service failed: {e}"}), 500
+    os.remove(temp_path)
+    return jsonify({"text": text})
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=5000)
+    app.run(debug=True)
