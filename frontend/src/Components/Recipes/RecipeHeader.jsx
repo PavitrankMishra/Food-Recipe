@@ -11,14 +11,17 @@ const RecipeHeader = ({
   setIsAddRecipeVisible,
   inputValue,
   updateInputValue,
+  speechListen,
+  setSpeechListen,
 }) => {
-  
   return (
     <>
       <section className="recipeHeadingLeft">
         <RecipeHeadingLeft
           inputValue={inputValue}
           updateInputValue={updateInputValue}
+          speechListen={speechListen}
+          setSpeechListen={setSpeechListen}
         />
       </section>
       <section className="recipeHeadingRight">

@@ -3,7 +3,7 @@ import Header from "../HomePage/Header";
 import "./Recipes.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchAllRecipe } from "../../app/slice/allRecipes";
+import { fetchAllRecipe, setMicListen } from "../../app/slice/allRecipes";
 import { fetchSingleRecipe } from "../../app/slice/singleRecipe";
 import { toggleBookmark } from "../../app/slice/singleRecipe";
 
@@ -16,6 +16,7 @@ import RecipeDeleteMessage from "./RecipeDeleteSuccessMessage";
 import RecipeDeleteFailMessage from "./RecipeDeleteFailMessage";
 import RecipeDeleteSuccessMessage from "./RecipeDeleteSuccessMessage";
 import { deleteSingleRecipe } from "../../app/slice/recipeDelete";
+import VoiceListen from "./VoiceListen";
 
 /**
  * Responsible for rendering the recipes page and it's components
@@ -38,6 +39,10 @@ const Recipes = () => {
     (state) => state?.singleRecipe?.data?.data?.recipe || []
   );
 
+  const [speechListen, setSpeechListen] = useState(false);
+
+  const isMicListen = useSelector((state) => state?.allRecipe?.isMicListen);
+  console.log(isMicListen);
   /**
    * Selects the bookmarkedRecipe value from the redux store
    */
@@ -122,7 +127,6 @@ const Recipes = () => {
   useEffect(() => {
     if (inputValue.length > 3) {
       setLoading(true);
-
       const timerId = setTimeout(() => {
         dispatch(fetchAllRecipe(inputValue));
         setTimeout(() => setLoading(false), 2000);
@@ -165,6 +169,8 @@ const Recipes = () => {
               isAddRecipeVisible={isAddRecipeVisible}
               setIsAddRecipeVisible={setIsAddRecipeVisible}
               inputValue={inputValue}
+              speechListen={speechListen}
+              setSpeechListen={setSpeechListen}
             />
           </section>
           <section className="middleContainer">
@@ -200,7 +206,7 @@ const Recipes = () => {
       )}
       {recipeDeletedSuccessfull && <RecipeDeleteSuccessMessage />}
       {recipeDeletedFail && <RecipeDeleteFailMessage />}
-
+      {isMicListen && <VoiceListen />}
     </>
   );
 };

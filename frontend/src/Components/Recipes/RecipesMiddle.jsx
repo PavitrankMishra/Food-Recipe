@@ -6,6 +6,7 @@ import RecipeMiddleLeftButton from "./RecipesMiddleLeft/RecipeMiddleLeftButton";
 import RecipesMiddleLeftList from "./RecipesMiddleLeft/RecipesMiddleLeftList";
 import RecipesMiddleLeftFeatures from "./RecipesMiddleLeft/RecipesMiddleLeftFeatures";
 import RecipeMiddleRightInformation from "./RecipesMiddleRight/RecipeMiddleRightInformation";
+import { useSelector } from "react-redux";
 
 const RecipesMiddle = ({
   loading,
@@ -18,6 +19,7 @@ const RecipesMiddle = ({
   setIsAddRecipeVisible,
   setTrashClicked,
 }) => {
+  const searched = useSelector((state) => state?.allRecipe?.isSearched);
   return (
     <>
       <section className="middleLeft">
@@ -36,8 +38,14 @@ const RecipesMiddle = ({
               totalPages={totalPages}
             />
           </>
-        ) : (
+        ) : searched === false ? (
           <RecipesMiddleLeftFeatures />
+        ) : (
+          <section className="box1">
+            <section className="right">
+              <p>No results found for your search.</p>
+            </section>
+          </section>
         )}
       </section>
 

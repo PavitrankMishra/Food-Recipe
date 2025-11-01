@@ -15,6 +15,11 @@
   width: 60%;
 }
 
+.notFoundContainer {
+  border: 2px solid red;
+  padding-top: 100px;
+}
+
 .box1 {
   display: flex;
   align-items: center;
